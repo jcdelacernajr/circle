@@ -11,6 +11,10 @@ import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+/**
+ * 
+ * @author jr
+ * */
 @SpringBootApplication
 @EnableJpaAuditing // Enabling JPA Auditing
 public class CircleApplication {
