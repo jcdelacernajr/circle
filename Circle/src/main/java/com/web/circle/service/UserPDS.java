@@ -35,7 +35,7 @@ public class UserPDS implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// Get the user credentials.
 		Users user = this.userR.findByUsername(username);
-		System.out.println("User: "+ user);
+		//System.out.println("User: "+ user);
 		if(user == null) {
 			throw new UsernameNotFoundException("No user found for "+ username + ".");
 		}

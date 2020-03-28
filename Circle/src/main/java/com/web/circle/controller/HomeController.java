@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/")
 public class HomeController {
+	
     @GetMapping("index")
     public String index(){
         return "index";
     }
 
     @GetMapping("login")
-    public String login(){
+    public String login() {
     	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     	//System.out.println("Principal: " + auth.getPrincipal());
     	if(!auth.getPrincipal().equals("anonymousUser")) {

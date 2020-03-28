@@ -12,6 +12,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 /**
+ * https://localhost:8443/
+ * For admin account
+ * Username: admin	
+ * Password: admin123
+ * -------------------------
+ * For User account
+ * Username: user
+ * Password: admin123
  * 
  * @author jr
  * */

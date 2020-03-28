@@ -44,7 +44,7 @@ public class CircleJwtAuthorFilter extends BasicAuthenticationFilter {
 			throws IOException, ServletException {
 		// Read request authorization header
 		String header = request.getHeader(CircleJwtProperties.HEADER_STRING);
-		// Check the if request contain a bearer
+		// Check the header if request contain a bearer
 		if(header == null || !header.startsWith(CircleJwtProperties.TOKEN_PREFIX)) {
 			chain.doFilter(request, response);
 			return;

@@ -50,7 +50,7 @@ public class CircleConfig extends WebSecurityConfigurerAdapter {
 		       .antMatchers("/index.html").permitAll()
 		       .antMatchers("/profile/**").authenticated()
 		       .antMatchers("/admin/**").hasAnyRole("SUPER_USER","ADMIN")
-		       .antMatchers("/management/**").hasAnyRole("SUPER_USER","ADMIN")
+		       .antMatchers("/management/**").hasAnyRole("ROLE_SUPER_USER","ADMIN")
 		       .antMatchers("/api/public/management/*").hasRole("SUPER_USER")
 		       .antMatchers("/api/public/admin/*").hasRole("ADMIN")
 		   .and()
@@ -61,8 +61,8 @@ public class CircleConfig extends WebSecurityConfigurerAdapter {
 		       .passwordParameter("txtPassword")
 	       .and()
 	       		.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
-	       .and()
-		       .rememberMe().tokenValiditySeconds(2592000).key("Circle").rememberMeParameter("checkRememberMe")
+	       .and() 
+		       .rememberMe().tokenValiditySeconds(2592000).key("Circle").rememberMeParameter("checkRememberMe") // 2592000 is equal to 30 days.
 		       .userDetailsService(userPDS);
 		
 		  /*http
