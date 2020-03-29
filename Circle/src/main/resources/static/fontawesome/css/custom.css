@@ -4011,3 +4011,7 @@ readers do not read off random characters that represent icons */
 .fas {
   font-family: 'Font Awesome 5 Free';
   font-weight: 900; }
+  
+.bg-light {
+    background-color: #346cb0!important;
+}
