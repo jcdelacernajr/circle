@@ -20,7 +20,7 @@ public class HomeController {
     	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     	//System.out.println("Principal: " + auth.getPrincipal());
     	if(!auth.getPrincipal().equals("anonymousUser")) {
-    		return "redirect:/index";
+    		return "redirect:/main";
     	}
     	
     	return "login";
