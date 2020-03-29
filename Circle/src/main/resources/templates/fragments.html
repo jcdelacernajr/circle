@@ -4,40 +4,54 @@
 
 <!-- Fragment #1 : Header files contains css and js references -->
 <head th:fragment="headerfiles">
-    <title>Introduction to SpringBoot Security</title>
-    <meta charset="UTF-8"/>
-    <link th:href="@{~/fontawesome/css/fonts.googleapis.css}" rel="stylesheet">
-    <link th:href="@{~/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{~/fontawesome/css/custom.css}" rel="stylesheet">
+     <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- End Required meta tags -->
+    <!-- Begin SEO tag -->
+    <title> Dashboard | Looper - Bootstrap 4 Admin Theme </title>
+    <meta property="og:title" content="Dashboard">
+    <meta name="author" content="Beni Arisandi">
+    <meta property="og:locale" content="en_US">
+    <meta name="description" content="Responsive admin theme build on top of Bootstrap 4">
+    <meta property="og:description" content="Responsive admin theme build on top of Bootstrap 4">
+    <link rel="canonical" href="//uselooper.com">
+    <meta property="og:url" content="//uselooper.com">
+    <meta property="og:site_name" content="Looper - Bootstrap 4 Admin Theme">
+    <script type="application/ld+json">
+      {
+        "name": "Looper - Bootstrap 4 Admin Theme",
+        "description": "Responsive admin theme build on top of Bootstrap 4",
+        "author":
+        {
+          "@type": "Person",
+          "name": "Beni Arisandi"
+        },
+        "@type": "WebSite",
+        "url": "",
+        "headline": "Dashboard",
+        "@context": "http://schema.org"
+      }
+    </script>
+    <!-- End SEO tag -->
+    <!-- FAVICONS -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/apple-touch-icon.png">
+    <link rel="shortcut icon" href="assets/favicon.ico">
+    <meta name="theme-color" content="#3063A0">
+    <!-- End FAVICONS -->
+    <script src="assets/vendor/pace/pace.min.js"></script>
+    <!-- BEGIN BASE STYLES -->
+    <link rel="stylesheet" href="assets/vendor/pace/pace.min.css">
+    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/vendor/open-iconic/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="assets/vendor/font-awesome/css/fontawesome-all.min.css">
+    <!-- END BASE STYLES -->
+    <!-- BEGIN PLUGINS STYLES -->
+    <link rel="stylesheet" href="assets/vendor/flatpickr/flatpickr.min.css">
+    <!-- END PLUGINS STYLES -->
+    <!-- BEGIN THEME STYLES -->
+    <link rel="stylesheet" href="assets/stylesheets/main.min.css">
+    <link rel="stylesheet" href="assets/stylesheets/custom.css">
+    <!-- END THEME STYLES -->
 </head>
-<body>
-
-<!-- Fragment #2 : Navbar contains nav links -->
-<div th:fragment="nav">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Circle inc.</a>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{~/index}"><i class="fa fa-home"></i> Home</a>
-                </li>
-                <li sec:authorize="isAuthenticated()" class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{~/profile/index}">Profile</a>
-                </li>
-                <li sec:authorize="hasAnyRole('ROLE_SUPER_USER','ROLE_ADMIN')" class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{~/admin/index}">Admin</a>
-                </li>
-                <li sec:authorize="hasAnyRole('ROLE_SUPER_USER','ROLE_ADMIN')" class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{~/management/index}">Management</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/logout}">
-                <button sec:authorize="isAuthenticated()" class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Logout</button>
-                <button sec:authorize="isAnonymous()" th:href="@{~/login}" class="btn btn-outline-info my-2 my-sm-0 btn-sm" type="submit">Login</button>
-            </form>
-        </div>
-    </nav>
-</div>
-</body>
 </html>
