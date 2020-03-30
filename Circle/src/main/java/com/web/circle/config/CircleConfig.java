@@ -1,9 +1,7 @@
 package com.web.circle.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -47,8 +45,8 @@ public class CircleConfig extends WebSecurityConfigurerAdapter {
 		       .addFilter(new CircleJwtAuthenFilter(authenticationManager()))
 		       .addFilter(new CircleJwtAuthorFilter(authenticationManager(),  this.userR))
 		       .authorizeRequests()
-		       .antMatchers("/index.html").permitAll()
-		       .antMatchers("/profile/**").authenticated()
+		       .antMatchers("/index").permitAll()
+		       .antMatchers("/home/**").authenticated()
 		       .antMatchers("/admin/**").hasAnyRole("SUPER_USER","ADMIN")
 		       .antMatchers("/management/**").hasAnyRole("ROLE_SUPER_USER","ADMIN")
 		       .antMatchers("/api/public/management/*").hasRole("SUPER_USER")
