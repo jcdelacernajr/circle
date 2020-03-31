@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- End Required meta tags -->
     <!-- Begin SEO tag -->
-    <title> Dashboard | Looper - Bootstrap 4 Admin Theme </title>
+    <title> Circle | Home</title>
     <meta property="og:title" content="Dashboard">
     <meta name="author" content="Beni Arisandi">
     <meta property="og:locale" content="en_US">
@@ -55,7 +55,7 @@
     <!-- END THEME STYLES -->
 </head>
 
-<!-- Fragment #2 and #3 : -->
+<!-- Fragment #2, #3 : -->
 <body>
 <header class="app-header" th:fragment="appheader">
 <!-- .top-bar 11-->
@@ -279,72 +279,6 @@
                   <!-- /.dropdown-menu -->
                 </li>
                 <!-- /.nav-item -->
-                <!-- .nav-item -->
-                <li class="nav-item dropdown header-nav-dropdown">
-                  <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="oi oi-grid-three-up"></span>
-                  </a>
-                  <div class="dropdown-arrow"></div>
-                  <!-- .dropdown-menu -->
-                  <div class="dropdown-menu dropdown-menu-rich dropdown-menu-right">
-                    <!-- .dropdown-sheets -->
-                    <div class="dropdown-sheets">
-                      <!-- .dropdown-sheet-item -->
-                      <div class="dropdown-sheet-item">
-                        <a href="#" class="tile-wrapper">
-                          <span class="tile tile-lg bg-indigo">
-                            <i class="oi oi-people"></i>
-                          </span>
-                          <span class="tile-peek">Teams</span>
-                        </a>
-                      </div>
-                      <!-- /.dropdown-sheet-item -->
-                      <!-- .dropdown-sheet-item -->
-                      <div class="dropdown-sheet-item">
-                        <a href="#" class="tile-wrapper">
-                          <span class="tile tile-lg bg-teal">
-                            <i class="oi oi-fork"></i>
-                          </span>
-                          <span class="tile-peek">Projects</span>
-                        </a>
-                      </div>
-                      <!-- /.dropdown-sheet-item -->
-                      <!-- .dropdown-sheet-item -->
-                      <div class="dropdown-sheet-item">
-                        <a href="#" class="tile-wrapper">
-                          <span class="tile tile-lg bg-pink">
-                            <i class="fa fa-tasks"></i>
-                          </span>
-                          <span class="tile-peek">Tasks</span>
-                        </a>
-                      </div>
-                      <!-- /.dropdown-sheet-item -->
-                      <!-- .dropdown-sheet-item -->
-                      <div class="dropdown-sheet-item">
-                        <a href="#" class="tile-wrapper">
-                          <span class="tile tile-lg bg-yellow">
-                            <i class="oi oi-fire"></i>
-                          </span>
-                          <span class="tile-peek">Feeds</span>
-                        </a>
-                      </div>
-                      <!-- /.dropdown-sheet-item -->
-                      <!-- .dropdown-sheet-item -->
-                      <div class="dropdown-sheet-item">
-                        <a href="#" class="tile-wrapper">
-                          <span class="tile tile-lg bg-cyan">
-                            <i class="oi oi-document"></i>
-                          </span>
-                          <span class="tile-peek">Files</span>
-                        </a>
-                      </div>
-                      <!-- /.dropdown-sheet-item -->
-                    </div>
-                    <!-- .dropdown-sheets -->
-                  </div>
-                  <!-- .dropdown-menu -->
-                </li>
-                <!-- /.nav-item -->
               </ul>
               <!-- /.nav -->
               <!-- .btn-account -->
@@ -354,18 +288,23 @@
                     <img src="assets/images/avatars/profile.jpg" alt="">
                   </span>
                   <span class="account-summary pr-lg-4 d-none d-lg-block">
-                    <span class="account-name">Beni Arisandi</span>
-                    <span class="account-description">Marketing Manager</span>
+                    <span class="account-name" sec:authentication="name"></span>
+                    <span class="account-description"></span>
                   </span>
                 </button>
                 <div class="dropdown-arrow dropdown-arrow-left"></div>
                 <!-- .dropdown-menu -->
                 <div class="dropdown-menu">
                   <h6 class="dropdown-header d-none d-md-block d-lg-none"> Beni Arisandi </h6>
-                  <a class="dropdown-item" href="user-profile.html">
-                    <span class="dropdown-icon oi oi-person"></span> Profile</a>
-                  <a class="dropdown-item" href="auth-signin-v1.html">
-                    <span class="dropdown-icon oi oi-account-logout"></span> Logout</a>
+                  
+                 <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/logout}">
+	                  <a class="dropdown-item" href="user-profile.html">
+	                    <span class="dropdown-icon oi oi-account-logout"></span> 
+	                    <button class="dropdown-item btn-sm" sec:authorize="isAuthenticated()" type="submit">Logout</button>
+	                	<button class="dropdown-item btn-sm" sec:authorize="isAnonymous()" th:href="@{~/login}" type="submit">Sign in</button>
+	                    </a>
+                   </form>
+                    
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="#">Help Center</a>
                   <a class="dropdown-item" href="#">Ask Forum</a>
@@ -427,7 +366,7 @@
                 <!-- .menu-item -->
                 <li class="menu-item has-active">
                   <a href="index.html" class="menu-link">
-                    <span class="menu-icon oi oi-dashboard"></span>
+                    <span class="menu-icon fas fa-home"></span>
                     <span class="menu-text">Dashboard</span>
                   </a>
                 </li>
@@ -436,71 +375,75 @@
                 <li class="menu-item has-child">
                   <a href="#" class="menu-link">
                     <span class="menu-icon oi oi-browser"></span>
-                    <span class="menu-text">Layouts</span>
-                    <span class="badge badge-success">20+</span>
+                    <span class="menu-text">Application</span>
                   </a>
                   <!-- child menu -->
                   <ul class="menu">
                     <li class="menu-item">
-                      <a href="layout-blank.html" class="menu-link">Blank Page</a>
+                      <a href="layout-blank.html" class="menu-link">Leave form</a>
                     </li>
                     <li class="menu-item">
-                      <a href="layout-nosearch.html" class="menu-link">Header no Search</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-fullwidth.html" class="menu-link">Full Width</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-pagenavs.html" class="menu-link">Page Navs</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-pagesidebar.html" class="menu-link">Page Sidebar</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-pagecover.html" class="menu-link">Page Cover</a>
+                      <a href="layout-blank.html" class="menu-link">Overtime form</a>
                     </li>
                   </ul>
                   <!-- /child menu -->
                 </li>
                 <!-- /.menu-item -->
                 <!-- .menu-header -->
-                <li class="menu-header">Interfaces </li>
+                <li class="menu-header">Settings </li>
                 <!-- /.menu-header -->
                 <!-- .menu-item -->
                 <li class="menu-item has-child">
                   <a href="#" class="menu-link">
-                    <span class="menu-icon oi oi-puzzle-piece"></span>
-                    <span class="menu-text">Components</span>
-                    <span class="badge badge-warning">New</span>
+                    <span class="menu-icon oi oi-grid-two-up"></span>
+                    <span class="menu-text">My Account</span>
                   </a>
                   <!-- child menu -->
                   <ul class="menu">
                     <li class="menu-item">
-                      <a href="component-general.html" class="menu-link">General</a>
+                      <a href="table-basic.html" class="menu-link">Job</a>
                     </li>
                     <li class="menu-item">
-                      <a href="component-icons.html" class="menu-link">Icons</a>
+                      <a href="table-datatables.html" class="menu-link">Personal detail</a>
                     </li>
                     <li class="menu-item">
-                      <a href="component-rich-media.html" class="menu-link">Rich Media</a>
+                      <a href="table-datatables.html" class="menu-link">Contact detail</a>
                     </li>
                     <li class="menu-item">
-                      <a href="component-list-views.html" class="menu-link">List Views</a>
+                      <a href="table-datatables.html" class="menu-link">Salary</a>
                     </li>
                     <li class="menu-item">
-                      <a href="component-sortable-nestable.html" class="menu-link">Sortable & Nestable</a>
+                      <a href="table-datatables.html" class="menu-link">Qualification</a>
+                    </li>
+                  </ul>
+                  <!-- /child menu -->
+                </li>
+                <!-- /.menu-item -->
+                <!-- .menu-item -->
+                <li class="menu-item has-child">
+                  <a href="#" class="menu-link">
+                    <span class="menu-icon oi oi-puzzle-piece"></span>
+                    <span class="menu-text">Maintenance</span>
+                  </a>
+                  <!-- child menu -->
+                  <ul class="menu">
+                    <li class="menu-item">
+                      <a href="component-general.html" class="menu-link">User</a>
                     </li>
                     <li class="menu-item">
-                      <a href="component-activity.html" class="menu-link">Activity</a>
+                      <a href="component-icons.html" class="menu-link">Job</a>
                     </li>
                     <li class="menu-item">
-                      <a href="component-steps.html" class="menu-link">Steps</a>
+                      <a href="component-rich-media.html" class="menu-link">Salary</a>
                     </li>
                     <li class="menu-item">
-                      <a href="component-tasks.html" class="menu-link">Tasks</a>
+                      <a href="component-list-views.html" class="menu-link">Loan</a>
                     </li>
                     <li class="menu-item">
-                      <a href="component-metrics.html" class="menu-link">Metrics</a>
+                      <a href="component-sortable-nestable.html" class="menu-link">Holiday</a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="component-activity.html" class="menu-link">General Information</a>
                     </li>
                   </ul>
                   <!-- /child menu -->
@@ -510,132 +453,18 @@
                 <li class="menu-item has-child">
                   <a href="#" class="menu-link">
                     <span class="menu-icon oi oi-pencil"></span>
-                    <span class="menu-text">Forms</span>
+                    <span class="menu-text">Payroll processing</span>
                   </a>
                   <!-- child menu -->
                   <ul class="menu">
                     <li class="menu-item">
-                      <a href="form-basic.html" class="menu-link">Basic Elements</a>
+                      <a href="form-basic.html" class="menu-link">Daily time record</a>
                     </li>
                     <li class="menu-item">
-                      <a href="form-autocompletes.html" class="menu-link">Autocompletes</a>
+                      <a href="form-autocompletes.html" class="menu-link">Employee leave</a>
                     </li>
                     <li class="menu-item">
-                      <a href="form-pickers.html" class="menu-link">Pickers</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="form-editors.html" class="menu-link">Editors</a>
-                    </li>
-                  </ul>
-                  <!-- /child menu -->
-                </li>
-                <!-- /.menu-item -->
-                <!-- .menu-item -->
-                <li class="menu-item has-child">
-                  <a href="#" class="menu-link">
-                    <span class="menu-icon oi oi-grid-two-up"></span>
-                    <span class="menu-text">Tables</span>
-                  </a>
-                  <!-- child menu -->
-                  <ul class="menu">
-                    <li class="menu-item">
-                      <a href="table-basic.html" class="menu-link">Basic Table</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="table-datatables.html" class="menu-link">Datatables</a>
-                    </li>
-                  </ul>
-                  <!-- /child menu -->
-                </li>
-                <!-- /.menu-item -->
-                <!-- .menu-item -->
-                <li class="menu-item has-child">
-                  <a href="#" class="menu-link">
-                    <span class="menu-icon oi oi-bar-chart"></span>
-                    <span class="menu-text">Collections</span>
-                  </a>
-                  <!-- child menu -->
-                  <ul class="menu">
-                    <li class="menu-item has-child">
-                      <a href="#" class="menu-link">Chart.js</a>
-                      <!-- grand child menu -->
-                      <ul class="menu">
-                        <li class="menu-item">
-                          <a href="collection-chartjs-line.html" class="menu-link">Line</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="collection-chartjs-bar.html" class="menu-link">Bar</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="collection-chartjs-radar-scatter.html" class="menu-link">Radar & Scatter</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="collection-chartjs-others.html" class="menu-link">Others</a>
-                        </li>
-                      </ul>
-                      <!-- /grand child menu -->
-                    </li>
-                    <li class="menu-item">
-                      <a href="collection-flot-charts.html" class="menu-link">Flot</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="collection-inline-charts.html" class="menu-link">Inline charts</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="collection-jqvmap.html" class="menu-link">Vector Map</a>
-                    </li>
-                  </ul>
-                  <!-- /child menu -->
-                </li>
-                <!-- /.menu-item -->
-                <!-- .menu-item -->
-                <li class="menu-item has-child">
-                  <a href="#" class="menu-link">
-                    <span class="menu-icon oi oi-list-rich"></span>
-                    <span class="menu-text">Level Menu</span>
-                  </a>
-                  <!-- child menu -->
-                  <ul class="menu">
-                    <li class="menu-item">
-                      <a href="#" class="menu-link">Menu item</a>
-                    </li>
-                    <li class="menu-item has-child">
-                      <a href="#" class="menu-link">Menu item</a>
-                      <!-- grand child menu -->
-                      <ul class="menu">
-                        <li class="menu-item">
-                          <a href="#" class="menu-link">Child item</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="#" class="menu-link">Child item</a>
-                        </li>
-                        <li class="menu-item has-child">
-                          <a href="#" class="menu-link">Child item</a>
-                          <!-- grand child menu -->
-                          <ul class="menu">
-                            <li class="menu-item">
-                              <a href="#" class="menu-link">Grand Child item</a>
-                            </li>
-                            <li class="menu-item">
-                              <a href="#" class="menu-link">Grand Child item</a>
-                            </li>
-                            <li class="menu-item">
-                              <a href="#" class="menu-link">Grand Child item</a>
-                            </li>
-                            <li class="menu-item">
-                              <a href="#" class="menu-link">Grand Child item</a>
-                            </li>
-                          </ul>
-                          <!-- /grand child menu -->
-                        </li>
-                        <li class="menu-item">
-                          <a href="#" class="menu-link">Child item</a>
-                        </li>
-                      </ul>
-                      <!-- /grand child menu -->
-                    </li>
-                    <li class="menu-item">
-                      <a href="#" class="menu-link">Menu item</a>
+                      <a href="form-pickers.html" class="menu-link">Generate payroll</a>
                     </li>
                   </ul>
                   <!-- /child menu -->
@@ -776,5 +605,38 @@
         </div>
         <!-- /.aside-content -->
 </aside>
+<div th:fragment="appscript">
+<!-- BEGIN BASE JS 33-->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/popper.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- END BASE JS -->
+    <!-- BEGIN PLUGINS JS -->
+    <script src="assets/vendor/stacked-menu/stacked-menu.min.js"></script>
+    <script src="assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/vendor/flatpickr/flatpickr.min.js"></script>
+    <script src="assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+    <script src="assets/vendor/chart.js/Chart.min.js"></script>
+    <!-- END PLUGINS JS -->
+    <!-- BEGIN THEME JS -->
+    <script src="assets/javascript/main.min.js"></script>
+    <!-- END THEME JS -->
+    <!-- BEGIN PAGE LEVEL JS -->
+    <script src="assets/javascript/pages/easypiechart-demo.js"></script>
+    <script src="assets/javascript/pages/dashboard-demo.js"></script>
+    <!-- END PAGE LEVEL JS -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116692175-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag()
+      {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'UA-116692175-1');
+    </script>
+</div>
 </body>
 </html>

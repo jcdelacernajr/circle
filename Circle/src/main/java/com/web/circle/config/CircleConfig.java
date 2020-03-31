@@ -46,7 +46,7 @@ public class CircleConfig extends WebSecurityConfigurerAdapter {
 		       .addFilter(new CircleJwtAuthorFilter(authenticationManager(),  this.userR))
 		       .authorizeRequests()
 		       .antMatchers("/index").permitAll()
-		       .antMatchers("/home/**").authenticated()
+		       .antMatchers("/dashboard/**").authenticated()
 		       .antMatchers("/admin/**").hasAnyRole("SUPER_USER","ADMIN")
 		       .antMatchers("/management/**").hasAnyRole("ROLE_SUPER_USER","ADMIN")
 		       .antMatchers("/api/public/management/*").hasRole("SUPER_USER")

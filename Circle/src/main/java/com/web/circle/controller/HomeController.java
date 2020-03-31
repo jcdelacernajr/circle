@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class HomeController {
 	
-    @GetMapping("home")
+    @GetMapping("dashboard")
     public String home(){
-        return "home";
+        return "dashboard";
     }
 
     @GetMapping("login")
@@ -20,7 +20,7 @@ public class HomeController {
     	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     	//System.out.println("Principal: " + auth.getPrincipal());
     	if(!auth.getPrincipal().equals("anonymousUser")) {
-    		return "redirect:/home";
+    		return "redirect:/dashboard";
     	}
     	
     	return "login";
