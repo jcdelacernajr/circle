@@ -171,8 +171,8 @@
 	                	<button class="dropdown-item btn-sm" sec:authorize="isAnonymous()" th:href="@{~/login}" type="submit">Sign in</button>
 	                    </a>
                    </form>
-                   	<a class="dropdown-item" href="auth-signin-v1.html">
-                    <span class="dropdown-icon oi oi-account-logout"></span> Register</a>
+                   	<a class="dropdown-item" href="signup" sec:authorize="isAnonymous()">
+                    <span class="dropdown-icon oi oi-account-logout"></span>Signup</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="#">Help Center</a>
                   <a class="dropdown-item" href="#">Ask Forum</a>
@@ -257,8 +257,7 @@
               <!-- .page-title-bar -->
               <header class="page-title-bar">
                 <p class="lead">
-                  <span class="font-weight-bold">Hi, Beni.</span>
-                  <span class="d-block text-muted">Here’s what’s happening with your business today.</span>
+                  <!-- Empty... Todo... -->
                 </p>
               </header>
               <!-- /.page-title-bar -->

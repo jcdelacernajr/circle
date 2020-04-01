@@ -1,15 +1,14 @@
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-      
+<html lang="en">
+  <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- End Required meta tags -->
     <!-- Begin SEO tag -->
-    <title> Circle | Sign in </title>
-    <meta property="og:title" content="Sign In">
+    <title> Circle | Sign up</title>
+    <meta property="og:title" content="Sign Up">
     <meta name="author" content="Beni Arisandi">
     <meta property="og:locale" content="en_US">
     <meta name="description" content="Responsive admin theme build on top of Bootstrap 4">
@@ -28,7 +27,7 @@
         },
         "@type": "WebSite",
         "url": "",
-        "headline": "Sign In",
+        "headline": "Sign Up",
         "@context": "http://schema.org"
       }
     </script>
@@ -52,53 +51,56 @@
       <header id="auth-header" class="auth-header" style="background-image: url(assets/images/illustration/img-1.png);">
         <h1>
           <img src="assets/images/brand-inverse.png" alt="" height="72">
-          <span class="sr-only">Sign In</span>
+          <span class="sr-only">Sign Up</span>
         </h1>
-        <p> Don't have a account?
-          <a href="auth-signup.html">Create One</a>
+        <p> Already have an account? please
+          <a href="auth-signin-v1.html">Sign In</a>
         </p>
       </header>
       <!-- form -->
-      <form class="auth-form" name="f" th:action="@{/signin}" method="post">
+      <form:form method="POST" modelAttribute="userForm"  class="auth-form">
         <!-- .form-group -->
-        <div class="form-group">
-	        <div th:if="${param.error}" class="alert alert-danger">
-	             Invalid username and password.
-	         </div>
-          <div class="form-label-group">
-            <input type="text" id="txtUsername" name="txtUsername" class="form-control" placeholder="Username" required="" autofocus="">
-            <label for="txtUsername">Username</label>
-          </div>
-        </div>
+        <spring:bind path="username">
+	        <div class="form-group ${status.error ? 'has-error' : ''}">
+	          <div class="form-label-group">
+	            <input type="text" id="username" class="form-control" placeholder="username" required autofocus="true">
+	            <label for="username">Username</label>
+	          </div>
+	        </div>
+        </spring:bind>
+        <!-- /.form-group -->
+        <!-- .form-group -->
+        <spring:bind path="password">
+	        <div class="form-group ${status.error ? 'has-error' : ''}">
+	          <div class="form-label-group">
+	            <input type="text" id="password" class="form-control" placeholder="password" required="">
+	            <label for="inputUser">password</label>
+	          </div>
+	        </div>
+        </spring:bind>
         <!-- /.form-group -->
         <!-- .form-group -->
         <div class="form-group">
-          <div class="form-label-group">
-            <input type="password" id="txtPassword" name="txtPassword" class="form-control" placeholder="Password" required="">
-            <label for="txtPassword">Password</label>
-          </div>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
         </div>
         <!-- /.form-group -->
         <!-- .form-group -->
-        <div class="form-group text-rigth">
+        <div class="form-group text-center">
           <div class="custom-control custom-control-inline custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="checkRememberMe" name="checkRememberMe">
-            <label class="custom-control-label" for="checkRememberMe">Remember me</label>
+            <input type="checkbox" class="custom-control-input" id="newsletter">
+            <label class="custom-control-label" for="newsletter">Sign me up for the newsletter</label>
           </div>
         </div>
         <!-- /.form-group -->
-        <!-- .form-group -->
-        <div class="form-group">
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        </div>
-        <!-- /.form-group -->
-      </form>
+        <!-- recovery links -->
+        <p class="text-center text-muted mb-0"> By creating an account you agree to the
+          <a href="#">Terms of Use</a> and
+          <a href="#">Privacy Policy</a>. </p>
+        <!-- /recovery links -->
+      </form:form>
       <!-- /.auth-form -->
       <!-- copyright -->
-      <footer class="auth-footer">Circle © 2020 All Rights Reserved.
-        <a href="#">Privacy</a> and
-        <a href="#">Terms</a>
-      </footer>
+      <footer class="auth-footer"> © 2018 All Rights Reserved. </footer>
     </main>
     <!-- /.auth -->
     <!-- BEGIN PLUGINS JS -->
