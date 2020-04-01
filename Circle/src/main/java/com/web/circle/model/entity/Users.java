@@ -38,6 +38,9 @@ public class Users extends CircleAuditing {
 	@Column(name = "organization_fk")
 	private int organizationFk;
 	
+	@Column(name = "email")
+	private String email;
+	
 	@Column(name = "username")
 	private String username;
 	
@@ -108,6 +111,14 @@ public class Users extends CircleAuditing {
 		this.organizationFk = organizationFk;
 	}
 
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getUsername() {
 		return username;

@@ -25,8 +25,6 @@ public class CircleConfig extends WebSecurityConfigurerAdapter {
 	private UserPDS userPDS;
 	private UserRepo userR;
 	
-	//private PasswordEncoder encoder;
-	
 	public CircleConfig(UserPDS userPDS, UserRepo userR) {
 		this.userPDS = userPDS;
 		this.userR = userR;
@@ -71,14 +69,9 @@ public class CircleConfig extends WebSecurityConfigurerAdapter {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         daoAuthenticationProvider.setUserDetailsService(this.userPDS);
-
         return daoAuthenticationProvider;
     }
 	
-	@Bean
-    public AuthenticationManager customAuthenticationManager() throws Exception {
-        return authenticationManager();
-    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

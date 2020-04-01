@@ -58,26 +58,46 @@
         </p>
       </header>
       <!-- form -->
-      <form:form method="POST" modelAttribute="userForm"  class="auth-form">
+      <form class="auth-form" th:action="@{/signup}" th:object="${user}" method="post">
+      	<p class="error-message"
+                th:if="${#fields.hasGlobalErrors()}"
+                th:each="error : ${#fields.errors('global')}"
+                th:text="${error}">Validation error</p>
         <!-- .form-group -->
-        <spring:bind path="username">
-	        <div class="form-group ${status.error ? 'has-error' : ''}">
+	        <div class="form-group" th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
 	          <div class="form-label-group">
-	            <input type="text" id="username" class="form-control" placeholder="username" required autofocus="true">
-	            <label for="username">Username</label>
+	            <input type="email" id="email" class="form-control" th:field="*{email}" placeholder="E-mail" required autofocus="true">
+	            <label for="email">E-mail</label>
+	            <p class="error-message" th:each="error: ${#fields.errors('email')}" th:text="${error}">Validation error</p>
 	          </div>
 	        </div>
-        </spring:bind>
         <!-- /.form-group -->
         <!-- .form-group -->
-        <spring:bind path="password">
-	        <div class="form-group ${status.error ? 'has-error' : ''}">
+	        <div class="form-group" th:classappend="${#fields.hasErrors('confirmEmail')}? 'has-error':''">
 	          <div class="form-label-group">
-	            <input type="text" id="password" class="form-control" placeholder="password" required="">
-	            <label for="inputUser">password</label>
+	            <input type="email" id="confirmEmail" class="form-control" th:field="*{confirmEmail}" placeholder="E-mail" required autofocus="true">
+	            <label for="confirmEmail">Confirm e-mail</label>
+	            <p class="error-message" th:each="error: ${#fields.errors('confirmEmail')}" th:text="${error}">Validation error</p>
 	          </div>
 	        </div>
-        </spring:bind>
+        <!-- /.form-group -->
+        <!-- .form-group -->
+	        <div class="form-group" th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
+	          <div class="form-label-group">
+	            <input type="password" id="password" class="form-control" th:field="*{password}" placeholder="password" required="">
+	            <label for="password">password</label>
+	            <p class="error-message" th:each="error : ${#fields.errors('password')}" th:text="${error}">Validation error</p>
+	          </div>
+	        </div>
+        <!-- /.form-group -->
+        <!-- .form-group -->
+	        <div class="form-group" th:classappend="${#fields.hasErrors('confirmPassword')}? 'has-error':''">
+	          <div class="form-label-group">
+	            <input type="password" id="confirmPassword" class="form-control" th:field="*{confirmPassword}" placeholder="Confirm password" required="">
+	            <label for="confirmPassword">Confirm password</label>
+	            <p class="error-message" th:each="error : ${#fields.errors('confirmPassword')}" th:text="${error}">Validation error</p>
+	          </div>
+	        </div>
         <!-- /.form-group -->
         <!-- .form-group -->
         <div class="form-group">
@@ -97,7 +117,7 @@
           <a href="#">Terms of Use</a> and
           <a href="#">Privacy Policy</a>. </p>
         <!-- /recovery links -->
-      </form:form>
+      </form>
       <!-- /.auth-form -->
       <!-- copyright -->
       <footer class="auth-footer"> © 2018 All Rights Reserved. </footer>

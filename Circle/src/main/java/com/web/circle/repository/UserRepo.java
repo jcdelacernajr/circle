@@ -8,4 +8,5 @@ import com.web.circle.model.entity.Users;
 @Repository
 public interface UserRepo extends JpaRepository<Users, Long> {
 	Users findByUsername(String username);
+	Users findByEmail(String email);
 }
