@@ -1,13 +1,10 @@
 package com.web.circle.service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -35,8 +32,11 @@ public class UserServiceImplementation implements UserService {
 
 	@Override
 	public Users save(UserSignupDTO userSignupDTO) {
+		// User table
 		Users user = new Users();
+		user.setUpdatedAt(null);
 		user.setEmail(userSignupDTO.getEmail());
+		user.setUsername(userSignupDTO.getEmail());
 		user.setPassword(encoder.encode(userSignupDTO.getPassword()));
         return userRepository.save(user);
 	}
