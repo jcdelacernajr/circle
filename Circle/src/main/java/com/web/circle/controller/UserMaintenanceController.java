@@ -1,0 +1,40 @@
+package com.web.circle.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import com.web.circle.repository.UserRepo;
+
+/**
+ * @author Juanito C. Dela Dela Cerna Jr. March 2020
+ * 
+ */
+@Controller
+@RequestMapping("maintenance")
+public class UserMaintenanceController {
+	
+	private final UserRepo userRepository;
+	
+	@Autowired
+	public UserMaintenanceController(UserRepo userRepository) {
+		this.userRepository = userRepository;
+	}
+	
+	@GetMapping("user/index")
+    public String index(){
+        return "user/index";
+    }
+
+
+//	@PostMapping("maintenance/user")
+//    public String user(@Valid Users user, BindingResult result, Model model) {
+//        if (result.hasErrors()) {
+//            return "";
+//        }
+//         
+//        model.addAttribute("users", userRepository.findAll());
+//        return "maintenance/user/index";
+//    }
+
+}

@@ -18,6 +18,10 @@ import com.web.circle.service.CircleJwtAuthenFilter;
 import com.web.circle.service.CircleJwtAuthorFilter;
 import com.web.circle.service.UserPDS;
 
+/**
+ * @author Juanito C. Dela Dela Cerna Jr. March 2020
+ * 
+ */
 @Configuration
 @EnableWebSecurity
 public class CircleConfig extends WebSecurityConfigurerAdapter {
@@ -47,6 +51,7 @@ public class CircleConfig extends WebSecurityConfigurerAdapter {
 		       .antMatchers("/index").permitAll()
 		       .antMatchers("/signup").permitAll()
 		       .antMatchers("/dashboard/**").authenticated()
+		       .antMatchers("/maintenance/user/**").hasAnyRole("SUPER_USER","ADMIN")
 		       .antMatchers("/admin/**").hasAnyRole("SUPER_USER","ADMIN")
 		       .antMatchers("/management/**").hasAnyRole("ROLE_SUPER_USER","ADMIN")
 		       .antMatchers("/api/public/management/*").hasRole("SUPER_USER")

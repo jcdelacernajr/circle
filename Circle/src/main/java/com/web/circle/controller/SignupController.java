@@ -39,8 +39,8 @@ public class SignupController {
 	
 	@PostMapping
     public String signupUserAccount(@ModelAttribute("user") @Valid UserSignupDTO userDTO, BindingResult result){
-        Users existing = us.findByEmail(userDTO.getEmail());
-        if (existing != null){
+        Users user = us.findByEmail(userDTO.getEmail());
+        if (user != null){
             result.rejectValue("email", null, "There is already an account registered with that email");
         }
         if (result.hasErrors()){

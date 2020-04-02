@@ -6,12 +6,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * @author Juanito C. Dela Dela Cerna Jr. March 2020
+ * 
+ */
 @Controller
 @RequestMapping("/")
 public class DashboardController {
 	
     @GetMapping("dashboard")
-    public String home(){
+    public String dashboard(){
         return "dashboard";
     }
 
@@ -25,6 +29,8 @@ public class DashboardController {
     	
     	return "login";
 	}
+    
+    
 }
 
 
