@@ -36,5 +36,9 @@ public class UserMaintenanceController {
 //        model.addAttribute("users", userRepository.findAll());
 //        return "maintenance/user/index";
 //    }
+	
+	// instructions
+	//https://www.baeldung.com/spring-boot-crud-thymeleaf
+	//https://github.com/eugenp/tutorials/blob/master/spring-boot-modules/spring-boot-crud/src/main/resources/templates/index.html
 
 }
