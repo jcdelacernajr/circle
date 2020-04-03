@@ -13,6 +13,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 /**
  * https://localhost:8443/
+ * For super account
+ * Username: super	
+ * Password: admin123
+ * 
  * For admin account
  * Username: admin	
  * Password: admin123

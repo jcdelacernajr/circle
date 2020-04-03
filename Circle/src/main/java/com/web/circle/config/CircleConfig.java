@@ -2,7 +2,6 @@ package com.web.circle.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,7 +11,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
 import com.web.circle.repository.UserRepo;
 import com.web.circle.service.CircleJwtAuthenFilter;
 import com.web.circle.service.CircleJwtAuthorFilter;
@@ -50,10 +48,10 @@ public class CircleConfig extends WebSecurityConfigurerAdapter {
 		       .authorizeRequests()
 		       .antMatchers("/index").permitAll()
 		       .antMatchers("/signup").permitAll()
-		       .antMatchers("/dashboard/**").authenticated()
-		       .antMatchers("/maintenance/user/**").hasAnyRole("SUPER_USER","ADMIN")
+		       .antMatchers("/dashboard").authenticated()
+		       .antMatchers("/maintenance/**").hasAnyRole("SUPER_USER","ADMIN")
 		       .antMatchers("/admin/**").hasAnyRole("SUPER_USER","ADMIN")
-		       .antMatchers("/management/**").hasAnyRole("ROLE_SUPER_USER","ADMIN")
+		       .antMatchers("/management/**").hasAnyRole("SUPER_USER","ADMIN")
 		       .antMatchers("/api/public/management/*").hasRole("SUPER_USER")
 		       .antMatchers("/api/public/admin/*").hasRole("ADMIN")
 		   .and()
@@ -82,5 +80,4 @@ public class CircleConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 }
