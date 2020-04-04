@@ -3,16 +3,14 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:insert="fragments.html :: headerfiles">
-<title> Circle | User maintenance</title>
 </head>
 <body>
-    <!-- Page content goes here -->
 	<div class="app">
       <!-- .app-header -->
-      <header th:insert="fragments.html :: appheader"></header>
+      <header th:insert="include/top_bar_fragments.html :: app_header"></header>
       <!-- /.app-header -->
       <!-- .app-aside -->
-      <aside th:insert="fragments.html :: appaside"></aside>
+      <aside th:insert="include/aside_fragments.html :: app_aside"></aside>
       <!-- /.app-aside -->
       <!-- Page content goes here -->
       <!-- .app-main -->
@@ -23,18 +21,7 @@
           <div class="page">
             <!-- .page-inner -->
             <div class="page-inner">
-              <!-- .page-title-bar -->
-              <header class="page-title-bar">
-                <p class="lead">
-                  <span class="font-weight-bold" sec:authentication="name"></span>
-                  <span class="d-block text-muted" sec:authentication="principal.authorities"></span>
-                </p>
-              </header>
-              <!-- /.page-title-bar -->
-              <!-- .page-section -->
-              <div class="page-section">
-                
-                 <div th:switch="${users}" class="container my-5">
+		       <div th:switch="${users}" class="container">
 		            <div class="row">
 		                <div class="col-md-6">
 		                    <h2 th:case="null">No users yet!</h2>
@@ -44,26 +31,28 @@
 		                            <thead>
 		                                <tr>
 		                                    <th>Name</th>
-		                                    <th>Password</th>
 		                                    <th>Email</th>
+		                                    <th>Password</th>
+		                                    <th>Edit</th>
+		                                    <th>Delete</th>
 		                                </tr>
 		                            </thead>
 		                            <tbody>
 		                                <tr th:each="user : ${users}">
 		                                    <td th:text="${user.username}"></td>
-		                                    <td th:text="${user.password}"></td>
 		                                    <td th:text="${user.email}"></td>
+		                                    <td th:text="${user.password}"></td>
+		                                    <td><a href="#" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+		                                    <td><a href="#" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
 		                                </tr>
 		                            </tbody>
 		                        </table>
 		                    </div>      
+		                    <p class="my-5"><a href="#" class="btn btn-primary"><i class="fas fa-user-plus ml-2"></i></a></p>
 		                </div>
 		            </div>
 		        </div>
-                
-              </div>
-              <!-- /.page-section -->
-            </div>
+        	</div>
             <!-- /.page-inner -->
           </div>
           <!-- /.page -->
@@ -71,6 +60,7 @@
         <!-- /.wrapper -->
       </main>
       <!-- /.app-main -->
-  <div th:insert="fragments.html :: appscript"></div>
+    </div>
+ 	<footer th:insert="include/footer_script_fragments.html :: app_script"></footer>
 </body>
 </html>
