@@ -21,45 +21,6 @@
           <div class="page">
             <!-- .page-inner -->
             <div class="page-inner">
-            	
-            	
-        	<!-- DataTables -->
-        	<div class="container">
-			    <div class="row">
-			        <div class="col-lg mt-5 mb-5">
-			            <table id="example" class="table table-bordered table-responsive" style="width: 100%">
-			                <thead>
-			                <tr>
-			                    <th>ID</th>
-								<th>Orga ID</th>
-								<th>Email</th>
-								<th>Username</th>
-								<th>Password</th>
-								<th>Active</th>
-								<th>Account expired</th>
-								<th>Account locked</th>
-								<th>Credentials expire</th>
-			                </tr>
-			                </thead>
-			                <tfoot>
-			                <tr>
-			                    <th>ID</th>
-								<th>Orga ID</th>
-								<th>Email</th>
-								<th>Username</th>
-								<th>Password</th>
-								<th>Active</th>
-								<th>Account expired</th>
-								<th>Account locked</th>
-								<th>Credentials expire</th>
-			                </tr>
-			                </tfoot>
-			            </table>
-			        </div>
-			    </div>
-			</div>
-        	<!-- /.DataTables -->
-            
 		       <div th:switch="${users}" class="container">
 		            <div class="row">
 		                <div class="col-md-6">
@@ -101,31 +62,5 @@
       <!-- /.app-main -->
     </div>
  	<footer th:insert="include/footer_script_fragments.html :: app_script"></footer>
- 	<script>
-	    $('#example').DataTable({
-	        "processing": true,
-	        "serverSide": true,
-	        "ajax": {
-	            "url": "/api/user-list",
-	            "type": "POST",
-	            "dataType": "json",
-	            "contentType": "application/json",
-	            "data": function (d) {
-	                return JSON.stringify(d);
-	            }
-	        },
-	        "columns": [
-	            {"data": "userId", "width": "20%"},
-	            {"data": "organizationFk","width": "20%"},
-	            {"data": "email", "width": "20%"},
-	            {"data": "username", "width": "20%"},
-	            {"data": "password", "width": "20%"},
-	            {"data": "active", "width": "20%"},
-	            {"data": "accountNonExpired", "width": "20%"},
-	            {"data": "accountNonLocked", "width": "20%"},
-	            {"data": "credentialsNonExpired", "width": "20%"}
-	        ]
-	    });
-    </script>
 </body>
 </html>

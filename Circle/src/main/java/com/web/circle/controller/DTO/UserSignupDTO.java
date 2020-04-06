@@ -4,6 +4,13 @@ import com.web.circle.validator.FieldMatch;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
+
+/**
+ * This is for User signup controller.
+ * 
+ * @author Juanito C. Dela Dela Cerna Jr. March 2020
+ * 
+ */
 @FieldMatch.List({
     @FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match"),
     @FieldMatch(first = "email", second = "confirmEmail", message = "The email fields must match")

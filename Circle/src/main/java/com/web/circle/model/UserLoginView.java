@@ -1,6 +1,5 @@
 package com.web.circle.model;
 
-
 /**
  * 
  * @author jr
@@ -21,6 +20,4 @@ public class UserLoginView {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
 }
