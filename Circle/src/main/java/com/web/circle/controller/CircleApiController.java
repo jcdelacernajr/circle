@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.web.circle.model.UsersModel;
 import com.web.circle.model.tablepaging.Page;
 import com.web.circle.model.tablepaging.PagingRequest;
-import com.web.circle.service.UserTableService;
+import com.web.circle.service.UserTableServiceImplementation;
 
 /**
  * 
@@ -19,10 +19,10 @@ import com.web.circle.service.UserTableService;
 @RequestMapping("api/user-list")
 public class CircleApiController {
 	
-	private final UserTableService userTableService;
+	private final UserTableServiceImplementation userTableService;
 	
 	@Autowired
-	public CircleApiController(UserTableService userTableService) {
+	public CircleApiController(UserTableServiceImplementation userTableService) {
 		this.userTableService = userTableService;
 	}
 	

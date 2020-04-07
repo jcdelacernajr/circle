@@ -25,8 +25,8 @@ public final class UsersComparators {
     static Map<Key, Comparator<UsersModel>> map = new HashMap<>();
 
     static {
-        map.put(new Key("userId", Direction.asc), Comparator.comparing(UsersModel::getUserId));
-        map.put(new Key("userId", Direction.desc), Comparator.comparing(UsersModel::getUserId).reversed());
+        map.put(new Key("userId", Direction.desc), Comparator.comparing(UsersModel::getUserId));
+        map.put(new Key("userId", Direction.asc), Comparator.comparing(UsersModel::getUserId).reversed());
     }
 
     public static Comparator<UsersModel> getComparator(String name, Direction dir) {

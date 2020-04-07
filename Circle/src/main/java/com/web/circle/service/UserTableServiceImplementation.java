@@ -32,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Service
-public class UserTableService {
+public class UserTableServiceImplementation {
 	
 	private static final Comparator<UsersModel> EMPTY_COMPARATOR = (e1, e2) -> 0;
 	 
@@ -41,7 +41,7 @@ public class UserTableService {
 	 
 	 
 	@Autowired
-	public UserTableService(UserRepo userRepository) {
+	public UserTableServiceImplementation(UserRepo userRepository) {
     	this.userRepository = userRepository;
 	}
 
@@ -100,6 +100,13 @@ public class UserTableService {
 	        return page;
 	    }
 
+	    /**
+	     * Table search function
+	     * 
+	     * @param PagingRequest
+	     * @return Return value must not a null value.
+	     * @throws If the user table contains any null value. this function throws a null pointer exception.
+	     * */
 	    private Predicate<UsersModel> filterUsers(PagingRequest pagingRequest) {
 	        if (pagingRequest.getSearch() == null || StringUtils.isEmpty(pagingRequest.getSearch().getValue())) {
 	            return user -> true;
@@ -107,8 +114,8 @@ public class UserTableService {
 
 	        String value = pagingRequest.getSearch().getValue();
 	        
-	        log.info("Value: "+ value);
-
+	        //log.info("Value: "+ value);
+	        
 	        return user -> user.getEmail().toLowerCase().contains(value) || user.getUsername().toLowerCase().contains(value) || 
 	        		String.valueOf(user.getUserId()).toLowerCase().contains(value);
 	    }
