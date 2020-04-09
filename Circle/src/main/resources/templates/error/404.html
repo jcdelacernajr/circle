@@ -5,7 +5,7 @@
 <head>
 <title>Error 404: Page not found</title>
 </head>
-<head th:insert="error/include/head.html :: head"></head>
+<head th:insert="fragments/header.html :: header"></head>
 <body>
 	 <!-- .app -->
     <div class="app has-fullwidth">
@@ -15,7 +15,7 @@
         <div class="top-bar">
           <!-- .top-bar-brand -->
           <div class="top-bar-brand">
-            <a href="#">
+            <a th:href="@{~/}">
               <img th:src="@{~/assets/images/brand-inverse.png}" height="32" alt="">
             </a>
           </div>
@@ -168,6 +168,6 @@
       <!-- /.app-main -->
     </div>
     <!-- /.app -->
-	<div th:insert="error/include/footer.html :: footer"></div>
+	<div th:insert="fragments/footer.html :: footer"></div>
 </body>
 </html>
