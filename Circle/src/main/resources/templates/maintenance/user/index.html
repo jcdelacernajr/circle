@@ -7,7 +7,7 @@
     <title> Circle | User maintenance</title>
     <!-- End SEO tag -->
 </head>
-<head th:insert="fragments.html :: headerfiles"></head>
+<head th:insert="fragments/header.html :: header"></head>
 <head>
 	<!-- DataTables maintenance user page-->
     <link rel="stylesheet" th:href="@{~/assets/datatable/datatables.css}">
@@ -16,10 +16,10 @@
 <body>
 	<div class="app">
       <!-- .app-header -->
-      <header th:insert="maintenance/include/top_bar_fragments.html :: app_header"></header>
+      <header th:insert="fragments/topbar.html :: topbar"></header>
       <!-- /.app-header -->
       <!-- .app-aside -->
-      <aside th:insert="maintenance/include/aside_fragments.html :: app_aside"></aside>
+      <aside th:insert="fragments/aside.html :: aside"></aside>
       <!-- /.app-aside -->
       <!-- Page content goes here -->
       <!-- .app-main -->
@@ -62,7 +62,10 @@
       </main>
       <!-- /.app-main -->
     </div>
- 	<footer th:insert="maintenance/include/footer_script_fragments.html :: app_script"></footer>
+ 	<footer th:insert="fragments/footer.html :: footer"></footer>
+ 	<!-- DataTables -->
+    <script src="#" th:src="@{~/assets/datatable/datatables.js}"></script>
+    <!-- /.DataTables -->
  	<script>
 	    $('#example').DataTable({
 	        "processing": true,

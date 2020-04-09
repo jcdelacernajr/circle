@@ -5,15 +5,15 @@
     <title> Circle | Dashboard</title>
     <!-- End SEO tag -->
 </head>
-<head th:insert="fragments.html :: headerfiles"></head>
+<head th:insert="fragments/header.html :: header"></head>
 <body>
     <!-- .app -->
     <div class="app">
       <!-- .app-header -->
-      <header th:insert="fragments.html :: appheader"></header>
+      <header th:insert="fragments/topbar.html :: topbar"></header>
       <!-- /.app-header -->
       <!-- .app-aside -->
-      <aside th:insert="fragments.html :: appaside"></aside>
+      <aside th:insert="fragments/aside.html :: aside"></aside>
       <!-- /.app-aside -->
       <!-- .app-main -->
       <main class="app-main">
@@ -690,6 +690,6 @@
       <!-- /.app-main -->
     </div>
     <!-- /.app -->
-    <div th:insert="fragments.html :: appscript"></div>
+    <div th:insert="fragments/footer.html :: footer"></div>
   </body>
 </html>
