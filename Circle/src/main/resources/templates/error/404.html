@@ -1,13 +1,13 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-  <head>
-	<title>Circle | Public Page</title>
-	</head>
-  <head th:insert="error/include/head.html :: head"></head>
-  <body>
-    <!-- .app -->
+
+<head>
+<title>Error 404: Page not found</title>
+</head>
+<head th:insert="error/include/head.html :: head"></head>
+<body>
+	 <!-- .app -->
     <div class="app has-fullwidth">
       <!-- .app-header -->
       <header class="app-header">
@@ -16,7 +16,7 @@
           <!-- .top-bar-brand -->
           <div class="top-bar-brand">
             <a href="#">
-              <img src="assets/images/brand-inverse.png" height="32" alt="">
+              <img th:src="@{~/assets/images/brand-inverse.png}" height="32" alt="">
             </a>
           </div>
           <!-- /.top-bar-brand -->
@@ -65,7 +65,7 @@
                     <div class="dropdown-sheets">
                       <!-- .dropdown-sheet-item -->
                       <div class="dropdown-sheet-item">
-                        <a href="dashboard" class="tile-wrapper">
+                        <a th:href="@{~/dashboard}" class="tile-wrapper">
                           <span class="tile tile-lg bg-indigo">
                             <i class="oi oi-people"></i>
                           </span>
@@ -106,7 +106,7 @@
               <div class="dropdown">
                 <button class="btn-account d-none d-md-flex" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <span class="user-avatar">
-                    <img src="assets/images/avatars/profile.jpg" alt="">
+                    <img th:src="@{~/assets/images/avatars/profile.jpg}" alt="">
                   </span>
                   <span class="account-summary pr-lg-4 d-none d-lg-block">
                     <span class="account-name" sec:authentication="name"></span>
@@ -142,101 +142,32 @@
         <!-- /.top-bar -->
       </header>
       <!-- /.app-header -->
-      <!-- .app-aside -->
-      <aside class="app-aside">
-        <!-- .aside-content -->
-        <div class="aside-content">
-          <!-- .aside-header -->
-          <header class="aside-header">
-            <!-- toggle menu -->
-            <button class="hamburger hamburger-squeeze" type="button" data-toggle="aside" aria-label="Menu" aria-controls="navigation">
-              <span class="hamburger-box">
-                <span class="hamburger-inner"></span>
-              </span>
-            </button>
-            <!-- /toggle menu -->
-            <!-- .btn-account -->
-            <button class="btn-account d-flex d-md-none" type="button" data-toggle="collapse" data-target="#dropdown-aside">
-              <span class="user-avatar user-avatar-lg">
-                <img src="assets/images/avatars/profile.jpg" alt="">
-              </span>
-              <span class="account-icon">
-                <span class="fa fa-caret-down fa-lg"></span>
-              </span>
-              <span class="account-summary">
-                <span class="account-name">Beni Arisandi</span>
-                <span class="account-description">Marketing Manager</span>
-              </span>
-            </button>
-            <!-- /.btn-account -->
-            <!-- .dropdown-aside -->
-            <div id="dropdown-aside" class="dropdown-aside collapse">
-              <!-- dropdown-items -->
-              <div class="pb-3">
-                <a class="dropdown-item" href="user-profile.html">
-                  <span class="dropdown-icon oi oi-person"></span> Profile</a>
-                <a class="dropdown-item" href="auth-signin-v1.html">
-                  <span class="dropdown-icon oi oi-account-logout"></span> Logout</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Help Center</a>
-                <a class="dropdown-item" href="#">Ask Forum</a>
-                <a class="dropdown-item" href="#">Keyboard Shortcuts</a>
-              </div>
-              <!-- /dropdown-items -->
-            </div>
-            <!-- /.dropdown-aside -->
-            <!-- .top-bar-brand -->
-            <div class="top-bar-brand">
-              <a href="index.html">
-                <img src="assets/images/brand.png" height="32" alt="">
-              </a>
-            </div>
-            <!-- /.top-bar-brand -->
-          </header>
-          <!-- /.aside-header -->
-          
-        </div>
-        <!-- /.aside-content -->
-      </aside>
-      <!-- /.app-aside -->
       <!-- .app-main -->
       <main class="app-main">
         <!-- .wrapper -->
         <div class="wrapper">
-          <!-- .page -->
-          <div class="page">
-            <!-- .page-inner -->
-            <div class="page-inner">
-              <!-- .page-title-bar -->
-              <header class="page-title-bar">
-                <p class="lead">
-                  <!-- Empty... Todo... -->
-                </p>
-              </header>
-              <!-- /.page-title-bar -->
-              <!-- .page-section -->
-              <div class="page-section">
-                <!-- .section-block -->
-                <div class="section-block">
-                
-                  <!-- Empty section  -->
-                  
-                  <!-- <span class="account-description" sec:authentication="principal.authorities"></span> -->
-                  
-                </div>
-                <!-- /.section-block -->
+          <!-- .empty-state -->
+          <section class="empty-state">
+            <!-- .empty-state-container -->
+            <div class="empty-state-container">
+              <div class="state-figure">
+                <img class="img-fluid" th:src="@{~/assets/images/illustration/img-2.png}" alt="" style="max-width: 320px"> </div>
+              <h3 class="state-header"> Page Not found! </h3>
+              <p class="state-description lead text-muted"> Sorry, we've misplaced that URL or it's pointing to something that doesn't exist. </p>
+              <div class="state-action">
+                <a href="#" class="btn btn-lg btn-light">
+                  <i class="fa fa-angle-right"></i> Go Back</a>
               </div>
-              <!-- /.page-section -->
             </div>
-            <!-- /.page-inner -->
-          </div>
-          <!-- /.page -->
+            <!-- /.empty-state-container -->
+          </section>
+          <!-- /.empty-state -->
         </div>
         <!-- /.wrapper -->
       </main>
       <!-- /.app-main -->
     </div>
     <!-- /.app -->
-    <div th:insert="error/include/footer.html :: footer"></div>
-  </body>
+	<div th:insert="error/include/footer.html :: footer"></div>
+</body>
 </html>
