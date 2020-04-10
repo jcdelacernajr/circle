@@ -32,25 +32,29 @@
             <!-- .page-inner -->
             <div class="page-inner">
         	<!-- DataTables -->
-        	<div class="container">
-			    <div class="row">
-			        <div class="col-lg mt-5 mb-5">
-			            <table id="example" class="table table-bordered table-responsive" style="width: 100%">
-			                <thead>
-			                <tr>
-			                    <th>ID</th>
-								<th>Organization</th>
-								<th>Email</th>
-								<th>Username</th>
-								<th>Password</th>
-								<th>Active</th>
-								<th>Account expired</th>
-								<th>Account locked</th>
-								<th>Credentials expire</th>
-			                </tr>
-			                </thead>
-			            </table>
-			        </div>
+        	<div class="page-section">
+        		<div class="card card-fluid">
+        			<div class="card-body">
+					    <div class="row">
+					        <div class="col-lg mt-5 mb-5">
+					            <table id="example" class="table table-bordered table-responsive" style="width: 100%">
+					                <thead>
+					                <tr>
+					                    <th>ID</th>
+										<th>Organization</th>
+										<th>Email</th>
+										<th>Username</th>
+										<th>Password</th>
+										<th>Active</th>
+										<th>Account(E)</th>
+										<th>Account(L)</th>
+										<th>Credentials(E)</th>
+					                </tr>
+					                </thead>
+					            </table>
+					        </div>
+					    </div>
+				    </div>
 			    </div>
 			</div>
         	<!-- /.DataTables -->
@@ -86,10 +90,10 @@
 	            {"data": "email", "width": "20%"},
 	            {"data": "username", "width": "20%"},
 	            {"data": "password", "width": "20%"},
-	            {"data": "active", "width": "20%"},
-	            {"data": "accountNonExpired", "width": "20%"},
-	            {"data": "accountNonLocked", "width": "20%"},
-	            {"data": "credentialsNonExpired", "width": "20%"}
+	            {"data": "active", "width": "5%"},
+	            {"data": "accountNonExpired", "width": "60%"},
+	            {"data": "accountNonLocked", "width": "60%"},
+	            {"data": "credentialsNonExpired", "width": "60%"}
 	        ]
 	    });
     </script>

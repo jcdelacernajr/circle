@@ -72,6 +72,7 @@ public class CircleApplication {
  * 1. User sign up fill all the information needed for registration.
  * 2. https://mkyong.com/webservices/jax-rs/file-upload-example-in-jersey/
  * 3. Create a custom error page.
+ * 4. https://netsurfingzone.com/spring/spring-transaction-management-example-using-spring-boot/
  * 
  * 
  * */
