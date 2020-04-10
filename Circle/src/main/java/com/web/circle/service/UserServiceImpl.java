@@ -16,7 +16,7 @@ import com.web.circle.repository.UserRepo;
  * @author Juanito C. Dela Dela Cerna Jr. March 2020
  */
 @Service
-public class UserServiceImplementation implements UserService {
+public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserRepo userRepository;

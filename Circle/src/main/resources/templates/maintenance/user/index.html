@@ -11,6 +11,7 @@
 <head>
 	<!-- DataTables maintenance user page-->
     <link rel="stylesheet" th:href="@{~/assets/datatable/datatables.css}">
+    <link rel="stylesheet" th:href="@{~/assets/datatable/datatables-costum.css}">
     <!-- /.DataTables -->
 </head>
 <body>
@@ -38,7 +39,7 @@
 			                <thead>
 			                <tr>
 			                    <th>ID</th>
-								<th>Orga ID</th>
+								<th>Organization</th>
 								<th>Email</th>
 								<th>Username</th>
 								<th>Password</th>
@@ -80,8 +81,8 @@
 	            }
 	        },
 	        "columns": [
-	            {"data": "userId", "width": "20%"},
-	            {"data": "organizationFk","width": "20%"},
+	            {"data": "userId", "width": "5%"},
+	            {"data": "organization","width": "20%"},
 	            {"data": "email", "width": "20%"},
 	            {"data": "username", "width": "20%"},
 	            {"data": "password", "width": "20%"},

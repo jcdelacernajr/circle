@@ -10,6 +10,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,8 +36,8 @@ public class Users extends CircleAuditing {
 	@Column(name = "user_id")
 	private long userId;
 	
-	@Column(name = "organization_fk")
-	private int organizationFk;
+//	@Column(name = "organization_fk")
+//	private int organizationFk;
 	
 	@Column(name = "email")
 	private String email;
@@ -59,6 +60,18 @@ public class Users extends CircleAuditing {
 	@Column(name = "is_credentials_non_expired")
 	private boolean isCredentialsNonExpired;
 	
+	@OneToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name="organization_fk", referencedColumnName="organization_id")
+	private Organizations organizations;
+	
+	public Organizations getOrganizations() {
+		return organizations;
+	}
+
+	public void setOrganizations(Organizations organizations) {
+		this.organizations = organizations;
+	}
+
 	@OneToMany(mappedBy = "users")
 	@JsonIgnore // We need to ignore this . This will prevent a infinite loop.
 	private List<UserRoles> userRoles;
@@ -103,13 +116,13 @@ public class Users extends CircleAuditing {
 		this.userId = userId;
 	}
 
-	public int getOrganizationFk() {
-		return organizationFk;
-	}
-
-	public void setOrganizationFk(int organizationFk) {
-		this.organizationFk = organizationFk;
-	}
+//	public int getOrganizationFk() {
+//		return organizationFk;
+//	}
+//
+//	public void setOrganizationFk(int organizationFk) {
+//		this.organizationFk = organizationFk;
+//	}
 
 
 	public String getEmail() {

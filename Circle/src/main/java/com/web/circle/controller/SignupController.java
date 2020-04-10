@@ -43,7 +43,7 @@ public class SignupController {
         if (user != null){
             result.rejectValue("email", null, "There is already an account registered with that email");
         }
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             return "signup";
         }
         us.save(userDTO);

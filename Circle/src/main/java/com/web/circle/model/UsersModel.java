@@ -10,7 +10,7 @@ import lombok.Setter;
 public class UsersModel {
 
 	private long userId;
-	private int organizationFk;
+	private String organization;
 	private String email;
 	private String username;
 	private String password;

@@ -32,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Service
-public class UserTableServiceImplementation {
+public class UserTableServiceImpl {
 	
 	private static final Comparator<UsersModel> EMPTY_COMPARATOR = (e1, e2) -> 0;
 	 
@@ -41,7 +41,7 @@ public class UserTableServiceImplementation {
 	 
 	 
 	@Autowired
-	public UserTableServiceImplementation(UserRepo userRepository) {
+	public UserTableServiceImpl(UserRepo userRepository) {
     	this.userRepository = userRepository;
 	}
 
@@ -60,7 +60,7 @@ public class UserTableServiceImplementation {
             for (Users e : uEntity) {
             	JSONObject jo = new JSONObject();
             	jo.put("userId", e.getUserId());
-            	jo.put("organizationFk", e.getOrganizationFk());
+            	jo.put("organization", e.getOrganizations().getEstablishmentName());
             	jo.put("email", e.getEmail());
             	jo.put("username", e.getUsername());
             	jo.put("password", "****");

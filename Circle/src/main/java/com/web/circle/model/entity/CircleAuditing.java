@@ -21,7 +21,7 @@ public abstract class CircleAuditing implements Serializable {
 	//private static final long serialVersionUID = 1L;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "date_created", nullable = false, updatable = false)
+    @Column(name = "date_created", nullable = true, updatable = true)
     @CreatedDate
     private Date createdAt;
 
