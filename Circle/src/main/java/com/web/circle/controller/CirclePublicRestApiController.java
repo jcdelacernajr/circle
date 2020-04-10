@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.web.circle.model.entity.UserRoles;
 import com.web.circle.model.entity.Users;
-import com.web.circle.repository.UserRepo;
-import com.web.circle.repository.UserRoleRepo;
+import com.web.circle.repository.UserRepository;
+import com.web.circle.repository.UserRoleRepository;
 
 
 /**
@@ -22,10 +22,10 @@ import com.web.circle.repository.UserRoleRepo;
 @CrossOrigin
 public class CirclePublicRestApiController {
 
-	private UserRepo userR;
-	private UserRoleRepo userRoleR;
+	private UserRepository userR;
+	private UserRoleRepository userRoleR;
 
-	public CirclePublicRestApiController(UserRepo userR,UserRoleRepo userRoleR) {
+	public CirclePublicRestApiController(UserRepository userR,UserRoleRepository userRoleR) {
 		this.userR = userR;
 		this.userRoleR = userRoleR;
 	}

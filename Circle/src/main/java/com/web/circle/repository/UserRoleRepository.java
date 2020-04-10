@@ -1,19 +1,20 @@
 package com.web.circle.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.web.circle.model.entity.Permissions;
-import com.web.circle.model.entity.Roles;
+import com.web.circle.model.entity.UserRoles;
 
 /**
  * 
  * @author jr
  * */
 @Repository
-public interface RoleRepo extends JpaRepository<Roles, Long>{
-	
-	Roles findAllByRoleId(Long role_id);
+public interface UserRoleRepository extends JpaRepository<UserRoles, Long> {
+
+	List<UserRoles> findAllByUsers(long user_fk);
+
 }

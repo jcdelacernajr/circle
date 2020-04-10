@@ -21,19 +21,19 @@ import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 import com.web.circle.model.entity.CirclePrincipal;
 import com.web.circle.model.entity.UserRoles;
 import com.web.circle.model.entity.Users;
-import com.web.circle.repository.PermissionRepo;
-import com.web.circle.repository.RoleRepo;
-import com.web.circle.repository.UserRepo;
-import com.web.circle.repository.UserRoleRepo;
+import com.web.circle.repository.PermissionRepository;
+import com.web.circle.repository.RoleRepository;
+import com.web.circle.repository.UserRepository;
+import com.web.circle.repository.UserRoleRepository;
 
 /**
  * @author jr
  * */
 public class CircleJwtAuthorFilter extends BasicAuthenticationFilter {
 	
-	private UserRepo userR;
+	private UserRepository userR;
 	
-	public CircleJwtAuthorFilter(AuthenticationManager authenticationManager, UserRepo userR) {
+	public CircleJwtAuthorFilter(AuthenticationManager authenticationManager, UserRepository userR) {
 		super(authenticationManager);
 		this.userR = userR;
 	
@@ -68,7 +68,7 @@ public class CircleJwtAuthorFilter extends BasicAuthenticationFilter {
             // If so, then grab user details and create spring auth token using username, pass, authorities/roles
 			if(userName != null) {
 				Users user = userR.findByUsername(userName);
-				UserP userP = new UserP(user);
+				UserPrincipal userP = new UserPrincipal(user);
 				UsernamePasswordAuthenticationToken authen = new UsernamePasswordAuthenticationToken(userName, null, userP.getAuthorities());
 				return authen;		
 			}

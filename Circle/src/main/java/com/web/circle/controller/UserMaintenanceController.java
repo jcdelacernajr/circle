@@ -9,7 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.web.circle.model.entity.Users;
-import com.web.circle.repository.UserRepo;
+import com.web.circle.repository.UserRepository;
 
 
 /**
@@ -22,10 +22,10 @@ import com.web.circle.repository.UserRepo;
 @RequestMapping("maintenance/user/")
 public class UserMaintenanceController {
 	
-	private final UserRepo userRepository;
+	private final UserRepository userRepository;
 	
 	@Autowired
-	public UserMaintenanceController(UserRepo userRepository) {
+	public UserMaintenanceController(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
 	

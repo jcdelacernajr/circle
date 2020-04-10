@@ -24,12 +24,12 @@ import com.web.circle.model.entity.Users;
  *  
  * @author jr
  * */
-public class UserP implements UserDetails  {
+public class UserPrincipal implements UserDetails  {
 
 	//private static final long serialVersionUID = 1L;
 	private Users user;
 
-	public UserP(Users user) {
+	public UserPrincipal(Users user) {
 		this.user = user;
 	}
 

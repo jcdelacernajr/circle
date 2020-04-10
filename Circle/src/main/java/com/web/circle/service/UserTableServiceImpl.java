@@ -16,7 +16,7 @@ import com.web.circle.model.tablepaging.Column;
 import com.web.circle.model.tablepaging.Order;
 import com.web.circle.model.tablepaging.Page;
 import com.web.circle.model.tablepaging.PagingRequest;
-import com.web.circle.repository.UserRepo;
+import com.web.circle.repository.UserRepository;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -37,11 +37,11 @@ public class UserTableServiceImpl {
 	private static final Comparator<UsersModel> EMPTY_COMPARATOR = (e1, e2) -> 0;
 	 
 	// User repository
-	private final UserRepo userRepository;
+	private final UserRepository userRepository;
 	 
 	 
 	@Autowired
-	public UserTableServiceImpl(UserRepo userRepository) {
+	public UserTableServiceImpl(UserRepository userRepository) {
     	this.userRepository = userRepository;
 	}
 

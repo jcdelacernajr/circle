@@ -52,7 +52,7 @@ public class CircleJwtAuthenFilter extends UsernamePasswordAuthenticationFilter 
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
 		// Get the user principal.
-		UserP userP = (UserP) authResult.getPrincipal();
+		UserPrincipal userP = (UserPrincipal) authResult.getPrincipal();
 		// Create JWT token.
 		String token = JWT.create()
 				.withSubject(userP.getUsername())

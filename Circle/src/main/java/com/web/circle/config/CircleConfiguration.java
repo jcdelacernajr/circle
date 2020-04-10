@@ -11,10 +11,10 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import com.web.circle.repository.UserRepo;
+import com.web.circle.repository.UserRepository;
 import com.web.circle.service.CircleJwtAuthenFilter;
 import com.web.circle.service.CircleJwtAuthorFilter;
-import com.web.circle.service.UserPDS;
+import com.web.circle.service.UserPrincipalDetailsService;
 
 /**
  * @author Juanito C. Dela Dela Cerna Jr. March 2020
@@ -22,12 +22,12 @@ import com.web.circle.service.UserPDS;
  */
 @Configuration
 @EnableWebSecurity
-public class CircleConfig extends WebSecurityConfigurerAdapter {
+public class CircleConfiguration extends WebSecurityConfigurerAdapter {
 
-	private UserPDS userPDS;
-	private UserRepo userR;
+	private UserPrincipalDetailsService userPDS;
+	private UserRepository userR;
 	
-	public CircleConfig(UserPDS userPDS, UserRepo userR) {
+	public CircleConfiguration(UserPrincipalDetailsService userPDS, UserRepository userR) {
 		this.userPDS = userPDS;
 		this.userR = userR;
 	}

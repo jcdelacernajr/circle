@@ -11,7 +11,7 @@ import com.web.circle.model.entity.Permissions;
  * @author jr
  * */
 @Repository
-public interface PermissionRepo extends JpaRepository<Permissions, Long> {
+public interface PermissionRepository extends JpaRepository<Permissions, Long> {
 	
 	Permissions findAllByPermissionId(Long permission_fk);
 }

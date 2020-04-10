@@ -12,10 +12,10 @@ import com.web.circle.model.entity.Permissions;
 import com.web.circle.model.entity.Roles;
 import com.web.circle.model.entity.UserRoles;
 import com.web.circle.model.entity.Users;
-import com.web.circle.repository.PermissionRepo;
-import com.web.circle.repository.RoleRepo;
-import com.web.circle.repository.UserRepo;
-import com.web.circle.repository.UserRoleRepo;
+import com.web.circle.repository.PermissionRepository;
+import com.web.circle.repository.RoleRepository;
+import com.web.circle.repository.UserRepository;
+import com.web.circle.repository.UserRoleRepository;
 
 /**
  * User principal details service
@@ -23,11 +23,11 @@ import com.web.circle.repository.UserRoleRepo;
  * @author jr
  * */
 @Service
-public class UserPDS implements UserDetailsService {
+public class UserPrincipalDetailsService implements UserDetailsService {
 
-	private UserRepo userR;
+	private UserRepository userR;
 	
-	public UserPDS(UserRepo userR) {
+	public UserPrincipalDetailsService(UserRepository userR) {
 		this.userR = userR;
 	}
 
@@ -39,7 +39,7 @@ public class UserPDS implements UserDetailsService {
 		if(user == null) {
 			throw new UsernameNotFoundException("No user found for "+ username + ".");
 		}
-        UserP userPrincipal = new UserP(user);
+        UserPrincipal userPrincipal = new UserPrincipal(user);
         return userPrincipal;
 	}
 

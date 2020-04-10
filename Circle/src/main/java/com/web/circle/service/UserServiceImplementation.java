@@ -10,16 +10,16 @@ import org.springframework.stereotype.Service;
 
 import com.web.circle.controller.DTO.UserSignupDTO;
 import com.web.circle.model.entity.Users;
-import com.web.circle.repository.UserRepo;
+import com.web.circle.repository.UserRepository;
 
 /**
  * @author Juanito C. Dela Dela Cerna Jr. March 2020
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImplementation implements UserService {
 	
 	@Autowired
-	private UserRepo userRepository;
+	private UserRepository userRepository;
 	
 	@Autowired
 	private PasswordEncoder encoder;
