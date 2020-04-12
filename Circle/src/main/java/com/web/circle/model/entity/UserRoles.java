@@ -28,7 +28,11 @@ public class UserRoles extends CircleAuditing {
 	@Column(name = "user_role_id")
 	private long userRoleId;
 	
-	@ManyToOne
+	/**
+	 * Set to cascade type to all 
+	 * to save the related data.
+	 * */
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_fk")
 	@JsonIgnore
 	private Users users;
@@ -81,13 +85,13 @@ public class UserRoles extends CircleAuditing {
 	}
 
 	@Column(name = "is_active")
-	private int isActive;
+	private Boolean isActive;
 	
 	@Column(name = "created_by_user_fk")
-	private long createdByUserFk;
+	private Long createdByUserFk;
 	
 	@Column(name = "modified_by_user_fk")
-	private int modifiedByUserFk;
+	private Integer modifiedByUserFk;
 	
 	// Constructor
 	public UserRoles() {}
@@ -100,27 +104,27 @@ public class UserRoles extends CircleAuditing {
 		this.userRoleId = userRoleId;
 	}
 
-	public int getIsActive() {
+	public Boolean getIsActive() {
 		return isActive;
 	}
 
-	public void setIsActive(int isActive) {
+	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
 
-	public long getCreatedByUserFk() {
+	public Long getCreatedByUserFk() {
 		return createdByUserFk;
 	}
 
-	public void setCreatedByUserFk(long createdByUserFk) {
+	public void setCreatedByUserFk(Long createdByUserFk) {
 		this.createdByUserFk = createdByUserFk;
 	}
 
-	public int getModifiedByUserFk() {
+	public Integer getModifiedByUserFk() {
 		return modifiedByUserFk;
 	}
 
-	public void setModifiedByUserFk(int modifiedByUserFk) {
+	public void setModifiedByUserFk(Integer modifiedByUserFk) {
 		this.modifiedByUserFk = modifiedByUserFk;
 	}
 

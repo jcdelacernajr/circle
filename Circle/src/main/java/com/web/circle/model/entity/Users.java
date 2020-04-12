@@ -36,9 +36,6 @@ public class Users extends CircleAuditing {
 	@Column(name = "user_id")
 	private long userId;
 	
-//	@Column(name = "organization_fk")
-//	private int organizationFk;
-	
 	@Column(name = "email")
 	private String email;
 	
@@ -60,8 +57,8 @@ public class Users extends CircleAuditing {
 	@Column(name = "is_credentials_non_expired")
 	private boolean isCredentialsNonExpired;
 	
-	@OneToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="organization_fk", referencedColumnName="organization_id")
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="organization_fk")
 	private Organizations organizations;
 	
 	public Organizations getOrganizations() {
@@ -115,15 +112,6 @@ public class Users extends CircleAuditing {
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
-
-//	public int getOrganizationFk() {
-//		return organizationFk;
-//	}
-//
-//	public void setOrganizationFk(int organizationFk) {
-//		this.organizationFk = organizationFk;
-//	}
-
 
 	public String getEmail() {
 		return email;

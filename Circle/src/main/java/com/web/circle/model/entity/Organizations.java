@@ -26,9 +26,6 @@ public class Organizations extends CircleAuditing {
 	@Column(name = "establishment_name")
 	private String establishmentName;
 	
-	@OneToOne(mappedBy="organizations", fetch = FetchType.LAZY)
-	private Users users;
-
 	public long getOrganizationId() {
 		return organizationId;
 	}
@@ -43,14 +40,6 @@ public class Organizations extends CircleAuditing {
 
 	public void setEstablishmentName(String establishmentName) {
 		this.establishmentName = establishmentName;
-	}
-
-	public Users getUsers() {
-		return users;
-	}
-
-	public void setUsers(Users users) {
-		this.users = users;
 	}
 	
 }

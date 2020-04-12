@@ -10,6 +10,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 
@@ -21,11 +22,13 @@ public abstract class CircleAuditing implements Serializable {
 	//private static final long serialVersionUID = 1L;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "date_created", nullable = true, updatable = true)
+    @Column(name = "date_created", nullable = false, updatable = false)
     @CreatedDate
     private Date createdAt;
 
-    @Column(name = "date_modified", nullable = true)
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "date_modified", nullable = false)
+    @LastModifiedDate
     private Date updatedAt;
 
     public Date getCreatedAt() {

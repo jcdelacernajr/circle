@@ -32,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Service
-public class UserTableServiceImpl {
+public class UserTableServiceImplementation {
 	
 	private static final Comparator<UsersModel> EMPTY_COMPARATOR = (e1, e2) -> 0;
 	 
@@ -41,7 +41,7 @@ public class UserTableServiceImpl {
 	 
 	 
 	@Autowired
-	public UserTableServiceImpl(UserRepository userRepository) {
+	public UserTableServiceImplementation(UserRepository userRepository) {
     	this.userRepository = userRepository;
 	}
 
