@@ -46,7 +46,7 @@ public class UserPrincipal implements UserDetails  {
 		
 		// Get the user permissions.
 		this.user.getUserRoles().forEach(p ->{
-			GrantedAuthority authority = new SimpleGrantedAuthority(p.getPermissions().getPermissionLabel());
+			GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_"+p.getPermissions().getPermissionLabel());
 			authorities.add(authority);
 		});
 		

@@ -52,7 +52,7 @@
             <!-- .top-bar-item -->
             <div class="top-bar-item top-bar-item-right px-0 d-none d-sm-flex">
             
-            <ul class="header-nav nav">
+            <ul sec:authorize="isAuthenticated()" class="header-nav nav">
                 <!-- .nav-item -->
                 <li class="nav-item dropdown header-nav-dropdown">
                   <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -64,7 +64,7 @@
                     <!-- .dropdown-sheets -->
                     <div class="dropdown-sheets">
                       <!-- .dropdown-sheet-item -->
-                      <div class="dropdown-sheet-item">
+                      <div sec:authorize="hasRole('ROLE_HUMAN_RESOURCES')" class="dropdown-sheet-item">
                         <a href="dashboard" class="tile-wrapper">
                           <span class="tile tile-lg bg-indigo">
                             <i class="oi oi-people"></i>
@@ -74,7 +74,7 @@
                       </div>
                       <!-- /.dropdown-sheet-item -->
                       <!-- .dropdown-sheet-item -->
-                      <div class="dropdown-sheet-item">
+                      <div sec:authorize="hasRole('ROLE_INVENTORY_MANAGEMENT')" class="dropdown-sheet-item">
                         <a href="#" class="tile-wrapper">
                           <span class="tile tile-lg bg-teal">
                             <i class="oi oi-fork"></i>
@@ -84,7 +84,7 @@
                       </div>
                       <!-- /.dropdown-sheet-item -->
                       <!-- .dropdown-sheet-item -->
-                      <div class="dropdown-sheet-item">
+                      <div sec:authorize="hasRole('ROLE_COMPANY_PROFILING')" class="dropdown-sheet-item">
                         <a href="#" class="tile-wrapper">
                           <span class="tile tile-lg bg-pink">
                             <i class="fa fa-tasks"></i>
@@ -211,6 +211,10 @@
               <header class="page-title-bar">
                 <p class="lead">
                   <!-- Empty... Todo... -->
+                  <p class="lead">
+	                  <span class="font-weight-bold" sec:authentication="name"></span>
+	                  <span class="d-block text-muted" sec:authentication="principal.authorities"></span>
+	                </p>
                 </p>
               </header>
               <!-- /.page-title-bar -->

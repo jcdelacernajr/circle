@@ -48,7 +48,7 @@ public class CircleConfiguration extends WebSecurityConfigurerAdapter {
 		       .authorizeRequests()
 		       .antMatchers("/index").permitAll()
 		       .antMatchers("/signup").permitAll()
-		       .antMatchers("/dashboard").authenticated()
+		       .antMatchers("/dashboard").hasAnyRole("SUPER_USER","ADMIN")
 		       .antMatchers("/maintenance/**").hasAnyRole("SUPER_USER","ADMIN")
 		       .antMatchers("/admin/**").hasAnyRole("SUPER_USER","ADMIN")
 		       .antMatchers("/management/**").hasAnyRole("SUPER_USER","ADMIN")
