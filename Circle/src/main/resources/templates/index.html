@@ -93,7 +93,15 @@
                         </a>
                       </div>
                       <!-- /.dropdown-sheet-item -->
-                      
+                       <div sec:authorize="hasRole('ROLE_HOME')" class="dropdown-sheet-item">
+                        <a href="#" class="tile-wrapper">
+                          <span class="tile tile-lg bg-pink">
+                            <i class="fa fa-tasks"></i>
+                          </span>
+                          <span class="tile-peek">Profile</span>
+                        </a>
+                      </div>
+                      <!-- /.dropdown-sheet-item -->
                     </div>
                     <!-- .dropdown-sheets -->
                   </div>
@@ -211,7 +219,7 @@
               <header class="page-title-bar">
                 <p class="lead">
                   <!-- Empty... Todo... -->
-                  <p class="lead">
+                  <p sec:authorize="isAuthenticated()" class="lead">
 	                  <span class="font-weight-bold" sec:authentication="name"></span>
 	                  <span class="d-block text-muted" sec:authentication="principal.authorities"></span>
 	                </p>
