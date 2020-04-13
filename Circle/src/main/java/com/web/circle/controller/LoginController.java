@@ -6,6 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("/login")
 public class LoginController {
@@ -13,14 +16,8 @@ public class LoginController {
 	@GetMapping
 	public String index() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		System.out.println("Principal: " + auth.getPrincipal()+ " Name: "+ auth.getName() + " Auth: "+ auth.getAuthorities());
+		log.info("User Principal: "+ auth.getName() + " Authorities: "+ auth.getAuthorities());
 		if(!auth.getPrincipal().equals("anonymousUser")) {
-			System.out.println("dashboard-----------------------------------------------------");
-			
-			//Permissions p = new Permissions();
-			
-			//System.out.println("is authorized: "+ auth.getAuthorities().contains(p));
-			
 			return "redirect:/";
 		}
 		

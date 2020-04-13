@@ -1,21 +1,12 @@
 package com.web.circle.service;
 
-import java.util.List;
-
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.web.circle.model.entity.CirclePrincipal;
-import com.web.circle.model.entity.Permissions;
-import com.web.circle.model.entity.Roles;
-import com.web.circle.model.entity.UserRoles;
 import com.web.circle.model.entity.Users;
-import com.web.circle.repository.PermissionRepository;
-import com.web.circle.repository.RoleRepository;
 import com.web.circle.repository.UserRepository;
-import com.web.circle.repository.UserRoleRepository;
 
 /**
  * User principal details service

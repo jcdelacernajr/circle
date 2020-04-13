@@ -1,10 +1,9 @@
 package com.web.circle.service;
 
-import javax.management.relation.Role;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import com.web.circle.controller.DTO.UserSignupDTO;
 import com.web.circle.model.entity.Designations;
 import com.web.circle.model.entity.Organizations;

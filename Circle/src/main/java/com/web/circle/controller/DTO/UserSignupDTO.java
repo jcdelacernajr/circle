@@ -1,8 +1,9 @@
 package com.web.circle.controller.DTO;
 
-import com.web.circle.validator.FieldMatch;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+
+import com.web.circle.validator.FieldMatch;
 
 
 /**

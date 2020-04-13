@@ -4,24 +4,26 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.web.circle.model.UsersComparators;
 import com.web.circle.model.UsersModel;
 import com.web.circle.model.entity.Users;
-import com.web.circle.model.UsersComparators;
 import com.web.circle.model.tablepaging.Column;
 import com.web.circle.model.tablepaging.Order;
 import com.web.circle.model.tablepaging.Page;
 import com.web.circle.model.tablepaging.PagingRequest;
 import com.web.circle.repository.UserRepository;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 
 /**

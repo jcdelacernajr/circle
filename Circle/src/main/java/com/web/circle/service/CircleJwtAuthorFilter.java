@@ -1,14 +1,14 @@
 package com.web.circle.service;
 
+import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
+
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties.Jwt;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,15 +16,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import com.auth0.jwt.JWT;
-import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
-
-import com.web.circle.model.entity.CirclePrincipal;
-import com.web.circle.model.entity.UserRoles;
 import com.web.circle.model.entity.Users;
-import com.web.circle.repository.PermissionRepository;
-import com.web.circle.repository.RoleRepository;
 import com.web.circle.repository.UserRepository;
-import com.web.circle.repository.UserRoleRepository;
 
 /**
  * @author jr

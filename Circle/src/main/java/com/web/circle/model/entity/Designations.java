@@ -1,6 +1,5 @@
 package com.web.circle.model.entity;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;

@@ -1,5 +1,7 @@
 package com.web.circle.service;
 
+import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,7 +20,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.auth0.jwt.JWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.web.circle.model.UserLoginView;
-import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 /**
  * 
  * @author jr
