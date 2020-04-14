@@ -1,11 +1,6 @@
 package com.web.circle.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +8,7 @@ import com.web.circle.controller.DTO.UserSignupDTO;
 import com.web.circle.model.entity.Designations;
 import com.web.circle.model.entity.Organizations;
 import com.web.circle.model.entity.Permissions;
+import com.web.circle.model.entity.Person;
 import com.web.circle.model.entity.Roles;
 import com.web.circle.model.entity.UserRoles;
 import com.web.circle.model.entity.Users;
@@ -56,7 +52,13 @@ public class UserServiceImplementation implements UserService {
 		organizations.setOrganizationId(1); // 1 is the default value for the register user.
 		
 		user.setIsActive(true);
-		user.setOrganizations(organizations); // TODO
+		user.setOrganizations(organizations); 
+		
+		// Set person id for initial data
+		Person person = new Person();
+		person.setPersonId(0);
+		user.setPerson(person);
+		
 		user.setAccountNonExpired(true);
 		user.setAccountNonLocked(true);
 		user.setCredentialsNonExpired(true);

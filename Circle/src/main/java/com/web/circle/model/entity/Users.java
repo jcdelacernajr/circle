@@ -3,6 +3,7 @@ package com.web.circle.model.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -60,6 +61,18 @@ public class Users extends CircleAuditing {
 
 	public void setOrganizations(Organizations organizations) {
 		this.organizations = organizations;
+	}
+	
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "person_fk")
+	private Person person;
+
+	public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 
 	@OneToMany(mappedBy = "users")
