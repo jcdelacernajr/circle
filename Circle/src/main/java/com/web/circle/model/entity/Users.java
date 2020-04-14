@@ -40,7 +40,7 @@ public class Users extends CircleAuditing {
 	private String password;
 	
 	@Column(name = "is_active")
-	private boolean isActive;
+	private Boolean isActive;
 	
 	@Column(name = "is_account_non_expired")
 	private boolean isAccountNonExpired;
@@ -135,7 +135,7 @@ public class Users extends CircleAuditing {
 		this.username = username;
 	}
 
-	public void setActive(boolean isActive) {
+	public void setActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
 
@@ -147,7 +147,7 @@ public class Users extends CircleAuditing {
 		this.password = password;
 	}
 
-	public boolean getIsActive() {
+	public Boolean getIsActive() {
 		return isActive;
 	}
 
