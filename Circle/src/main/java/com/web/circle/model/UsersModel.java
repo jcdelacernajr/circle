@@ -4,6 +4,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
+/**
+ * Use by UserTableServiceImplementation
+ * 
+ * @author JC Dela Cerna Jr. April 2020
+ * */
 @Setter
 @Getter
 @NoArgsConstructor

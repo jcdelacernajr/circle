@@ -15,12 +15,15 @@ import com.web.circle.controller.DTO.UserSignupDTO;
 import com.web.circle.model.entity.Users;
 import com.web.circle.service.UserService;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author Juanito C. Dela Dela Cerna Jr. March 2020
  * 
  * 
  * @see https://memorynotfound.com/spring-security-user-registration-example-thymeleaf/
  */
+@Slf4j
 @Controller
 @RequestMapping("/signup")
 public class SignupController {
@@ -46,8 +49,9 @@ public class SignupController {
         }
         if (result.hasErrors()) {
             return "signup";
-        }
+        } 
         us.save(userDTO);
         return "redirect:/signup?success";
     }
+	
 }

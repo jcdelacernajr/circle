@@ -10,6 +10,11 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+/**
+ * Use by UserTableServiceImplementation
+ * 
+ * @author JC Dela Cerna Jr. April 2020
+ * */
 public final class UsersComparators {
 	
 	@EqualsAndHashCode

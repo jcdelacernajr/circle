@@ -1,7 +1,7 @@
 package com.web.circle.model;
 
 /**
- * 
+ * Use by login
  * @author jr
  * */
 public class UserLoginView {

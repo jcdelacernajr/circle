@@ -5,6 +5,16 @@ import javax.validation.ConstraintValidatorContext;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+/**
+ * Used to to compare the two inputed field value
+ * 
+ * A custom validator by implementing the ConstraintValidator. 
+ * Here we can validate if the given input fields match. 
+ * If they do we return true if the fields don’t match we return false.
+ * 
+ *  @see https://memorynotfound.com/spring-security-user-registration-example-thymeleaf/
+ *  @since March 2020
+ * */
 public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Object> {
 
 	private String firstFieldName;
