@@ -214,30 +214,112 @@
           <!-- .page -->
           <div class="page">
             <!-- .page-inner -->
-            <div class="page-inner">
+            <div sec:authorize="isAuthenticated()" class="page-inner">
               <!-- .page-title-bar -->
               <header class="page-title-bar">
-                <p class="lead">
-                  <!-- Empty... Todo... -->
-                  <p sec:authorize="isAuthenticated()" class="lead">
-	                  <span class="font-weight-bold" sec:authentication="name"></span>
-	                  <span class="d-block text-muted" sec:authentication="principal.authorities"></span>
-	                </p>
-                </p>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item active">
+                      <a href="#"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Account setup</a>
+                    </li>
+                  </ol>
+                </nav>
               </header>
               <!-- /.page-title-bar -->
               <!-- .page-section -->
+              <!-- Account Setup -->
               <div class="page-section">
-                <!-- .section-block -->
-                <div class="section-block">
-                
-                  <!-- Empty section  -->
-                  
-                  <!-- <span class="account-description" sec:authentication="principal.authorities"></span> -->
-                  
-                </div>
-                <!-- /.section-block -->
-              </div>
+               <form class="needs-validation was-validated" novalidate="">
+               	<!-- .form-row -->
+                 <div class="form-row">
+                   <!-- grid column -->
+                   <div class="col-md-3 mb-3">
+                     <label for="firstName">First name</label> <input type="text" class="form-control" id="firstName" required="">
+                     <div class="invalid-feedback"> Valid first name is required. </div>
+                   </div><!-- /grid column -->
+                   <!-- grid column -->
+                   <div class="col-md-1 mb-1">
+                     <label for="middleName">Middle name</label> <input type="text" class="form-control" id="middleName" required="">
+                     <div class="invalid-feedback"> Valid last name is required. </div>
+                   </div><!-- /grid column -->
+                   <!-- grid column -->
+                   <div class="col-md-3 mb-3">
+                     <label for="lastName">Last name</label> <input type="text" class="form-control" id="lastName" required="">
+                     <div class="invalid-feedback"> Valid last name is required. </div>
+                   </div><!-- /grid column -->
+                   <!-- grid column -->
+                   <div class="col-md-1 mb-1">
+                     <label for="nameExtension">Extension</label> <input type="text" class="form-control" id="nameExtension" required="">
+                     <div class="invalid-feedback"> Valid last name is required. </div>
+                   </div><!-- /grid column -->
+                 </div>
+                 <!-- /.form-row -->
+                 <!-- .form-row -->
+                 <div class="form-row">
+                    <!-- grid column -->
+                   <div class="col-md-6 mb-1">
+                     <label for="Address">Address</label> <input type="text" class="form-control" id="Address" required="">
+                     <div class="invalid-feedback"> Valid last name is required. </div>
+                   </div><!-- /grid column -->
+                    <!-- grid column -->
+                   <div class="col-md-2 mb-1">
+                     <label for="citizenship">Citizenship</label> <input type="text" class="form-control" id="citizenship" required="">
+                     <div class="invalid-feedback"> Valid last name is required. </div>
+                   </div><!-- /grid column -->
+                 </div>
+                 <!-- .form-row -->
+                 <div class="form-row">
+                  <!-- grid column -->
+                   <div class="col-md-2 mb-1">
+                     <label for="bloodType">Place of berth</label> <input type="text" class="form-control" id="placeOfBerth" required="">
+                     <div class="invalid-feedback"> Valid last name is required. </div>
+                   </div><!-- /grid column -->
+                   <!-- grid column -->
+                   <div class="col-md-2 mb-1">
+                     <label for="status">Status</label> <input type="text" class="form-control" id="status" required="">
+                     <div class="invalid-feedback"> Valid last name is required. </div>
+                   </div><!-- /grid column -->
+                   <!-- grid column -->
+                   <div class="col-md-2 mb-1">
+                     <label for="age">Age</label> <input type="text" class="form-control" id="age" required="">
+                     <div class="invalid-feedback"> Valid last name is required. </div>
+                   </div><!-- /grid column -->
+                   <!-- grid column -->
+                   <div class="col-md-2 mb-1">
+                     <label for="sex">Sex</label> <input type="text" class="form-control" id="sex" required="">
+                     <div class="invalid-feedback"> Valid last name is required. </div>
+                   </div><!-- /grid column -->
+                 </div>
+                 <!-- /.form-row -->
+                 <!-- .form-row -->
+                 <div class="form-row">
+                 <!-- grid column -->
+                   <div class="col-md-2 mb-1">
+                     <label for="height">Height</label> <input type="text" class="form-control" id="height" required="">
+                     <div class="invalid-feedback"> Valid last name is required. </div>
+                   </div><!-- /grid column -->
+                    <!-- grid column -->
+                   <div class="col-md-2 mb-1">
+                     <label for="weight">Weight</label> <input type="text" class="form-control" id="weight" required="">
+                     <div class="invalid-feedback"> Valid last name is required. </div>
+                   </div><!-- /grid column -->
+                   <!-- grid column -->
+                   <div class="col-md-2 mb-1">
+                     <label for="bloodType">Blood type</label> <input type="text" class="form-control" id="bloodType" required="">
+                     <div class="invalid-feedback"> Valid last name is required. </div>
+                   </div><!-- /grid column -->
+                   <!-- grid column -->
+                   <div class="col-md-2 mb-1">
+                     <label for=""DateOfBerth"">Date of berth</label> <input type="text" class="form-control" id="DateOfBerth" required="">
+                     <div class="invalid-feedback"> Valid last name is required. </div>
+                   </div><!-- /grid column -->
+                 </div>
+                 <div class="form-actions">
+                   <button class="btn btn-primary" type="submit">Submit</button>
+                 </div>
+               </form>
+     		  </div>
+              <!-- /.Account Setup -->
               <!-- /.page-section -->
             </div>
             <!-- /.page-inner -->
