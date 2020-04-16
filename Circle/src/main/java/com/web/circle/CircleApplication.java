@@ -74,5 +74,7 @@ public class CircleApplication {
  * 3. Create a custom error page.
  * 4. https://netsurfingzone.com/spring/spring-transaction-management-example-using-spring-boot/
  * 5. https://memorynotfound.com/spring-mail-sending-email-freemarker-html-template-example/ Send email
+ * 6. https://memorynotfound.com/spring-security-forgot-password-send-email-reset-password/ // forgot password
+ * 
  * 
  * */
