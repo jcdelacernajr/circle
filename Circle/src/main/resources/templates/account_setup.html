@@ -229,13 +229,20 @@
               <!-- .page-section -->
               <!-- Account Setup -->
               <div class="page-section">
-             <div class="col-md-8 mb-3">
-				<section class="my-5">
-				  <div class="container">
-				      <div class="row">
-				          <div class="col-md-8 mx-auto">
+		      	<div class="form-row">
+				      <div th:if="${uploadedFile}" class="col-md-2 md-2">
+				      	 <span>
+		                    <img class="img-thumbnail" style="width:200px;height:200px;" th:src="${uploadedFile.url}" alt="...">
+		                  </span>
+				      </div>
+				      <div th:unless="${uploadedFile}" class="col-md-2 md-2">
+				      	 <span>
+		                    <img class="img-thumbnail" style="width:200px;height:200px;" src="..." alt="...">
+		                  </span>
+				      </div>
+				      
+			          <div class="col-md-4 md-4">
 				          <div th:if="${uploadedFile}">
-				              <h2> Uploaded File Details </h2>
 							    <table>
 							        <tr>
 							            <td th:text="${uploadedFile.fileName}">File Name</td><br>
@@ -244,17 +251,14 @@
 							        </tr>
 							    </table>
 				              </div>
-				              <form method="post" action="/account-setup" enctype="multipart/form-data">
-				                  <div class="form-group">
-				                      <input type="file" name="file" class="form-control-file">
-				                  </div>
-				                  <button type="submit" class="btn btn-primary">Upload File</button>
-				              </form>
-				          </div>
-				      </div>
-				  </div>
-				</section>
-      		  </div>
+			              <form method="post" action="/account-setup" enctype="multipart/form-data">
+			                  <div class="form-group">
+			                      <input type="file" name="file" class="form-control-file">
+			                  </div>
+			                  <button type="submit" class="btn btn-primary">Upload File</button>
+			              </form>
+			          </div>
+			      </div>
                <form class="needs-validation was-validated" novalidate="">
                  <div class="form-row">
                    <!-- grid column -->

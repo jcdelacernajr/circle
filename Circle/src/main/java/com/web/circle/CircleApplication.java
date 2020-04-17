@@ -73,6 +73,7 @@ public class CircleApplication {
  * 2.0 https://www.javadevjournal.com/spring/spring-file-upload/
  * 2.1. https://mkyong.com/webservices/jax-rs/file-upload-example-in-jersey/ Upload file
  * 2.2. https://www.boraji.com/spring-4-mvc-jquery-ajax-file-upload-example-with-progress-bar
+ * 2.3. https://www.boraji.com/spring-4-mvc-jquery-ajax-file-upload-example-with-progress-bar
  * 3. Create a custom error page.
  * 4. https://netsurfingzone.com/spring/spring-transaction-management-example-using-spring-boot/
  * 5. https://memorynotfound.com/spring-mail-sending-email-freemarker-html-template-example/ Send email

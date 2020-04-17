@@ -25,6 +25,7 @@ import com.web.circle.service.FileStorageService;
 /**
  * Upload file controller // TODO....
  * 
+ * @see https://www.javadevjournal.com/spring/spring-file-upload/
  * @author Juanito C. Dela Dela Cerna Jr. March 2020
  */
 @Controller
@@ -34,7 +35,7 @@ public class AccountSetupController {
 	FileStorageService fileStorageService;
 	
 	/**
-     * Controller to display the file upload form on the frontend.
+     * Controller to display the file upload form on the front end.
      * @param model
      * @return
      */
