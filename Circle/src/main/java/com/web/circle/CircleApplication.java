@@ -15,15 +15,15 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
  * https://localhost:8443/
  * For super account
  * Username: super	
- * Password: admin123
+ * Password: 1
  * 
  * For admin account
  * Username: admin	
- * Password: admin123
+ * Password: 1
  * -------------------------
  * For User account
  * Username: user
- * Password: admin123
+ * Password: 1
  * 
  * @author jr
  * */
@@ -70,7 +70,9 @@ public class CircleApplication {
 /**
  * List of Todo..
  * 1. User sign up fill all the information needed for registration.
- * 2. https://mkyong.com/webservices/jax-rs/file-upload-example-in-jersey/ Upload file
+ * 2.0 https://www.javadevjournal.com/spring/spring-file-upload/
+ * 2.1. https://mkyong.com/webservices/jax-rs/file-upload-example-in-jersey/ Upload file
+ * 2.2. https://www.boraji.com/spring-4-mvc-jquery-ajax-file-upload-example-with-progress-bar
  * 3. Create a custom error page.
  * 4. https://netsurfingzone.com/spring/spring-transaction-management-example-using-spring-boot/
  * 5. https://memorynotfound.com/spring-mail-sending-email-freemarker-html-template-example/ Send email

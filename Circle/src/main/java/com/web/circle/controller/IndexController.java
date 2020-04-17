@@ -16,4 +16,6 @@ public class IndexController {
 		log.info("Index controller initialized...");
 		return "index";
 	}
+	
+	
 }

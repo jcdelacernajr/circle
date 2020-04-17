@@ -215,14 +215,112 @@
           <div class="page">
             <!-- .page-inner -->
             <div sec:authorize="isAuthenticated()" class="page-inner">
+              <!-- .page-title-bar -->
+              <header class="page-title-bar">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item active">
+                      <a href="#"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Account setup</a>
+                    </li>
+                  </ol>
+                </nav>
+              </header>
+              <!-- /.page-title-bar -->
               <!-- .page-section -->
+              <!-- Account Setup -->
               <div class="page-section">
-               
-               
-               <!-- Empty -->
-               
-               
+             <div class="col-md-8 mb-3">
+				<section class="my-5">
+				  <div class="container">
+				      <div class="row">
+				          <div class="col-md-8 mx-auto">
+				          <div th:if="${uploadedFile}">
+				              <h2> Uploaded File Details </h2>
+							    <table>
+							        <tr>
+							            <td th:text="${uploadedFile.fileName}">File Name</td><br>
+							            <td th:text="${uploadedFile.mime}">File Type:</td><br>
+							            <td th:text="${uploadedFile.url}">URL :</td>
+							        </tr>
+							    </table>
+				              </div>
+				              <form method="post" action="/account-setup" enctype="multipart/form-data">
+				                  <div class="form-group">
+				                      <input type="file" name="file" class="form-control-file">
+				                  </div>
+				                  <button type="submit" class="btn btn-primary">Upload File</button>
+				              </form>
+				          </div>
+				      </div>
+				  </div>
+				</section>
+      		  </div>
+               <form class="needs-validation was-validated" novalidate="">
+                 <div class="form-row">
+                   <!-- grid column -->
+                   <div class="col-md-3 mb-3">
+                     <label for="organization">Organization</label> 
+                     <select type="text" class="form-control browser-default custom-select" id="organization" required=""> 
+	                     <option selected>Open this select menu</option>
+						  <option value="1">One</option>
+						  <option value="2">Two</option>
+						  <option value="3">Three</option>
+                     </select>
+                     <div class="invalid-feedback"> Valid first name is required. </div>
+                   </div><!-- /grid column -->
+                   </div>
+               	<!-- .form-row -->
+                 <div class="form-row">
+                   <!-- grid column -->
+                   <div class="col-md-3 mb-3">
+                     <label for="firstName">First name</label> <input type="text" class="form-control" id="firstName" required="">
+                     <div class="invalid-feedback"> Valid first name is required. </div>
+                   </div><!-- /grid column -->
+                   <!-- grid column -->
+                   <div class="col-md-1 mb-1">
+                     <label for="middleName">Middle name</label> <input type="text" class="form-control" id="middleName" required="">
+                     <div class="invalid-feedback"> Valid last name is required. </div>
+                   </div><!-- /grid column -->
+                   <!-- grid column -->
+                   <div class="col-md-3 mb-3">
+                     <label for="lastName">Last name</label> <input type="text" class="form-control" id="lastName" required="">
+                     <div class="invalid-feedback"> Valid last name is required. </div>
+                   </div><!-- /grid column -->
+                   <!-- grid column -->
+                   <div class="col-md-1 mb-1">
+                     <label for="nameExtension">Extension</label> <input type="text" class="form-control" id="nameExtension" required="">
+                     <div class="invalid-feedback"> Valid last name is required. </div>
+                   </div><!-- /grid column -->
+                 </div>
+                 <!-- /.form-row -->
+                 
+                 <!-- .form-row -->
+                 <div class="form-row">
+                    <!-- grid column -->
+                   <div class="col-md-2 mb-1">
+                     <label for="citizenship">Citizenship</label> <input type="text" class="form-control" id="citizenship" required="">
+                     <div class="invalid-feedback"> Valid last name is required. </div>
+                   </div><!-- /grid column -->
+                   <!-- grid column -->
+                   <div class="col-md-2 mb-1">
+                     <label for=""DateOfBerth"">Date of berth</label> <input type="text" class="form-control" id="DateOfBerth" required="">
+                     <div class="invalid-feedback"> Valid last name is required. </div>
+                   </div><!-- /grid column -->
+                 </div>
+                  <!-- .form-row -->
+                 <div class="form-row">
+                    <!-- grid column -->
+                   <div class="col-md-4 mb-1">
+                     <label for="Address">Address</label> <textarea class="form-control" id="Address" required=""></textarea>
+                     <div class="invalid-feedback"> Valid last name is required. </div>
+                   </div><!-- /grid column -->
+                   </div>
+                 <div class="form-actions">
+                   <button class="btn btn-primary" type="submit">Submit</button>
+                 </div>
+               </form>
      		  </div>
+              <!-- /.Account Setup -->
               <!-- /.page-section -->
             </div>
             <!-- /.page-inner -->

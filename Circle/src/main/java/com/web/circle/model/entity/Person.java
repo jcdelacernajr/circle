@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
+ * Person table
  * 
  * @author Juanito C. Dela Dela Cerna Jr. March 2020
  */
