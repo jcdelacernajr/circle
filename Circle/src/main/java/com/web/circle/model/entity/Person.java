@@ -10,7 +10,7 @@ import javax.persistence.Table;
 /**
  * Person table
  * 
- * @author Juanito C. Dela Dela Cerna Jr. March 2020
+ * @author Juanito C. Dela Dela Cerna Jr. April 2020
  */
 @Entity
 @Table(name = "person")
@@ -51,6 +51,9 @@ public class Person extends CircleAuditing {
 	@Column(name = "citizenship")
 	private String citizenship;
 	
+	@Column(name = "address")
+	private String address;
+	
 	@Column(name = "weight")
 	private Float weight;
 	
@@ -80,6 +83,17 @@ public class Person extends CircleAuditing {
 	
 	@Column(name = "place_of_berth")
 	private String placeOfBerth;
+	
+	@Column(name = "photo_id")
+	private UploadFile uploadFile;
+	
+	public UploadFile getUploadFile() {
+		return uploadFile;
+	}
+
+	public void setUploadFile(UploadFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
 
 	public long getPersonId() {
 		return personId;
@@ -167,6 +181,14 @@ public class Person extends CircleAuditing {
 
 	public void setCitizenship(String citizenship) {
 		this.citizenship = citizenship;
+	}
+	
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public Float getWeight() {

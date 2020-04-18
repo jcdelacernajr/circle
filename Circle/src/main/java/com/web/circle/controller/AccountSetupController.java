@@ -29,7 +29,7 @@ import com.web.circle.service.FileStorageService;
  * @author Juanito C. Dela Dela Cerna Jr. March 2020
  */
 @Controller
-public class AccountSetupController {
+public class AccountSetupController extends BaseContoller {
 
 	@Autowired
 	FileStorageService fileStorageService;
@@ -40,11 +40,11 @@ public class AccountSetupController {
      * @return
      */
     @GetMapping("/account-setup")
-    public String accountSetup(final Model model){
+    public String accountSetup(final Model model) {
         return "account_setup";
     }
 	
-	@PostMapping("/account-setup")
+	@PostMapping("/upload-profile-picture")
 	public String accountSetup(@RequestParam("file") MultipartFile file, RedirectAttributes attributes, Model model) {
 		try {
 			FileMetaDataModel data = fileStorageService.store(file);
@@ -56,12 +56,6 @@ public class AccountSetupController {
 		}
 		return "account_setup";
 	}
-	
-	public String fileDownloadUrl(final String fileName, final String baseURL){
-        return ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path(baseURL)
-                .path(fileName).toUriString();
-    }
 	
 	 /**
      * Controller to allow customer to download the file by passing the file name as the

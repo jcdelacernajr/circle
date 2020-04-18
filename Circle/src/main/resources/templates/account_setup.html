@@ -237,7 +237,7 @@
 				      </div>
 				      <div th:unless="${uploadedFile}" class="col-md-2 md-2">
 				      	 <span>
-		                    <img class="img-thumbnail" style="width:200px;height:200px;" src="..." alt="...">
+		                    <img class="img-thumbnail" style="width:200px;height:200px;" th:src="@{~/assets/images/avatars/photo.jpg}" alt="...">
 		                  </span>
 				      </div>
 				      
@@ -251,7 +251,7 @@
 							        </tr>
 							    </table>
 				              </div>
-			              <form method="post" action="/account-setup" enctype="multipart/form-data">
+			              <form method="post" action="/upload-profile-picture" enctype="multipart/form-data">
 			                  <div class="form-group">
 			                      <input type="file" name="file" class="form-control-file">
 			                  </div>

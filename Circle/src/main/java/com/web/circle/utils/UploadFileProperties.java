@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Configuration;
 
 /**
- * 
+ * Upload file configuration properties
  * 
  * @author jr April 2020
  * */
