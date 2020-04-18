@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.apache.tika.detect.Detector;
@@ -41,8 +42,10 @@ public class FileStorageServiceImplementation implements FileStorageService {
 
 	@Override
 	public FileMetaDataModel store(MultipartFile file) throws FileStorageException {
+		// Timestamp
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		// File name
-		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		String fileName = StringUtils.cleanPath(timestamp.getTime() + "_" + file.getOriginalFilename());
 		try {
 			// File upload directory.
 			Path uploadDir = getUploadDirectoryLocation().resolve(fileName);

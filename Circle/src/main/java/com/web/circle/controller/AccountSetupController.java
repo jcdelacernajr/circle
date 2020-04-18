@@ -20,6 +20,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.web.circle.exception.FileStorageException;
 import com.web.circle.model.FileMetaDataModel;
+import com.web.circle.model.entity.Users;
+import com.web.circle.repository.UserRepository;
 import com.web.circle.service.FileStorageService;
 
 /**
@@ -31,6 +33,10 @@ import com.web.circle.service.FileStorageService;
 @Controller
 public class AccountSetupController extends BaseContoller {
 
+	public AccountSetupController(UserRepository userRepository) {
+		super(userRepository);
+	}
+
 	@Autowired
 	FileStorageService fileStorageService;
 	
@@ -41,6 +47,9 @@ public class AccountSetupController extends BaseContoller {
      */
     @GetMapping("/account-setup")
     public String accountSetup(final Model model) {
+    	// Get current logged user.
+    	Users user = getCurrentLoggedUser();
+    	model.addAttribute("User", user.getUserId());
         return "account_setup";
     }
 	
