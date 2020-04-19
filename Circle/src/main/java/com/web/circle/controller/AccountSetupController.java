@@ -76,9 +76,14 @@ public class AccountSetupController extends BaseContoller {
 	public String accountSetup(@RequestParam("file") MultipartFile file, RedirectAttributes attributes, Model model) {
 		Users user = getCurrentLoggedUser();
 		try {
+			// Store the file data.
 			FileMetaDataModel data = fileStorageService.store(file, user);
+			
+			// For debugging purpose.
 			data.setUrl(fileDownloadUrl(data.getFileName(), "/media/download/"));
 			model.addAttribute("uploadedFile", data);
+			// ------ end
+			
 			// User profile picture.
 			model.addAttribute("photoUrl", fileDownloadUrl(data.getFileName(), "/media/download/"));
 		} catch (FileStorageException err) {
