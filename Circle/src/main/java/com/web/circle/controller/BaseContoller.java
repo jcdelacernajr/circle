@@ -5,6 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.web.circle.model.entity.Users;
+import com.web.circle.repository.PersonRepository;
 import com.web.circle.repository.UserRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -18,11 +19,13 @@ import lombok.extern.slf4j.Slf4j;
 public class BaseContoller {
 	
 	// Initialize user repository
-	private final UserRepository userRepository;
-	public BaseContoller(UserRepository userRepository) {
+	public UserRepository userRepository;
+	public PersonRepository personRepository;
+	public BaseContoller(UserRepository userRepository,
+			PersonRepository personRepository) {
 		this.userRepository = userRepository;
+		this.personRepository = personRepository;
 	}
-
 
 	/**
 	 * Get current logged user data 

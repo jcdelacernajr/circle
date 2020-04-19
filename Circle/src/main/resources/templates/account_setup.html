@@ -229,7 +229,7 @@
               <!-- .page-section -->
               <!-- Account Setup -->
               <div class="page-section">
-		      	<div class="form-row">
+		      	<!-- <div class="form-row">
 				      <div th:if="${photoUrl}" class="col-md-2 md-2">
 				      	 <span>
 		                    <img class="img-thumbnail" style="width:200px;height:200px;" th:src="${photoUrl}" alt="...">
@@ -254,20 +254,36 @@
 							        </tr>
 							    </table>
 				              </div>
-			              <form method="post" action="/upload-profile-picture" enctype="multipart/form-data">
+			              <form method="post" th:action="@{/upload-profile-picture}" enctype="multipart/form-data">
 			                  <div class="form-group">
-			                      <input type="file" name="file" class="form-control-file">
+			                  		<label for="firstName">First name</label> <input type="firstName" class="form-control" name="firstName" required="">
+			                  		<label for="middleName">First name</label> <input type="middleName" class="form-control" name="middleName" required="">
+			                  		<label for="lastName">First name</label> <input type="lastName" class="form-control" name="lastName" required="">
+			                  		<label for="extension">First name</label> <input type="extension" class="form-control" name="extension" required="">
+			                    	<input type="file" name="file" class="form-control-file">
 			                  </div>
 			                  <button type="submit" class="btn btn-primary">Upload File</button>
 			              </form>
 			          </div>
+			      </div> -->
+               <form method="post" th:action="@{/upload-profile-picture}" enctype="multipart/form-data">
+               	<div class="form-row">
+             	   <!-- grid column -->
+			      <div th:if="${photoUrl}" class="col-md-3 md-3">
+                    <img class="img-thumbnail" style="width:200px;height:200px;" th:src="${photoUrl}" alt="...">
 			      </div>
-               <form class="needs-validation was-validated" novalidate="">
+			      <div th:unless="${photoUrl}" class="col-md-3 md-3">
+                    <img class="img-thumbnail" style="width:200px;height:200px;" th:src="@{~/assets/images/avatars/photo.jpg}" alt="...">
+			      </div>
+		         </div>
+		         <div class="form-row">
+		         	<label for="profilePicture"><input type="file" name="file" id="profilePicture" class="form-control-file"></label>	
+		         </div>
                  <div class="form-row">
                    <!-- grid column -->
                    <div class="col-md-3 mb-3">
                      <label for="organization">Organization</label> 
-                     <select type="text" class="form-control browser-default custom-select" id="organization" required=""> 
+                     <select type="organization" class="form-control browser-default custom-select" name="organization" id="organization" required=""> 
 	                     <option selected>Open this select menu</option>
 						  <option value="1">One</option>
 						  <option value="2">Two</option>
@@ -280,22 +296,22 @@
                  <div class="form-row">
                    <!-- grid column -->
                    <div class="col-md-3 mb-3">
-                     <label for="firstName">First name</label> <input type="text" class="form-control" id="firstName" required="">
+                     <label for="firstName">First name</label> <input type="firstName" class="form-control" name="firstName" id="firstName" required="">
                      <div class="invalid-feedback"> Valid first name is required. </div>
                    </div><!-- /grid column -->
                    <!-- grid column -->
                    <div class="col-md-1 mb-1">
-                     <label for="middleName">Middle name</label> <input type="text" class="form-control" id="middleName" required="">
+                     <label for="middleName">Middle name</label> <input type="middleName" class="form-control" name="middleName" id="middleName" required="">
                      <div class="invalid-feedback"> Valid last name is required. </div>
                    </div><!-- /grid column -->
                    <!-- grid column -->
                    <div class="col-md-3 mb-3">
-                     <label for="lastName">Last name</label> <input type="text" class="form-control" id="lastName" required="">
+                     <label for="lastName">Last name</label> <input type="lastName" class="form-control" name="lastName" id="lastName" required="">
                      <div class="invalid-feedback"> Valid last name is required. </div>
                    </div><!-- /grid column -->
                    <!-- grid column -->
                    <div class="col-md-1 mb-1">
-                     <label for="nameExtension">Extension</label> <input type="text" class="form-control" id="nameExtension" required="">
+                     <label for="nameExtension">Extension</label> <input type="nameExtension" class="form-control" name="nameExtension" id="nameExtension" required="">
                      <div class="invalid-feedback"> Valid last name is required. </div>
                    </div><!-- /grid column -->
                  </div>
@@ -305,12 +321,20 @@
                  <div class="form-row">
                     <!-- grid column -->
                    <div class="col-md-2 mb-1">
-                     <label for="citizenship">Citizenship</label> <input type="text" class="form-control" id="citizenship" required="">
+                     <label for="citizenship">Citizenship</label> <input type="citizenship" class="form-control" name="citizenship" id="citizenship" required="">
                      <div class="invalid-feedback"> Valid last name is required. </div>
                    </div><!-- /grid column -->
                    <!-- grid column -->
                    <div class="col-md-2 mb-1">
-                     <label for=""DateOfBerth"">Date of berth</label> <input type="text" class="form-control" id="DateOfBerth" required="">
+                   		<label for="DateOfBerth">Date of berth</label> 
+                   		<div class="form-group">
+			                <div class='input-group date' data-provide="datepicker">
+			                    <input type='dateOfBerth' name="dateOfBerth" id="dateOfBerth" class="form-control" />
+			                    <span class="input-group-addon">
+			                        <span class="glyphicon glyphicon-calendar"></span>
+			                    </span>
+			                </div>
+			            </div>
                      <div class="invalid-feedback"> Valid last name is required. </div>
                    </div><!-- /grid column -->
                  </div>
@@ -318,7 +342,7 @@
                  <div class="form-row">
                     <!-- grid column -->
                    <div class="col-md-4 mb-1">
-                     <label for="Address">Address</label> <textarea class="form-control" id="Address" required=""></textarea>
+                     <label for="Address">Address</label> <textarea type="address" class="form-control" name="address" id="address" required=""></textarea>
                      <div class="invalid-feedback"> Valid last name is required. </div>
                    </div><!-- /grid column -->
                    </div>
@@ -340,5 +364,8 @@
     </div>
     <!-- /.app -->
     <div th:insert="fragments/footer.html :: footer"></div>
+    <script>
+    	$('.datepicker').datepicker();
+    </script>
   </body>
 </html>

@@ -4,28 +4,21 @@
 
 <!-- Fragment #1 : Header files contains css and js references -->
 <head th:fragment="header">
-     <!-- Required meta tags z -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- End Required meta tags -->
-    <!-- FAVICONS -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="#" th:href="@{~/assets/apple-touch-icon.png}">
     <link rel="shortcut icon" href="#" th:href="@{~/assets/favicon.ico}">
     <meta name="theme-color" content="#3063A0">
-    <!-- End FAVICONS -->
     <script src="#" th:src="@{~/assets/vendor/pace/pace.min.js}"></script>
-    <!-- BEGIN BASE STYLES -->
     <link rel="stylesheet" href="#" th:href="@{~/assets/vendor/pace/pace.min.css}">
     <link rel="stylesheet" href="#" th:href="@{~/assets/vendor/bootstrap/css/bootstrap.min.css}">
     <link rel="stylesheet" href="#" th:href="@{~/assets/vendor/open-iconic/css/open-iconic-bootstrap.min.css}">
     <link rel="stylesheet" href="#" th:href="@{~/assets/vendor/font-awesome/css/fontawesome-all.min.css}">
-    <!-- END BASE STYLES -->
-    <!-- BEGIN PLUGINS STYLES -->
     <link rel="stylesheet" href="#" th:href="@{~/assets/vendor/flatpickr/flatpickr.min.css}">
-    <!-- END PLUGINS STYLES -->
-    <!-- BEGIN THEME STYLES -->
     <link rel="stylesheet" href="#" th:href="@{~/assets/stylesheets/main.min.css}">
     <link rel="stylesheet" href="#" th:href="@{~/assets/stylesheets/custom.css}"> 
-    <!-- END THEME STYLES -->
+    
+    <link rel="stylesheet" th:href="@{~/assets/stylesheets/bootstrap-datetimepicker.css}">
+    
 </head>
 </html>

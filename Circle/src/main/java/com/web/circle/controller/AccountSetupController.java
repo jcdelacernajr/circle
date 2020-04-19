@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.web.circle.exception.FileStorageException;
+import com.web.circle.form.AccountSetupForm;
 import com.web.circle.model.FileMetaDataModel;
 import com.web.circle.model.entity.Users;
 import com.web.circle.repository.PersonRepository;
@@ -32,24 +34,20 @@ import lombok.extern.slf4j.Slf4j;
  * Upload file controller // TODO....
  * 
  * @see https://www.javadevjournal.com/spring/spring-file-upload/
- * @author Juanito C. Dela Dela Cerna Jr. March 2020
+ * @author Juanito C. Dela Dela Cerna Jr. April 2020
  */
 @Slf4j
 @Controller
 public class AccountSetupController extends BaseContoller {
 
-	public AccountSetupController(UserRepository userRepository) {
-		super(userRepository);
+	// Initialize repository.
+	public AccountSetupController(UserRepository userRepository,
+			PersonRepository personRepository) {
+		super(userRepository, personRepository);
 	}
 
 	@Autowired
 	FileStorageService fileStorageService;
-	
-	@Autowired
-	private UploadFileRepository uploadFileRepository;
-	@Autowired
-	private PersonRepository personRepository;
-	
 	
 	/**
      * Controller to display the file upload form on the front end.
@@ -71,13 +69,18 @@ public class AccountSetupController extends BaseContoller {
     	}
     	return "account_setup";
     }
-	
-	@PostMapping("/upload-profile-picture")
-	public String accountSetup(@RequestParam("file") MultipartFile file, RedirectAttributes attributes, Model model) {
+    
+    @PostMapping("/upload-profile-picture") // TODO
+	public String accountSetup(@ModelAttribute AccountSetupForm form, RedirectAttributes attributes, Model model) {
 		Users user = getCurrentLoggedUser();
 		try {
 			// Store the file data.
-			FileMetaDataModel data = fileStorageService.store(file, user);
+			FileMetaDataModel data = fileStorageService.store(form.getFile(), user);
+			
+			String firstName = form.getFirstName();
+			String middleName = form.getMiddleName();
+			String lastName = form.getLastName();
+			String extension = form.getExtension();
 			
 			// For debugging purpose.
 			data.setUrl(fileDownloadUrl(data.getFileName(), "/media/download/"));
@@ -92,6 +95,23 @@ public class AccountSetupController extends BaseContoller {
 		}
 		return "account_setup";
 	}
+	
+	/*
+	 * @PostMapping("/upload-profile-picture") public String
+	 * accountSetup(@RequestParam("file") MultipartFile file, RedirectAttributes
+	 * attributes, Model model) { Users user = getCurrentLoggedUser(); try { //
+	 * Store the file data. FileMetaDataModel data = fileStorageService.store(file,
+	 * user);
+	 * 
+	 * // For debugging purpose. data.setUrl(fileDownloadUrl(data.getFileName(),
+	 * "/media/download/")); model.addAttribute("uploadedFile", data); // ------ end
+	 * 
+	 * // User profile picture. model.addAttribute("photoUrl",
+	 * fileDownloadUrl(data.getFileName(), "/media/download/")); } catch
+	 * (FileStorageException err) { model.addAttribute("error",
+	 * "Unable to store the file"); return "account_setup"; } return
+	 * "account_setup"; }
+	 */
 	
 	 /**
      * Controller to allow customer to download the file by passing the file name as the
