@@ -230,12 +230,12 @@
               <!-- Account Setup -->
               <div class="page-section">
 		      	<div class="form-row">
-				      <div th:if="${uploadedFile}" class="col-md-2 md-2">
+				      <div th:if="${photoUrl}" class="col-md-2 md-2">
 				      	 <span>
-		                    <img class="img-thumbnail" style="width:200px;height:200px;" th:src="${uploadedFile.url}" alt="...">
+		                    <img class="img-thumbnail" style="width:200px;height:200px;" th:src="${photoUrl}" alt="...">
 		                  </span>
 				      </div>
-				      <div th:unless="${uploadedFile}" class="col-md-2 md-2">
+				      <div th:unless="${photoUrl}" class="col-md-2 md-2">
 				      	 <span>
 		                    <img class="img-thumbnail" style="width:200px;height:200px;" th:src="@{~/assets/images/avatars/photo.jpg}" alt="...">
 		                  </span>

@@ -21,8 +21,12 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.web.circle.exception.FileStorageException;
 import com.web.circle.model.FileMetaDataModel;
 import com.web.circle.model.entity.Users;
+import com.web.circle.repository.PersonRepository;
+import com.web.circle.repository.UploadFileRepository;
 import com.web.circle.repository.UserRepository;
 import com.web.circle.service.FileStorageService;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Upload file controller // TODO....
@@ -30,6 +34,7 @@ import com.web.circle.service.FileStorageService;
  * @see https://www.javadevjournal.com/spring/spring-file-upload/
  * @author Juanito C. Dela Dela Cerna Jr. March 2020
  */
+@Slf4j
 @Controller
 public class AccountSetupController extends BaseContoller {
 
@@ -40,6 +45,12 @@ public class AccountSetupController extends BaseContoller {
 	@Autowired
 	FileStorageService fileStorageService;
 	
+	@Autowired
+	private UploadFileRepository uploadFileRepository;
+	@Autowired
+	private PersonRepository personRepository;
+	
+	
 	/**
      * Controller to display the file upload form on the front end.
      * @param model
@@ -47,18 +58,29 @@ public class AccountSetupController extends BaseContoller {
      */
     @GetMapping("/account-setup")
     public String accountSetup(final Model model) {
-    	// Get current logged user.
-    	Users user = getCurrentLoggedUser();
-    	model.addAttribute("User", user.getUserId());
-        return "account_setup";
+    	try {
+	    	// Get current logged user.
+	    	Users user = getCurrentLoggedUser();
+	    	// Get person photo 
+	    	String fileName = user.getPerson().getUploadFile().getFileName();
+	    	// User profile picture.
+	    	model.addAttribute("photoUrl", fileDownloadUrl(fileName, "/media/download/"));
+        	return "account_setup";
+    	} catch (NullPointerException err) {
+    		log.info("account-setup: No photo found! ", err.getMessage());
+    	}
+    	return "account_setup";
     }
 	
 	@PostMapping("/upload-profile-picture")
 	public String accountSetup(@RequestParam("file") MultipartFile file, RedirectAttributes attributes, Model model) {
+		Users user = getCurrentLoggedUser();
 		try {
-			FileMetaDataModel data = fileStorageService.store(file);
+			FileMetaDataModel data = fileStorageService.store(file, user);
 			data.setUrl(fileDownloadUrl(data.getFileName(), "/media/download/"));
 			model.addAttribute("uploadedFile", data);
+			// User profile picture.
+			model.addAttribute("photoUrl", fileDownloadUrl(data.getFileName(), "/media/download/"));
 		} catch (FileStorageException err) {
 			model.addAttribute("error", "Unable to store the file");
 			return "account_setup";

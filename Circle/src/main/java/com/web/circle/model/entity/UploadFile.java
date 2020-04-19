@@ -2,9 +2,12 @@ package com.web.circle.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -21,7 +24,8 @@ public class UploadFile extends CircleAuditing {
 	@Column(name = "upload_file_id")
 	private long uploadFileId;
 	
-	@Column(name = "uploaded_by_user_fk")
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "uploaded_by_user_fk")
 	private Users user;
 	
 	@Column(name = "file_name")
@@ -34,7 +38,7 @@ public class UploadFile extends CircleAuditing {
 	private String extension;
 	
 	@Column(name = "size")
-	private Float size;
+	private Long size;
 	
 	@Column(name = "location")
 	private String location;
@@ -82,11 +86,11 @@ public class UploadFile extends CircleAuditing {
 		this.extension = extension;
 	}
 
-	public Float getSize() {
+	public Long getSize() {
 		return size;
 	}
 
-	public void setSize(Float size) {
+	public void setSize(Long size) {
 		this.size = size;
 	}
 

@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.web.circle.exception.FileStorageException;
 import com.web.circle.model.FileMetaDataModel;
+import com.web.circle.model.entity.Users;
 
 /**
  * 
@@ -16,7 +17,7 @@ import com.web.circle.model.FileMetaDataModel;
  * */
 public interface FileStorageService {
 
-	FileMetaDataModel store(MultipartFile file) throws FileStorageException;
+	FileMetaDataModel store(MultipartFile file, Users user) throws FileStorageException;
 	List<Path> getAllFiles();
 	FileMetaDataModel getFile(String fileName) throws FileNotFoundException;
 }

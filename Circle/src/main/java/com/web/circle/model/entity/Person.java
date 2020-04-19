@@ -2,10 +2,15 @@ package com.web.circle.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.DynamicUpdate;
 
 /**
  * Person table
@@ -13,6 +18,7 @@ import javax.persistence.Table;
  * @author Juanito C. Dela Dela Cerna Jr. April 2020
  */
 @Entity
+@DynamicUpdate
 @Table(name = "person")
 public class Person extends CircleAuditing {
 	
@@ -25,7 +31,7 @@ public class Person extends CircleAuditing {
 	private Boolean isActive;
 	
 	@Column(name = "id")
-	private long id;
+	private Long id;
 	
 	@Column(name = "first_name")
 	private String firstName;
@@ -84,7 +90,8 @@ public class Person extends CircleAuditing {
 	@Column(name = "place_of_berth")
 	private String placeOfBerth;
 	
-	@Column(name = "photo_id")
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "photo_id")
 	private UploadFile uploadFile;
 	
 	public UploadFile getUploadFile() {
