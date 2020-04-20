@@ -1,4 +1,4 @@
-package com.web.circle.form;
+package com.web.circle.controller.DTO.form;
 
 import java.util.Date;
 

@@ -280,14 +280,16 @@
 		         	<label for="profilePicture"><input type="file" name="file" id="profilePicture" class="form-control-file"></label>	
 		         </div>
                  <div class="form-row">
+                 
                    <!-- grid column -->
                    <div class="col-md-3 mb-3">
                      <label for="organization">Organization</label> 
                      <select type="organization" class="form-control browser-default custom-select" name="organization" id="organization" required=""> 
-	                     <option selected>Open this select menu</option>
-						  <option value="1">One</option>
-						  <option value="2">Two</option>
-						  <option value="3">Three</option>
+						  <option
+						  	th:each="organization : ${organizations}"
+						  	th:value="${organization.value}"
+						  	th:text="${organization.text}">
+						  </option>
                      </select>
                      <div class="invalid-feedback"> Valid first name is required. </div>
                    </div><!-- /grid column -->
@@ -311,7 +313,7 @@
                    </div><!-- /grid column -->
                    <!-- grid column -->
                    <div class="col-md-1 mb-1">
-                     <label for="nameExtension">Extension</label> <input type="nameExtension" class="form-control" name="nameExtension" id="nameExtension" required="">
+                     <label for="extension">Extension</label> <input type="extension" class="form-control" name="extension" id="nameExtension" required="">
                      <div class="invalid-feedback"> Valid last name is required. </div>
                    </div><!-- /grid column -->
                  </div>
@@ -324,19 +326,14 @@
                      <label for="citizenship">Citizenship</label> <input type="citizenship" class="form-control" name="citizenship" id="citizenship" required="">
                      <div class="invalid-feedback"> Valid last name is required. </div>
                    </div><!-- /grid column -->
+                   
                    <!-- grid column -->
                    <div class="col-md-2 mb-1">
-                   		<label for="DateOfBerth">Date of berth</label> 
-                   		<div class="form-group">
-			                <div class='input-group date' data-provide="datepicker">
-			                    <input type='dateOfBerth' name="dateOfBerth" id="dateOfBerth" class="form-control" />
-			                    <span class="input-group-addon">
-			                        <span class="glyphicon glyphicon-calendar"></span>
-			                    </span>
-			                </div>
-			            </div>
-                     <div class="invalid-feedback"> Valid last name is required. </div>
+                  	  <label for="DateOfBerth">Date of berth</label> 
+                      <input type='dateOfBerth' name="dateOfBerth" id="datetimepicker" class="form-control" />
+                      <div class="invalid-feedback"> Valid last name is required. </div>
                    </div><!-- /grid column -->
+                   
                  </div>
                   <!-- .form-row -->
                  <div class="form-row">
@@ -364,8 +361,10 @@
     </div>
     <!-- /.app -->
     <div th:insert="fragments/footer.html :: footer"></div>
-    <script>
-    	$('.datepicker').datepicker();
-    </script>
+    <script type="text/javascript">
+   	$(function (){
+		$('#datetimepicker').datetimepicker();
+   	});
+     </script>
   </body>
 </html>

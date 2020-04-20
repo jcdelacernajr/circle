@@ -1,6 +1,9 @@
 package com.web.circle.controller;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,10 +22,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.web.circle.controller.DTO.form.AccountSetupForm;
 import com.web.circle.exception.FileStorageException;
-import com.web.circle.form.AccountSetupForm;
+import com.web.circle.model.OrganizationDataModel;
 import com.web.circle.model.FileMetaDataModel;
+import com.web.circle.model.entity.Organizations;
+import com.web.circle.model.entity.Person;
 import com.web.circle.model.entity.Users;
+import com.web.circle.repository.OrganizationRepository;
 import com.web.circle.repository.PersonRepository;
 import com.web.circle.repository.UploadFileRepository;
 import com.web.circle.repository.UserRepository;
@@ -42,8 +49,8 @@ public class AccountSetupController extends BaseContoller {
 
 	// Initialize repository.
 	public AccountSetupController(UserRepository userRepository,
-			PersonRepository personRepository) {
-		super(userRepository, personRepository);
+			PersonRepository personRepository, OrganizationRepository organizationRepository) {
+		super(userRepository, personRepository, organizationRepository);
 	}
 
 	@Autowired
@@ -63,6 +70,18 @@ public class AccountSetupController extends BaseContoller {
 	    	String fileName = user.getPerson().getUploadFile().getFileName();
 	    	// User profile picture.
 	    	model.addAttribute("photoUrl", fileDownloadUrl(fileName, "/media/download/"));
+	    	
+	    	// List of organization
+	    	List<Organizations> organizations = organizationRepository.findAll();
+	    	ArrayList<Object> organizationsList = new ArrayList<Object>();
+	    	for(Organizations orga : organizations) {
+	    		OrganizationDataModel organizationDataModel = new OrganizationDataModel();
+	    		organizationDataModel.setValue(orga.getOrganizationId());
+	    		organizationDataModel.setText(orga.getEstablishmentName());
+	    		organizationsList.add(organizationDataModel);
+	    	}
+	    	model.addAttribute("organizations", organizationsList);
+	    	
         	return "account_setup";
     	} catch (NullPointerException err) {
     		log.info("account-setup: No photo found! ", err.getMessage());
@@ -77,10 +96,15 @@ public class AccountSetupController extends BaseContoller {
 			// Store the file data.
 			FileMetaDataModel data = fileStorageService.store(form.getFile(), user);
 			
+			long organizationFk = form.getOrganizationFk(); 
 			String firstName = form.getFirstName();
 			String middleName = form.getMiddleName();
 			String lastName = form.getLastName();
 			String extension = form.getExtension();
+			String citizenship = form.getCitizenship();
+			Date dateOfBerth = form.getDateOfBerth();
+			String address = form.getAddress();
+			
 			
 			// For debugging purpose.
 			data.setUrl(fileDownloadUrl(data.getFileName(), "/media/download/"));

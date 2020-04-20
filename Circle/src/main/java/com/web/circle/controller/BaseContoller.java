@@ -5,6 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.web.circle.model.entity.Users;
+import com.web.circle.repository.OrganizationRepository;
 import com.web.circle.repository.PersonRepository;
 import com.web.circle.repository.UserRepository;
 
@@ -21,10 +22,12 @@ public class BaseContoller {
 	// Initialize user repository
 	public UserRepository userRepository;
 	public PersonRepository personRepository;
+	public OrganizationRepository organizationRepository;
 	public BaseContoller(UserRepository userRepository,
-			PersonRepository personRepository) {
+			PersonRepository personRepository, OrganizationRepository organizationRepository) {
 		this.userRepository = userRepository;
 		this.personRepository = personRepository;
+		this.organizationRepository = organizationRepository;
 	}
 
 	/**
