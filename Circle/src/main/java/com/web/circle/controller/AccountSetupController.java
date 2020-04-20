@@ -75,12 +75,31 @@ public class AccountSetupController extends BaseContoller {
 	    	List<Organizations> organizations = organizationRepository.findAll();
 	    	ArrayList<Object> organizationsList = new ArrayList<Object>();
 	    	for(Organizations orga : organizations) {
+	    		// Display the selected organization
 	    		OrganizationDataModel organizationDataModel = new OrganizationDataModel();
-	    		organizationDataModel.setValue(orga.getOrganizationId());
-	    		organizationDataModel.setText(orga.getEstablishmentName());
+	    		if(user.getOrganizations().getOrganizationId() == orga.getOrganizationId()) {
+		    		organizationDataModel.setValue(orga.getOrganizationId());
+		    		organizationDataModel.setSelected(true);
+		    		organizationDataModel.setText(orga.getEstablishmentName());
+	    		} 
+	    		else { 
+	    			// Display the list of organizations
+	    			organizationDataModel.setValue(orga.getOrganizationId());
+		    		organizationDataModel.setText(orga.getEstablishmentName());
+	    		}
+	    		// Add the list.
 	    		organizationsList.add(organizationDataModel);
 	    	}
+	    	// Get person data.
+	    	Person person = personRepository.findById(user.getPerson().getPersonId()).get();
 	    	model.addAttribute("organizations", organizationsList);
+	    	model.addAttribute("firstName", person.getFirstName());
+	    	model.addAttribute("middleName", person.getMiddleName());
+	    	model.addAttribute("lastName", person.getLastName());
+	    	model.addAttribute("extension", person.getNameExtension());
+	    	model.addAttribute("citizenship", person.getCitizenship());
+	    	model.addAttribute("dateOfBerth", person.getDateOfBerth());
+	    	model.addAttribute("address", person.getAddress());
 	    	
         	return "account_setup";
     	} catch (NullPointerException err) {
@@ -96,7 +115,7 @@ public class AccountSetupController extends BaseContoller {
 			// Store the file data.
 			FileMetaDataModel data = fileStorageService.store(form.getFile(), user);
 			
-			long organizationFk = form.getOrganizationFk(); 
+			String organizationFk = form.getOrganization(); 
 			String firstName = form.getFirstName();
 			String middleName = form.getMiddleName();
 			String lastName = form.getLastName();

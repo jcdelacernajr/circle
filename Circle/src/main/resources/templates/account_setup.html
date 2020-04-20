@@ -288,6 +288,7 @@
 						  <option
 						  	th:each="organization : ${organizations}"
 						  	th:value="${organization.value}"
+						  	th:selected="${organization.selected}"
 						  	th:text="${organization.text}">
 						  </option>
                      </select>
@@ -298,22 +299,22 @@
                  <div class="form-row">
                    <!-- grid column -->
                    <div class="col-md-3 mb-3">
-                     <label for="firstName">First name</label> <input type="firstName" class="form-control" name="firstName" id="firstName" required="">
+                     <label for="firstName">First name</label> <input type="firstName" th:value="${firstName}" class="form-control" name="firstName" id="firstName" required="">
                      <div class="invalid-feedback"> Valid first name is required. </div>
                    </div><!-- /grid column -->
                    <!-- grid column -->
                    <div class="col-md-1 mb-1">
-                     <label for="middleName">Middle name</label> <input type="middleName" class="form-control" name="middleName" id="middleName" required="">
+                     <label for="middleName">Middle name</label> <input type="middleName" th:value="${middleName}" class="form-control" name="middleName" id="middleName" required="">
                      <div class="invalid-feedback"> Valid last name is required. </div>
                    </div><!-- /grid column -->
                    <!-- grid column -->
                    <div class="col-md-3 mb-3">
-                     <label for="lastName">Last name</label> <input type="lastName" class="form-control" name="lastName" id="lastName" required="">
+                     <label for="lastName">Last name</label> <input type="lastName" th:value="${lastName}" class="form-control" name="lastName" id="lastName" required="">
                      <div class="invalid-feedback"> Valid last name is required. </div>
                    </div><!-- /grid column -->
                    <!-- grid column -->
                    <div class="col-md-1 mb-1">
-                     <label for="extension">Extension</label> <input type="extension" class="form-control" name="extension" id="nameExtension" required="">
+                     <label for="extension">Extension</label> <input type="extension" th:value="${extension}" class="form-control" name="extension" id="nameExtension" required="">
                      <div class="invalid-feedback"> Valid last name is required. </div>
                    </div><!-- /grid column -->
                  </div>
@@ -323,14 +324,14 @@
                  <div class="form-row">
                     <!-- grid column -->
                    <div class="col-md-2 mb-1">
-                     <label for="citizenship">Citizenship</label> <input type="citizenship" class="form-control" name="citizenship" id="citizenship" required="">
+                     <label for="citizenship">Citizenship</label> <input type="citizenship" th:value="${citizenship}" class="form-control" name="citizenship" id="citizenship" required="">
                      <div class="invalid-feedback"> Valid last name is required. </div>
                    </div><!-- /grid column -->
                    
                    <!-- grid column -->
                    <div class="col-md-2 mb-1">
                   	  <label for="DateOfBerth">Date of berth</label> 
-                      <input type='dateOfBerth' name="dateOfBerth" id="datetimepicker" class="form-control" />
+                      <input type='dateOfBerth' th:text="${dateOfBerth}" name="dateOfBerth" id="datetimepicker" class="form-control" />
                       <div class="invalid-feedback"> Valid last name is required. </div>
                    </div><!-- /grid column -->
                    
@@ -339,7 +340,7 @@
                  <div class="form-row">
                     <!-- grid column -->
                    <div class="col-md-4 mb-1">
-                     <label for="Address">Address</label> <textarea type="address" class="form-control" name="address" id="address" required=""></textarea>
+                     <label for="Address">Address</label> <textarea type="address" th:text="${address}" class="form-control" name="address" id="address" required=""></textarea>
                      <div class="invalid-feedback"> Valid last name is required. </div>
                    </div><!-- /grid column -->
                    </div>

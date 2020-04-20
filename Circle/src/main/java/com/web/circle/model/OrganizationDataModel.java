@@ -12,6 +12,7 @@ import lombok.*;
 public class OrganizationDataModel {
 
 	private Long value;
+	private Boolean selected;
 	private String text;
 	
 	public OrganizationDataModel() {

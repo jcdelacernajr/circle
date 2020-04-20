@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class AccountSetupForm {
 	
 	private MultipartFile file;
-	private long organizationFk;
+	private String organization;
 	private String firstName;
 	private String middleName;
 	private String lastName;
@@ -28,11 +28,11 @@ public class AccountSetupForm {
 	public void setFile(MultipartFile file) {
 		this.file = file;
 	}
-	public long getOrganizationFk() {
-		return organizationFk;
+	public String getOrganization() {
+		return organization;
 	}
-	public void setOrganizationFk(long organizationFk) {
-		this.organizationFk = organizationFk;
+	public void setOrganization(String organization) {
+		this.organization = organization;
 	}
 	public String getFirstName() {
 		return firstName;
