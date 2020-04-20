@@ -4,15 +4,19 @@ import java.util.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.web.circle.controller.AccountSetupController;
+
 /**
  * Account setup form.
+ * This is use by AccountSetupController class @see {@link AccountSetupController }}
  * 
- * @author Juanito C. Dela Dela Cerna Jr. March 2020
+ * @author Juanito C. Dela Dela Cerna Jr. April 2020
  * @see http://www.startwithjava.com/spring-boot-multiple-files-upload-with-other-input-fields/
  * */
 public class AccountSetupForm {
 	
 	private MultipartFile file;
+	private Long userId;
 	private String organization;
 	private String firstName;
 	private String middleName;
@@ -27,6 +31,12 @@ public class AccountSetupForm {
 	}
 	public void setFile(MultipartFile file) {
 		this.file = file;
+	}
+	public Long getUserId() {
+		return userId;
+	}
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 	public String getOrganization() {
 		return organization;

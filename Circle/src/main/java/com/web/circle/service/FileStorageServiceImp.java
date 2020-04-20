@@ -41,7 +41,7 @@ import lombok.extern.slf4j.Slf4j;
  * */
 @Slf4j
 @Service("fileStorageService")
-public class FileStorageServiceImplementation implements FileStorageService {
+public class FileStorageServiceImp implements FileStorageService {
 	
 	@Autowired
 	UploadFileProperties uploadFileProperties;
@@ -64,11 +64,10 @@ public class FileStorageServiceImplementation implements FileStorageService {
 			
 			// Record the uploaded file.
 			UploadFile uploadFile = recordUploadedFile(file, user, uploadDir, fileName);
-			// Record the person photo
-			updatePhoto(user, uploadFile);
 			
 			// Set the file meta data.
 			FileMetaDataModel mdata = new FileMetaDataModel();
+			mdata.setFileId(uploadFile.getUploadFileId());
 			mdata.setFileName(fileName);
 			mdata.setSize(file.getSize());
 			mdata.setMime(file.getContentType());
@@ -110,6 +109,7 @@ public class FileStorageServiceImplementation implements FileStorageService {
 	 * Update person table for photo profile.
 	 * 
 	 * @param user
+	 * @deprecated
 	 * */
 	private void updatePhoto(Users user, UploadFile uploadFile) {
 		// Person id.

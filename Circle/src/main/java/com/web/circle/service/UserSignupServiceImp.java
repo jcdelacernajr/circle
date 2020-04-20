@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Service
-public class UserServiceImplementation implements UserService {
+public class UserSignupServiceImp implements UserSignupService {
 	
 	@Autowired
 	private UserRepository userRepository;

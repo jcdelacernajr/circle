@@ -7,7 +7,7 @@ import com.web.circle.model.entity.Users;
 /**
  * @author Juanito C. Dela Dela Cerna Jr. March 2020
  */
-public interface UserService {
+public interface UserSignupService {
 	Users findByEmail(String email);
 	Users save(UserSignupDTO userSignupDTO);
 }

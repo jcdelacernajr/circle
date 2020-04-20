@@ -18,7 +18,7 @@ public class LoginController {
 	@GetMapping
 	public String index() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		log.info("User Principal: "+ auth.getName() + " Authorities: "+ auth.getAuthorities());
+		//log.info("User Principal: "+ auth.getName() + " Authorities: "+ auth.getAuthorities());
 		if(!auth.getPrincipal().equals("anonymousUser")) {
 			return "redirect:/";
 		}

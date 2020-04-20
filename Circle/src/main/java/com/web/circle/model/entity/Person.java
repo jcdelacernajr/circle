@@ -1,5 +1,7 @@
 package com.web.circle.model.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -85,7 +87,7 @@ public class Person extends CircleAuditing {
 	private String philhealtNo;
 	
 	@Column(name = "date_of_berth")
-	private String dateOfBerth;
+	private Date dateOfBerth;
 	
 	@Column(name = "place_of_berth")
 	private String placeOfBerth;
@@ -262,11 +264,11 @@ public class Person extends CircleAuditing {
 		this.philhealtNo = philhealtNo;
 	}
 
-	public String getDateOfBerth() {
+	public Date getDateOfBerth() {
 		return dateOfBerth;
 	}
 
-	public void setDateOfBerth(String dateOfBerth) {
+	public void setDateOfBerth(Date dateOfBerth) {
 		this.dateOfBerth = dateOfBerth;
 	}
 

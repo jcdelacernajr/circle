@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.web.circle.controller.DTO.UserSignupDTO;
 import com.web.circle.model.entity.Users;
-import com.web.circle.service.UserService;
+import com.web.circle.service.UserSignupService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 public class SignupController {
 	
 	@Autowired
-	private UserService us;
+	private UserSignupService us;
 	
 	@ModelAttribute("user")
 	public UserSignupDTO userSignupDTO() {

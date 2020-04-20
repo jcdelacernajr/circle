@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
   <head>
-	<title>Circle | Public Page</title>
+	<title>Circle | Account Setup Page</title>
 	</head>
   <head th:insert="fragments/header.html :: header"></head>
   <body>
@@ -229,44 +229,7 @@
               <!-- .page-section -->
               <!-- Account Setup -->
               <div class="page-section">
-		      	<!-- <div class="form-row">
-				      <div th:if="${photoUrl}" class="col-md-2 md-2">
-				      	 <span>
-		                    <img class="img-thumbnail" style="width:200px;height:200px;" th:src="${photoUrl}" alt="...">
-		                  </span>
-				      </div>
-				      <div th:unless="${photoUrl}" class="col-md-2 md-2">
-				      	 <span>
-		                    <img class="img-thumbnail" style="width:200px;height:200px;" th:src="@{~/assets/images/avatars/photo.jpg}" alt="...">
-		                  </span>
-				      </div>
-				      
-			          <div class="col-md-4 md-4">
-			          	  <div>
-			          	  	<span th:text="${User}"></span>
-			          	  </div>
-				          <div th:if="${uploadedFile}">
-							    <table>
-							        <tr>
-							            <td th:text="${uploadedFile.fileName}">File Name</td><br>
-							            <td th:text="${uploadedFile.mime}">File Type:</td><br>
-							            <td th:text="${uploadedFile.url}">URL :</td>
-							        </tr>
-							    </table>
-				              </div>
-			              <form method="post" th:action="@{/upload-profile-picture}" enctype="multipart/form-data">
-			                  <div class="form-group">
-			                  		<label for="firstName">First name</label> <input type="firstName" class="form-control" name="firstName" required="">
-			                  		<label for="middleName">First name</label> <input type="middleName" class="form-control" name="middleName" required="">
-			                  		<label for="lastName">First name</label> <input type="lastName" class="form-control" name="lastName" required="">
-			                  		<label for="extension">First name</label> <input type="extension" class="form-control" name="extension" required="">
-			                    	<input type="file" name="file" class="form-control-file">
-			                  </div>
-			                  <button type="submit" class="btn btn-primary">Upload File</button>
-			              </form>
-			          </div>
-			      </div> -->
-               <form method="post" th:action="@{/upload-profile-picture}" enctype="multipart/form-data">
+               <form method="post" th:action="@{/account-setup-form}" enctype="multipart/form-data">
                	<div class="form-row">
              	   <!-- grid column -->
 			      <div th:if="${photoUrl}" class="col-md-3 md-3">

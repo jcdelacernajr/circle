@@ -2,7 +2,6 @@ package com.web.circle.controller;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -17,28 +16,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.web.circle.controller.DTO.form.AccountSetupForm;
 import com.web.circle.exception.FileStorageException;
-import com.web.circle.model.OrganizationDataModel;
 import com.web.circle.model.FileMetaDataModel;
+import com.web.circle.model.OrganizationDataModel;
 import com.web.circle.model.entity.Organizations;
 import com.web.circle.model.entity.Person;
 import com.web.circle.model.entity.Users;
 import com.web.circle.repository.OrganizationRepository;
 import com.web.circle.repository.PersonRepository;
-import com.web.circle.repository.UploadFileRepository;
 import com.web.circle.repository.UserRepository;
+import com.web.circle.service.AccountSetupService;
 import com.web.circle.service.FileStorageService;
 
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Upload file controller // TODO....
+ * Account setup controller
  * 
  * @see https://www.javadevjournal.com/spring/spring-file-upload/
  * @author Juanito C. Dela Dela Cerna Jr. April 2020
@@ -55,6 +51,8 @@ public class AccountSetupController extends BaseContoller {
 
 	@Autowired
 	FileStorageService fileStorageService;
+	@Autowired
+	AccountSetupService accountSetupService;
 	
 	/**
      * Controller to display the file upload form on the front end.
@@ -63,7 +61,8 @@ public class AccountSetupController extends BaseContoller {
      */
     @GetMapping("/account-setup")
     public String accountSetup(final Model model) {
-    	try {
+    	log.info("loadAccountSetup() :" + System.currentTimeMillis());
+		try {
 	    	// Get current logged user.
 	    	Users user = getCurrentLoggedUser();
 	    	// Get person photo 
@@ -89,7 +88,7 @@ public class AccountSetupController extends BaseContoller {
 	    		}
 	    		// Add the list.
 	    		organizationsList.add(organizationDataModel);
-	    	}
+    		}
 	    	// Get person data.
 	    	Person person = personRepository.findById(user.getPerson().getPersonId()).get();
 	    	model.addAttribute("organizations", organizationsList);
@@ -103,40 +102,32 @@ public class AccountSetupController extends BaseContoller {
 	    	
         	return "account_setup";
     	} catch (NullPointerException err) {
-    		log.info("account-setup: No photo found! ", err.getMessage());
+    		log.error("account-setup: No photo found! took " + System.currentTimeMillis() + " Error: "+ err.getMessage());
     	}
     	return "account_setup";
     }
     
-    @PostMapping("/upload-profile-picture") // TODO
+    @PostMapping("/account-setup-form") // TODO
 	public String accountSetup(@ModelAttribute AccountSetupForm form, RedirectAttributes attributes, Model model) {
 		Users user = getCurrentLoggedUser();
 		try {
 			// Store the file data.
-			FileMetaDataModel data = fileStorageService.store(form.getFile(), user);
+			Long fileId = null;
+			FileMetaDataModel data = null;
+			if(!form.getFile().isEmpty()) {
+				data = fileStorageService.store(form.getFile(), user);
+				fileId = data.getFileId();
+			} 
 			
-			String organizationFk = form.getOrganization(); 
-			String firstName = form.getFirstName();
-			String middleName = form.getMiddleName();
-			String lastName = form.getLastName();
-			String extension = form.getExtension();
-			String citizenship = form.getCitizenship();
-			Date dateOfBerth = form.getDateOfBerth();
-			String address = form.getAddress();
-			
-			
-			// For debugging purpose.
-			data.setUrl(fileDownloadUrl(data.getFileName(), "/media/download/"));
-			model.addAttribute("uploadedFile", data);
-			// ------ end
-			
-			// User profile picture.
-			model.addAttribute("photoUrl", fileDownloadUrl(data.getFileName(), "/media/download/"));
+			// Set user id
+			form.setUserId(user.getUserId());
+			// Update the user data.
+			accountSetupService.updateUser(form, fileId);
 		} catch (FileStorageException err) {
 			model.addAttribute("error", "Unable to store the file");
-			return "account_setup";
+			return "redirect:/account-setup";
 		}
-		return "account_setup";
+		return "redirect:/account-setup";
 	}
 	
 	/*

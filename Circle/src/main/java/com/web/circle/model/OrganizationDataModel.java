@@ -1,9 +1,12 @@
 package com.web.circle.model;
 
+import com.web.circle.controller.AccountSetupController;
+
 import lombok.*;
 
 /**
- * File meta data
+ * Organization data model
+ * This is use by AccountSetupController class @see {@link AccountSetupController }}
  * 
  * @author jr April 2020
  * */

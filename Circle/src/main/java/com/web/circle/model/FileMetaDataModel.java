@@ -14,6 +14,7 @@ import lombok.Setter;
 @Getter
 public class FileMetaDataModel {
 
+	private Long fileId;
 	private String fileName;
 	private String url;
 	private String mime;
@@ -24,7 +25,8 @@ public class FileMetaDataModel {
 		
 	}
 
-	public FileMetaDataModel(String fileName, String url, String mime, long size, Resource resource) {
+	public FileMetaDataModel(Long fileId, String fileName, String url, String mime, long size, Resource resource) {
+		this.fileId = fileId;
 		this.fileName = fileName;
 		this.url = url;
 		this.mime = mime;
