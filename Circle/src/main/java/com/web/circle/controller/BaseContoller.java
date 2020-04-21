@@ -36,7 +36,7 @@ public class BaseContoller {
 	public Users getCurrentLoggedUser() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Users user = userRepository.findByUsername(auth.getName());
-		log.info("USER ID: "+ user.getUserId());
+		log.info("getCurrentLoggedUser() ID: "+ user.getUserId());
 		return user;
 	}
 	

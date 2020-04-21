@@ -36,8 +36,12 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Account setup controller
  * 
- * @see https://www.javadevjournal.com/spring/spring-file-upload/
  * @author Juanito C. Dela Dela Cerna Jr. April 2020
+ * 
+ * -------------------------------------------------------------------------------
+ * @see https://www.javadevjournal.com/spring/spring-file-upload/
+ * @see https://developer.snapappointments.com/bootstrap-select/examples/#styling
+ * 
  */
 @Slf4j
 @Controller
@@ -114,38 +118,63 @@ public class AccountSetupController extends BaseContoller {
 			// Store the file data.
 			Long fileId = null;
 			FileMetaDataModel data = null;
+			// If the user have no selected new photo
+			// This function will get the previews photo.
 			if(!form.getFile().isEmpty()) {
 				data = fileStorageService.store(form.getFile(), user);
 				fileId = data.getFileId();
+				// User profile picture.
+		    	model.addAttribute("photoUrl", fileDownloadUrl(data.getFileName(), "/media/download/"));
 			} 
+			else {
+				// Get person last photo 
+		    	String fileName = user.getPerson().getUploadFile().getFileName();
+		    	// User profile picture.
+		    	model.addAttribute("photoUrl", fileDownloadUrl(fileName, "/media/download/"));
+			}
 			
 			// Set user id
 			form.setUserId(user.getUserId());
 			// Update the user data.
 			accountSetupService.updateUser(form, fileId);
+
+	    	// List of organization
+	    	List<Organizations> organizations = organizationRepository.findAll();
+	    	ArrayList<Object> organizationsList = new ArrayList<Object>();
+	    	for(Organizations orga : organizations) {
+	    		// Display the selected organization
+	    		OrganizationDataModel organizationDataModel = new OrganizationDataModel();
+	    		if(user.getOrganizations().getOrganizationId() == orga.getOrganizationId()) {
+		    		organizationDataModel.setValue(orga.getOrganizationId());
+		    		organizationDataModel.setSelected(true);
+		    		organizationDataModel.setText(orga.getEstablishmentName());
+	    		} 
+	    		else { 
+	    			// Display the list of organizations
+	    			organizationDataModel.setValue(orga.getOrganizationId());
+		    		organizationDataModel.setText(orga.getEstablishmentName());
+	    		}
+	    		// Add the list.
+	    		organizationsList.add(organizationDataModel);
+    		}
+	    	// Get person data.
+	    	Person person = personRepository.findById(user.getPerson().getPersonId()).get();
+	    	model.addAttribute("organizations", organizationsList);
+	    	model.addAttribute("firstName", person.getFirstName());
+	    	model.addAttribute("middleName", person.getMiddleName());
+	    	model.addAttribute("lastName", person.getLastName());
+	    	model.addAttribute("extension", person.getNameExtension());
+	    	model.addAttribute("citizenship", person.getCitizenship());
+	    	model.addAttribute("dateOfBerth", person.getDateOfBerth());
+	    	model.addAttribute("address", person.getAddress());
+	    	model.addAttribute("message","You have successfully update your personal information.");
+			
 		} catch (FileStorageException err) {
 			model.addAttribute("error", "Unable to store the file");
-			return "redirect:/account-setup";
+			return "account_setup";
 		}
-		return "redirect:/account-setup";
+		return "account_setup";
 	}
-	
-	/*
-	 * @PostMapping("/upload-profile-picture") public String
-	 * accountSetup(@RequestParam("file") MultipartFile file, RedirectAttributes
-	 * attributes, Model model) { Users user = getCurrentLoggedUser(); try { //
-	 * Store the file data. FileMetaDataModel data = fileStorageService.store(file,
-	 * user);
-	 * 
-	 * // For debugging purpose. data.setUrl(fileDownloadUrl(data.getFileName(),
-	 * "/media/download/")); model.addAttribute("uploadedFile", data); // ------ end
-	 * 
-	 * // User profile picture. model.addAttribute("photoUrl",
-	 * fileDownloadUrl(data.getFileName(), "/media/download/")); } catch
-	 * (FileStorageException err) { model.addAttribute("error",
-	 * "Unable to store the file"); return "account_setup"; } return
-	 * "account_setup"; }
-	 */
 	
 	 /**
      * Controller to allow customer to download the file by passing the file name as the
