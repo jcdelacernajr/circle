@@ -5,13 +5,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.web.circle.controller.DTO.UserSignupDTO;
+import com.web.circle.model.entity.Department;
 import com.web.circle.model.entity.Designations;
 import com.web.circle.model.entity.Organizations;
 import com.web.circle.model.entity.Permissions;
 import com.web.circle.model.entity.Person;
 import com.web.circle.model.entity.Roles;
+import com.web.circle.model.entity.UploadFile;
 import com.web.circle.model.entity.UserRoles;
 import com.web.circle.model.entity.Users;
+import com.web.circle.repository.PersonRepository;
 import com.web.circle.repository.UserRepository;
 import com.web.circle.repository.UserRoleRepository;
 
@@ -32,6 +35,8 @@ public class UserSignupServiceImp implements UserSignupService {
 	private UserRoleRepository UserRoleRepository;
 	@Autowired
 	private PasswordEncoder encoder;
+	@Autowired
+	private PersonRepository personRepository;
 
 	@Override
 	public Users findByEmail(String email) { // the email of user.
@@ -50,13 +55,22 @@ public class UserSignupServiceImp implements UserSignupService {
 		// Set to 1 for the default value. 1 is No Organizations selected.
 		Organizations organizations = new Organizations();
 		organizations.setOrganizationId(1); // 1 is the default value for the register user.
-		
 		user.setIsActive(true);
 		user.setOrganizations(organizations); 
+		
+		// Set Department data
+		Department department = new Department();
+		department.setDepartmentId(3); // 3 is the default value
+		user.setDepartment(department);
 		
 		// Set person id for initial data
 		Person person = new Person();
 		person.setPersonId(0);
+		
+		// Set default data for person.
+		UploadFile uploadFile = new UploadFile();
+		uploadFile.setUploadFileId(1);
+		person.setUploadFile(uploadFile);
 		user.setPerson(person);
 		
 		user.setAccountNonExpired(true);
