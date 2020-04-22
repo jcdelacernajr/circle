@@ -20,16 +20,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.web.circle.controller.DTO.form.AccountSetupForm;
 import com.web.circle.exception.FileStorageException;
+import com.web.circle.model.DepartmentDataModel;
 import com.web.circle.model.FileMetaDataModel;
 import com.web.circle.model.OrganizationDataModel;
+import com.web.circle.model.entity.Department;
 import com.web.circle.model.entity.Organizations;
 import com.web.circle.model.entity.Person;
 import com.web.circle.model.entity.Users;
+import com.web.circle.repository.DepartmentRepository;
 import com.web.circle.repository.OrganizationRepository;
 import com.web.circle.repository.PersonRepository;
 import com.web.circle.repository.UserRepository;
 import com.web.circle.service.AccountSetupService;
 import com.web.circle.service.FileStorageService;
+import com.web.circle.utils.Utils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -50,8 +54,9 @@ public class AccountSetupController extends BaseContoller {
 
 	// Initialize repository.
 	public AccountSetupController(UserRepository userRepository,
-			PersonRepository personRepository, OrganizationRepository organizationRepository) {
-		super(userRepository, personRepository, organizationRepository);
+			PersonRepository personRepository, OrganizationRepository organizationRepository,
+			DepartmentRepository departmentRepository) {
+		super(userRepository, personRepository, organizationRepository, departmentRepository);
 	}
 
 	@Autowired
@@ -66,7 +71,7 @@ public class AccountSetupController extends BaseContoller {
      */
     @GetMapping("/account-setup")
     public String accountSetup(final Model model) {
-    	log.info("loadAccountSetup() :" + System.currentTimeMillis());
+    	log.info("loadAccountSetup() :" + Utils.timestampToDate(System.currentTimeMillis()));
 		try {
 	    	// Get current logged user.
 	    	Users user = getCurrentLoggedUser();
@@ -94,9 +99,32 @@ public class AccountSetupController extends BaseContoller {
 	    		// Add the list.
 	    		organizationsList.add(organizationDataModel);
     		}
+	    	
+	    	// List of department
+	    	List<Department> departments = departmentRepository.findAll();
+	    	ArrayList<Object> departmentsList = new ArrayList<Object>();
+	    	for(Department depa : departments) {
+	    		// Display the selected department
+	    		DepartmentDataModel departmentDataModel = new DepartmentDataModel();
+	    		Long departmentId = user.getDepartment().getDepartmentId();
+	    		if(departmentId == depa.getDepartmentId()) {
+	    			departmentDataModel.setValue(depa.getDepartmentId());
+	    			departmentDataModel.setSelected(true);
+	    			departmentDataModel.setText(depa.getDepartmentName());
+	    		} 
+	    		else { 
+	    			// Display the list of department
+	    			departmentDataModel.setValue(depa.getDepartmentId());
+	    			departmentDataModel.setText(depa.getDepartmentName());
+	    		}
+	    		// Add the list.
+	    		departmentsList.add(departmentDataModel);
+    		}
+	    	
 	    	// Get person data.
 	    	Person person = personRepository.findById(user.getPerson().getPersonId()).get();
 	    	model.addAttribute("organizations", organizationsList);
+	    	model.addAttribute("departments", departmentsList);
 	    	model.addAttribute("firstName", person.getFirstName());
 	    	model.addAttribute("middleName", person.getMiddleName());
 	    	model.addAttribute("lastName", person.getLastName());
@@ -107,7 +135,7 @@ public class AccountSetupController extends BaseContoller {
 	    	
         	return "account_setup";
     	} catch (NullPointerException err) {
-    		log.error("account-setup: No photo found! took " + System.currentTimeMillis() + " Error: "+ err.getMessage());
+    		log.error("account-setup: No photo found! took " + Utils.timestampToDate(System.currentTimeMillis()) + " Error: "+ err.getMessage());
     	}
     	return "account_setup";
     }
@@ -158,18 +186,41 @@ public class AccountSetupController extends BaseContoller {
 	    		// Add the list.
 	    		organizationsList.add(organizationDataModel);
     		}
+	    	
+	    	// List of department
+	    	List<Department> departments = departmentRepository.findAll();
+	    	ArrayList<Object> departmentsList = new ArrayList<Object>();
+	    	for(Department depa : departments) {
+	    		// Display the selected department
+	    		DepartmentDataModel departmentDataModel = new DepartmentDataModel();
+	    		Long departmentId = user.getDepartment().getDepartmentId();
+	    		if(departmentId == depa.getDepartmentId()) {
+	    			departmentDataModel.setValue(depa.getDepartmentId());
+	    			departmentDataModel.setSelected(true);
+	    			departmentDataModel.setText(depa.getDepartmentName());
+	    		} 
+	    		else { 
+	    			// Display the list of department
+	    			departmentDataModel.setValue(depa.getDepartmentId());
+	    			departmentDataModel.setText(depa.getDepartmentName());
+	    		}
+	    		// Add the list.
+	    		departmentsList.add(departmentDataModel);
+    		}
+	    	
 	    	// Get person data.
 	    	Person person = personRepository.findById(user.getPerson().getPersonId()).get();
 	    	model.addAttribute("organizations", organizationsList);
+	    	model.addAttribute("departments", departmentsList);
 	    	model.addAttribute("firstName", person.getFirstName());
 	    	model.addAttribute("middleName", person.getMiddleName());
 	    	model.addAttribute("lastName", person.getLastName());
 	    	model.addAttribute("extension", person.getNameExtension());
 	    	model.addAttribute("citizenship", person.getCitizenship());
-	    	model.addAttribute("dateOfBerth", dateToString(person.getDateOfBerth()));
+	    	model.addAttribute("dateOfBerth", Utils.dateToString(person.getDateOfBerth()));
 	    	model.addAttribute("address", person.getAddress());
 	    	model.addAttribute("message","You have successfully update your personal information.");
-			
+	    	
 		} catch (FileStorageException err) {
 			model.addAttribute("error", "Unable to store the file");
 			return "account_setup";

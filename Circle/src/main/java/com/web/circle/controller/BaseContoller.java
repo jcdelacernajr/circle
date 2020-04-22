@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.web.circle.model.entity.Users;
+import com.web.circle.repository.DepartmentRepository;
 import com.web.circle.repository.OrganizationRepository;
 import com.web.circle.repository.PersonRepository;
 import com.web.circle.repository.UserRepository;
@@ -28,11 +29,14 @@ public class BaseContoller {
 	public UserRepository userRepository;
 	public PersonRepository personRepository;
 	public OrganizationRepository organizationRepository;
+	public DepartmentRepository departmentRepository;
 	public BaseContoller(UserRepository userRepository,
-			PersonRepository personRepository, OrganizationRepository organizationRepository) {
+			PersonRepository personRepository, OrganizationRepository organizationRepository,
+			DepartmentRepository departmentRepository) {
 		this.userRepository = userRepository;
 		this.personRepository = personRepository;
 		this.organizationRepository = organizationRepository;
+		this.departmentRepository = departmentRepository;
 	}
 
 	/**
@@ -56,24 +60,4 @@ public class BaseContoller {
         return ServletUriComponentsBuilder.fromCurrentContextPath().path(baseURL).path(fileName).toUriString();
     }
 	
-	/**
-	 * Convert Date to string format
-	 * Set the date format
-	 * 
-	 * @param date
-	 * */
-	public String dateToString(Date date) {
-		DateFormat dFormat = new SimpleDateFormat("yyyy-mm-dd"); 
-		return dFormat.format(date);
-	}
-	
-	/**
-	 * Convert String to date format
-	 * @throws ParseException 
-	 * 
-	 * */
-	public Date stringToDate(String strDate) throws ParseException {
-		Date date = new SimpleDateFormat("yyyy-mm-dd").parse(strDate);
-		return date;
-	}
 }

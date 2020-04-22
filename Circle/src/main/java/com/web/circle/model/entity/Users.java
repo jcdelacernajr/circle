@@ -63,6 +63,18 @@ public class Users extends CircleAuditing {
 		this.organizations = organizations;
 	}
 	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="department_fk")
+	private Department department;
+	
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "person_fk")
 	private Person person;

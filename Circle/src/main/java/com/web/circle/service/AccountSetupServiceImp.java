@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.web.circle.controller.AccountSetupController;
 import com.web.circle.controller.DTO.form.AccountSetupForm;
+import com.web.circle.model.entity.Department;
 import com.web.circle.model.entity.Organizations;
 import com.web.circle.model.entity.Person;
 import com.web.circle.model.entity.UploadFile;
@@ -42,6 +43,12 @@ public class AccountSetupServiceImp implements AccountSetupService {
 		organization.setOrganizationId(Long.parseLong(form.getOrganization()));
 		// Set user organization.
 		user.setOrganizations(organization);
+		
+		// Department table
+		Department department = new Department();
+		department.setDepartmentId(Long.parseLong(form.getDepartment()));
+		// SEt user department.
+		user.setDepartment(department);
 		
 		// Set person data.
 		Person person = personRepository.findById(user.getPerson().getPersonId()).get();

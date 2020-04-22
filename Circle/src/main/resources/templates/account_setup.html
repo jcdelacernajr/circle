@@ -270,6 +270,21 @@
                      </div>
                      <div class="invalid-feedback"> Valid first name is required. </div>
                    </div><!-- /grid column -->
+                    <!-- grid column -->
+                   <div class="col-md-3 mb-3">
+                     <label for="department">Department</label> 
+                     <div class="circle-select">
+	                     <select type="department" class="form-control selectpicker" data-live-search="true" name="department" id="department" required=""> 
+							  <option
+							  	th:each="department : ${departments}"
+							  	th:value="${department.value}"
+							  	th:selected="${department.selected}"
+							  	th:text="${department.text}">
+							  </option>
+	                     </select>
+                     </div>
+                     <div class="invalid-feedback"> Valid first name is required. </div>
+                   </div><!-- /grid column -->
                    </div>
                	<!-- .form-row -->
                  <div class="form-row">
