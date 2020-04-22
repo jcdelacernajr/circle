@@ -18,6 +18,7 @@ public class AccountSetupForm {
 	private MultipartFile file;
 	private Long userId;
 	private String organization;
+	private String branch;
 	private String department;
 	private String firstName;
 	private String middleName;
@@ -44,6 +45,12 @@ public class AccountSetupForm {
 	}
 	public void setOrganization(String organization) {
 		this.organization = organization;
+	}
+	public String getBranch() {
+		return branch;
+	}
+	public void setBranch(String branch) {
+		this.branch = branch;
 	}
 	public String getDepartment() {
 		return department;

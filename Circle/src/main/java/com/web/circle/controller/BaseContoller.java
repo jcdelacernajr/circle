@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.web.circle.model.entity.Users;
+import com.web.circle.repository.BranchRepository;
 import com.web.circle.repository.DepartmentRepository;
 import com.web.circle.repository.OrganizationRepository;
 import com.web.circle.repository.PersonRepository;
@@ -30,13 +31,15 @@ public class BaseContoller {
 	public PersonRepository personRepository;
 	public OrganizationRepository organizationRepository;
 	public DepartmentRepository departmentRepository;
+	public BranchRepository branchRepository;
 	public BaseContoller(UserRepository userRepository,
 			PersonRepository personRepository, OrganizationRepository organizationRepository,
-			DepartmentRepository departmentRepository) {
+			DepartmentRepository departmentRepository, BranchRepository branchRepository) {
 		this.userRepository = userRepository;
 		this.personRepository = personRepository;
 		this.organizationRepository = organizationRepository;
 		this.departmentRepository = departmentRepository;
+		this.branchRepository = branchRepository;
 	}
 
 	/**

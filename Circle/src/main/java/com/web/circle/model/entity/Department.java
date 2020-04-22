@@ -16,8 +16,20 @@ public class Department extends CircleAuditing {
 	@Column(name = "department_id")
 	private long departmentId;
 	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "branch_fk")
+	private Branch branch;
+	
 	@Column(name = "department_name")
 	private String departmentName;
+
+	public Branch getBranch() {
+		return branch;
+	}
+
+	public void setBranch(Branch branch) {
+		this.branch = branch;
+	}
 
 	public long getDepartmentId() {
 		return departmentId;

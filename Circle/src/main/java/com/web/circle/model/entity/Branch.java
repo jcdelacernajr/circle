@@ -2,26 +2,34 @@ package com.web.circle.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
+ * Branch table
  * 
- * @author jr
- * */
+ * @author Juanito C. Dela Dela Cerna Jr. April 2020
+ */
 @Entity
-@Table(name = "organizations")
-public class Organizations extends CircleAuditing {
-
+@Table(name = "branch")
+public class Branch extends CircleAuditing {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "organization_id")
-	private long organizationId;
+	@Column(name = "branch_id")
+	private long branchId;
 	
-	@Column(name = "establishment_name")
-	private String establishmentName;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "organization_fk")
+	private Organizations organizations;
+	
+	@Column(name = "branch_name")
+	private String branchName;
 	
 	@Column(name = "telephone_no")
 	private String telephoneNo;
@@ -37,7 +45,39 @@ public class Organizations extends CircleAuditing {
 	
 	@Column(name = "postal_code")
 	private String postalCode;
-	
+
+	public String getPostalCode() {
+		return postalCode;
+	}
+
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
+	}
+
+	public long getBranchId() {
+		return branchId;
+	}
+
+	public void setBranchId(long branchId) {
+		this.branchId = branchId;
+	}
+
+	public Organizations getOrganizations() {
+		return organizations;
+	}
+
+	public void setOrganizations(Organizations organizations) {
+		this.organizations = organizations;
+	}
+
+	public String getBranchName() {
+		return branchName;
+	}
+
+	public void setBranchName(String branchName) {
+		this.branchName = branchName;
+	}
+
 	public String getTelephoneNo() {
 		return telephoneNo;
 	}
@@ -68,30 +108,6 @@ public class Organizations extends CircleAuditing {
 
 	public void setAddress(String address) {
 		this.address = address;
-	}
-
-	public String getPostalCode() {
-		return postalCode;
-	}
-
-	public void setPostalCode(String postalCode) {
-		this.postalCode = postalCode;
-	}
-
-	public long getOrganizationId() {
-		return organizationId;
-	}
-
-	public void setOrganizationId(long organizationId) {
-		this.organizationId = organizationId;
-	}
-
-	public String getEstablishmentName() {
-		return establishmentName;
-	}
-
-	public void setEstablishmentName(String establishmentName) {
-		this.establishmentName = establishmentName;
 	}
 	
 }

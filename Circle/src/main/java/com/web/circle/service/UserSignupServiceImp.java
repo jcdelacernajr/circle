@@ -5,6 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.web.circle.controller.DTO.UserSignupDTO;
+import com.web.circle.model.entity.Branch;
 import com.web.circle.model.entity.Department;
 import com.web.circle.model.entity.Designations;
 import com.web.circle.model.entity.Organizations;
@@ -57,6 +58,11 @@ public class UserSignupServiceImp implements UserSignupService {
 		organizations.setOrganizationId(1); // 1 is the default value for the register user.
 		user.setIsActive(true);
 		user.setOrganizations(organizations); 
+		
+		// Set branch data
+		Branch branch = new Branch();
+		branch.setBranchId(1);
+		user.setBranch(branch);
 		
 		// Set Department data
 		Department department = new Department();

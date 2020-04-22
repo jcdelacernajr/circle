@@ -256,7 +256,7 @@
 		         </div>
                  <div class="form-row">
                    <!-- grid column -->
-                   <div class="col-md-3 mb-3">
+                   <div class="col-md-2 mb-3">
                      <label for="organization">Organization</label> 
                      <div class="circle-select">
 	                     <select type="organization" class="form-control selectpicker" data-live-search="true" name="organization" id="organization" required=""> 
@@ -271,7 +271,22 @@
                      <div class="invalid-feedback"> Valid first name is required. </div>
                    </div><!-- /grid column -->
                     <!-- grid column -->
-                   <div class="col-md-3 mb-3">
+                   <div class="col-md-2 mb-3">
+                     <label for="branch">Branch</label> 
+                     <div class="circle-select">
+	                     <select type="branch" class="form-control selectpicker" data-live-search="true" name="branch" id="branch" required=""> 
+							  <option
+							  	th:each="branch : ${branch}"
+							  	th:value="${branch.value}"
+							  	th:selected="${branch.selected}"
+							  	th:text="${branch.text}">
+							  </option>
+	                     </select>
+                     </div>
+                     <div class="invalid-feedback"> Valid first name is required. </div>
+                   </div><!-- /grid column -->
+                    <!-- grid column -->
+                   <div class="col-md-2 mb-3">
                      <label for="department">Department</label> 
                      <div class="circle-select">
 	                     <select type="department" class="form-control selectpicker" data-live-search="true" name="department" id="department" required=""> 

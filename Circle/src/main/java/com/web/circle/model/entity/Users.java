@@ -64,6 +64,18 @@ public class Users extends CircleAuditing {
 	}
 	
 	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="branch_fk")
+	private Branch branch;
+	
+	public Branch getBranch() {
+		return branch;
+	}
+
+	public void setBranch(Branch branch) {
+		this.branch = branch;
+	}
+
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="department_fk")
 	private Department department;
 	

@@ -20,13 +20,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.web.circle.controller.DTO.form.AccountSetupForm;
 import com.web.circle.exception.FileStorageException;
+import com.web.circle.model.BranchDataModel;
 import com.web.circle.model.DepartmentDataModel;
 import com.web.circle.model.FileMetaDataModel;
 import com.web.circle.model.OrganizationDataModel;
+import com.web.circle.model.entity.Branch;
 import com.web.circle.model.entity.Department;
 import com.web.circle.model.entity.Organizations;
 import com.web.circle.model.entity.Person;
 import com.web.circle.model.entity.Users;
+import com.web.circle.repository.BranchRepository;
 import com.web.circle.repository.DepartmentRepository;
 import com.web.circle.repository.OrganizationRepository;
 import com.web.circle.repository.PersonRepository;
@@ -55,8 +58,9 @@ public class AccountSetupController extends BaseContoller {
 	// Initialize repository.
 	public AccountSetupController(UserRepository userRepository,
 			PersonRepository personRepository, OrganizationRepository organizationRepository,
-			DepartmentRepository departmentRepository) {
-		super(userRepository, personRepository, organizationRepository, departmentRepository);
+			DepartmentRepository departmentRepository, BranchRepository branchRepository) {
+		super(userRepository, personRepository, organizationRepository, departmentRepository,
+				branchRepository);
 	}
 
 	@Autowired
@@ -100,6 +104,27 @@ public class AccountSetupController extends BaseContoller {
 	    		organizationsList.add(organizationDataModel);
     		}
 	    	
+	    	// List of branch
+	    	List<Branch> bList = branchRepository.findAll();
+	    	ArrayList<Object> branchList = new ArrayList<Object>();
+	    	for(Branch branch: bList) {
+	    		// Display the selected branch
+	    		BranchDataModel branchDataModel = new BranchDataModel();
+	    		Long branchId = user.getBranch().getBranchId();
+	    		if(branchId == branch.getBranchId()) {
+	    			branchDataModel.setValue(branch.getBranchId());
+	    			branchDataModel.setSelected(true);
+	    			branchDataModel.setText(branch.getBranchName());
+	    		} 
+	    		else { 
+	    			// Display the list of branch
+	    			branchDataModel.setValue(branch.getBranchId());
+	    			branchDataModel.setText(branch.getBranchName());
+	    		}
+	    		// Add the list.
+	    		branchList.add(branchDataModel);
+    		}
+	    	
 	    	// List of department
 	    	List<Department> departments = departmentRepository.findAll();
 	    	ArrayList<Object> departmentsList = new ArrayList<Object>();
@@ -124,6 +149,7 @@ public class AccountSetupController extends BaseContoller {
 	    	// Get person data.
 	    	Person person = personRepository.findById(user.getPerson().getPersonId()).get();
 	    	model.addAttribute("organizations", organizationsList);
+	    	model.addAttribute("branch", branchList);
 	    	model.addAttribute("departments", departmentsList);
 	    	model.addAttribute("firstName", person.getFirstName());
 	    	model.addAttribute("middleName", person.getMiddleName());
@@ -187,6 +213,27 @@ public class AccountSetupController extends BaseContoller {
 	    		organizationsList.add(organizationDataModel);
     		}
 	    	
+	    	// List of branch
+	    	List<Branch> bList = branchRepository.findAll();
+	    	ArrayList<Object> branchList = new ArrayList<Object>();
+	    	for(Branch branch: bList) {
+	    		// Display the selected branch
+	    		BranchDataModel branchDataModel = new BranchDataModel();
+	    		Long branchId = user.getBranch().getBranchId();
+	    		if(branchId == branch.getBranchId()) {
+	    			branchDataModel.setValue(branch.getBranchId());
+	    			branchDataModel.setSelected(true);
+	    			branchDataModel.setText(branch.getBranchName());
+	    		} 
+	    		else { 
+	    			// Display the list of branch
+	    			branchDataModel.setValue(branch.getBranchId());
+	    			branchDataModel.setText(branch.getBranchName());
+	    		}
+	    		// Add the list.
+	    		branchList.add(branchDataModel);
+    		}
+	    	
 	    	// List of department
 	    	List<Department> departments = departmentRepository.findAll();
 	    	ArrayList<Object> departmentsList = new ArrayList<Object>();
@@ -211,6 +258,7 @@ public class AccountSetupController extends BaseContoller {
 	    	// Get person data.
 	    	Person person = personRepository.findById(user.getPerson().getPersonId()).get();
 	    	model.addAttribute("organizations", organizationsList);
+	    	model.addAttribute("branch", branchList);
 	    	model.addAttribute("departments", departmentsList);
 	    	model.addAttribute("firstName", person.getFirstName());
 	    	model.addAttribute("middleName", person.getMiddleName());
