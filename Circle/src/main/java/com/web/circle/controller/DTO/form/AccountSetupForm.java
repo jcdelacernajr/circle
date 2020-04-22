@@ -23,7 +23,7 @@ public class AccountSetupForm {
 	private String lastName;
 	private String extension;
 	private String citizenship;
-	private Date dateOfBerth;
+	private String dateOfBerth;
 	private String address;
 	
 	public MultipartFile getFile() {
@@ -74,10 +74,10 @@ public class AccountSetupForm {
 	public void setCitizenship(String citizenship) {
 		this.citizenship = citizenship;
 	}
-	public Date getDateOfBerth() {
+	public String getDateOfBerth() {
 		return dateOfBerth;
 	}
-	public void setDateOfBerth(Date dateOfBerth) {
+	public void setDateOfBerth(String dateOfBerth) {
 		this.dateOfBerth = dateOfBerth;
 	}
 	public String getAddress() {

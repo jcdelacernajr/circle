@@ -1,6 +1,6 @@
 package com.web.circle.service;
 
-import java.util.Date;
+import java.text.ParseException;
 
 import javax.transaction.Transactional;
 
@@ -15,6 +15,7 @@ import com.web.circle.model.entity.UploadFile;
 import com.web.circle.model.entity.Users;
 import com.web.circle.repository.PersonRepository;
 import com.web.circle.repository.UserRepository;
+import com.web.circle.utils.Utils;
 
 /**
  * Account setup form.
@@ -49,7 +50,12 @@ public class AccountSetupServiceImp implements AccountSetupService {
 		person.setLastName(form.getLastName());
 		person.setNameExtension(form.getExtension());
 		person.setCitizenship(form.getCitizenship());
-		person.setDateOfBerth(form.getDateOfBerth());
+		try {
+			person.setDateOfBerth(Utils.stringToDate(form.getDateOfBerth()));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		person.setAddress(form.getAddress());
 		
 		// Update the user photo of the person

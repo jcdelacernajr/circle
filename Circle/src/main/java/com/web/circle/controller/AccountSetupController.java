@@ -1,8 +1,11 @@
 package com.web.circle.controller;
 
 import java.io.FileNotFoundException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.SimpleFormatter;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -41,6 +44,7 @@ import lombok.extern.slf4j.Slf4j;
  * -------------------------------------------------------------------------------
  * @see https://www.javadevjournal.com/spring/spring-file-upload/
  * @see https://developer.snapappointments.com/bootstrap-select/examples/#styling
+ * @see https://formden.com/blog/date-picker
  * 
  */
 @Slf4j
@@ -165,7 +169,7 @@ public class AccountSetupController extends BaseContoller {
 	    	model.addAttribute("lastName", person.getLastName());
 	    	model.addAttribute("extension", person.getNameExtension());
 	    	model.addAttribute("citizenship", person.getCitizenship());
-	    	model.addAttribute("dateOfBerth", person.getDateOfBerth());
+	    	model.addAttribute("dateOfBerth", dateToString(person.getDateOfBerth()));
 	    	model.addAttribute("address", person.getAddress());
 	    	model.addAttribute("message","You have successfully update your personal information.");
 			

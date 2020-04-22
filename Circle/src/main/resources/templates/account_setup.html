@@ -8,6 +8,7 @@
   <head th:insert="fragments/header.html :: header"></head>
   <head>
   	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
   </head>
   <body>
     <!-- .app -->
@@ -243,13 +244,13 @@
 			      <div th:if="${photoUrl}" class="col-md-3 md-3">
 			      	<label for="profilePicture">
 			      	<input type="file" name="file" id="profilePicture" class="form-control" style="width:200px; display:none;">
-                    <img class="img-thumbnail" style="width:200px;height:200px;" th:src="${photoUrl}" alt="...">
+                    <img id="photo" class="img-thumbnail" style="width:200px;height:200px;" th:src="${photoUrl}" alt="...">
                     </label>
 			      </div>
 			      <div th:unless="${photoUrl}" class="col-md-3 md-3">
 			      <label for="profilePicture">
 			      	<input type="file" name="file" id="profilePicture" class="form-control" style="width:200px; display:none;">
-                    <img class="img-thumbnail" style="width:200px;height:200px;" th:src="@{~/assets/images/avatars/photo.jpg}" alt="...">
+                    <img id="photo" class="img-thumbnail" style="width:200px;height:200px;" th:src="@{~/assets/images/avatars/photo.jpg}" alt="...">
                     </label>
 			      </div>
 		         </div>
@@ -294,7 +295,6 @@
                    </div><!-- /grid column -->
                  </div>
                  <!-- /.form-row -->
-                 
                  <!-- .form-row -->
                  <div class="form-row">
                     <!-- grid column -->
@@ -302,14 +302,12 @@
                      <label for="citizenship">Citizenship</label> <input type="citizenship" th:value="${citizenship}" class="form-control" name="citizenship" id="citizenship" required="">
                      <div class="invalid-feedback"> Valid last name is required. </div>
                    </div><!-- /grid column -->
-                   
                    <!-- grid column -->
                    <div class="col-md-2 mb-1">
-                  	  <label for="DateOfBerth">Date of berth</label> 
-                      <input type='dateOfBerth' th:text="${dateOfBerth}" name="dateOfBerth" id="datetimepicker" class="form-control"  required=""/>
+                  	  <label for="dateOfBerth">Date of berth</label> 
+                      <input class="form-control" th:value="${dateOfBerth}"  id="dateOfBerth" name="dateOfBerth" placeholder="YYY/MM/DD" type="dateOfBerth" required="" />
                       <div class="invalid-feedback"> Valid last name is required. </div>
                    </div><!-- /grid column -->
-                   
                  </div>
                   <!-- .form-row -->
                  <div class="form-row">
@@ -342,10 +340,35 @@
     <div th:insert="fragments/footer.html :: footer"></div>
     <!-- Latest compiled and minified JavaScript -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+	<!-- Bootstrap Date-Picker Plugin -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+	
     <script type="text/javascript">
 	   	$(function (){
-			$('#datetimepicker').datetimepicker();
+	   		
+	   		function readerPhotoUrl(input) {
+	   			if(input.files && input.files[0]) {
+	   				var reader = new FileReader();
+	   				reader.onload = function(e) {
+	   					$('#photo').attr('src',e.target.result);
+	   				}
+	   				reader.readAsDataURL(input.files[0]);
+	   			}
+	   		}
+	   		$("#profilePicture").change(function() {
+	   			readerPhotoUrl(this);
+	   		});
+	   		
 			$('.selectpicker').selectpicker();
+			
+			var date_input=$('input[name="dateOfBerth"]'); //our date input has the name "date"
+			var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+			date_input.datepicker({
+				format: 'yyyy-mm-dd',
+				container: container,
+				todayHighlight: true,
+				autoclose: true,
+			})
 	   	});
      </script>
   </body>

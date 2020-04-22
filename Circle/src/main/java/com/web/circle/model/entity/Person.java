@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Type;
 
 /**
  * Person table
@@ -87,6 +88,7 @@ public class Person extends CircleAuditing {
 	private String philhealtNo;
 	
 	@Column(name = "date_of_berth")
+	@Type(type="date")
 	private Date dateOfBerth;
 	
 	@Column(name = "place_of_berth")
