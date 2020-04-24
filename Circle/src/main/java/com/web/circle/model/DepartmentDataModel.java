@@ -2,7 +2,8 @@ package com.web.circle.model;
 
 import com.web.circle.controller.AccountSetupController;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Department data model

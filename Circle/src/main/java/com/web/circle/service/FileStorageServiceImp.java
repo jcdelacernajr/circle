@@ -9,7 +9,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.tika.detect.Detector;
 import org.apache.tika.io.TikaInputStream;

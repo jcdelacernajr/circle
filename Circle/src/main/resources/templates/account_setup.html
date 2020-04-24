@@ -273,7 +273,14 @@
                     <!-- grid column -->
                    <div class="col-md-2 mb-3">
                      <label for="branch">Branch</label> 
-                     <div class="circle-select">
+                      <div class="circle-select">
+	                     <select type="branch" class="form-control selectpicker" data-live-search="true" name="branch" id="branch" required=""> 
+	                     </select>
+                     </div> 
+                     
+                     
+                     
+                     <!-- <div class="circle-select">
 	                     <select type="branch" class="form-control selectpicker" data-live-search="true" name="branch" id="branch" required=""> 
 							  <option
 							  	th:each="branch : ${branch}"
@@ -282,7 +289,7 @@
 							  	th:text="${branch.text}">
 							  </option>
 	                     </select>
-                     </div>
+                     </div> -->
                      <div class="invalid-feedback"> Valid first name is required. </div>
                    </div><!-- /grid column -->
                     <!-- grid column -->
@@ -372,6 +379,22 @@
     <script src="#" th:src="@{~/assets/javascript/pages/bootstrap-datepicker.min.js}"></script>
     <script type="text/javascript">
 	   	$(function (){
+	   		
+	   		$('#organization').change(
+				function() {
+					$.getJSON("/branch-list",{
+						organizationId: $(this).val(),
+						ajax: 'true'
+					}, 
+					function(data) {
+						var item = null;
+						$.each(data, function(i, ui) {
+							item += '<option value="' + ui.value + '">' + ui.text + '</option>';
+					});
+					item += '</option>';
+					$('#branch').html(item).selectpicker('refresh');;
+				});		
+			});
 	   		
 	   		function readerPhotoUrl(input) {
 	   			if(input.files && input.files[0]) {

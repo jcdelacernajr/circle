@@ -1,7 +1,5 @@
 package com.web.circle.controller.DTO.form;
 
-import java.util.Date;
-
 import org.springframework.web.multipart.MultipartFile;
 
 import com.web.circle.controller.AccountSetupController;

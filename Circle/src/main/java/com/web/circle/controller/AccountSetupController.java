@@ -16,16 +16,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.web.circle.controller.DTO.form.AccountSetupForm;
 import com.web.circle.exception.FileStorageException;
 import com.web.circle.model.BranchDataModel;
-import com.web.circle.model.DepartmentDataModel;
 import com.web.circle.model.FileMetaDataModel;
 import com.web.circle.model.OrganizationDataModel;
 import com.web.circle.model.entity.Branch;
-import com.web.circle.model.entity.Department;
 import com.web.circle.model.entity.Organizations;
 import com.web.circle.model.entity.Person;
 import com.web.circle.model.entity.Users;
@@ -35,6 +35,7 @@ import com.web.circle.repository.OrganizationRepository;
 import com.web.circle.repository.PersonRepository;
 import com.web.circle.repository.UserRepository;
 import com.web.circle.service.AccountSetupService;
+import com.web.circle.service.BranchService;
 import com.web.circle.service.FileStorageService;
 import com.web.circle.utils.Utils;
 
@@ -67,6 +68,8 @@ public class AccountSetupController extends BaseContoller {
 	FileStorageService fileStorageService;
 	@Autowired
 	AccountSetupService accountSetupService;
+	@Autowired
+	BranchService branchService;
 	
 	/**
      * Controller to display the file upload form on the front end.
@@ -126,7 +129,7 @@ public class AccountSetupController extends BaseContoller {
     		}
 	    	
 	    	// List of department
-	    	List<Department> departments = departmentRepository.findAll();
+	    	/*List<Department> departments = departmentRepository.findAll();
 	    	ArrayList<Object> departmentsList = new ArrayList<Object>();
 	    	for(Department depa : departments) {
 	    		// Display the selected department
@@ -144,13 +147,13 @@ public class AccountSetupController extends BaseContoller {
 	    		}
 	    		// Add the list.
 	    		departmentsList.add(departmentDataModel);
-    		}
+    		}*/
 	    	
 	    	// Get person data.
 	    	Person person = personRepository.findById(user.getPerson().getPersonId()).get();
 	    	model.addAttribute("organizations", organizationsList);
 	    	model.addAttribute("branch", branchList);
-	    	model.addAttribute("departments", departmentsList);
+	    	//model.addAttribute("departments", departmentsList);
 	    	model.addAttribute("firstName", person.getFirstName());
 	    	model.addAttribute("middleName", person.getMiddleName());
 	    	model.addAttribute("lastName", person.getLastName());
@@ -214,7 +217,7 @@ public class AccountSetupController extends BaseContoller {
     		}
 	    	
 	    	// List of branch
-	    	List<Branch> bList = branchRepository.findAll();
+	    	/*List<Branch> bList = branchRepository.findAll();
 	    	ArrayList<Object> branchList = new ArrayList<Object>();
 	    	for(Branch branch: bList) {
 	    		// Display the selected branch
@@ -253,13 +256,13 @@ public class AccountSetupController extends BaseContoller {
 	    		}
 	    		// Add the list.
 	    		departmentsList.add(departmentDataModel);
-    		}
+    		}*/
 	    	
 	    	// Get person data.
 	    	Person person = personRepository.findById(user.getPerson().getPersonId()).get();
 	    	model.addAttribute("organizations", organizationsList);
-	    	model.addAttribute("branch", branchList);
-	    	model.addAttribute("departments", departmentsList);
+	    	//model.addAttribute("branch", branchList);
+	    	//model.addAttribute("departments", departmentsList);
 	    	model.addAttribute("firstName", person.getFirstName());
 	    	model.addAttribute("middleName", person.getMiddleName());
 	    	model.addAttribute("lastName", person.getLastName());
@@ -275,6 +278,11 @@ public class AccountSetupController extends BaseContoller {
 		}
 		return "account_setup";
 	}
+    
+    @GetMapping("/branch-list")
+    public @ResponseBody List<BranchDataModel> branchList(@RequestParam(value="organizationId", required=true) long organizationId) {
+    	return branchService.branchList(organizationId);
+    }
 	
 	 /**
      * Controller to allow customer to download the file by passing the file name as the
