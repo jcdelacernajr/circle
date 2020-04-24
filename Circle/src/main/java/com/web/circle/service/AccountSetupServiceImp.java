@@ -51,10 +51,10 @@ public class AccountSetupServiceImp implements AccountSetupService {
 		user.setBranch(branch);
 		
 		// Department table
-		Department department = new Department();
-		department.setDepartmentId(Long.parseLong(form.getDepartment()));
+		//Department department = new Department();
+		//department.setDepartmentId(Long.parseLong(form.getDepartment()));
 		// SEt user department.
-		user.setDepartment(department);
+		//user.setDepartment(department);
 		
 		// Set person data.
 		Person person = personRepository.findById(user.getPerson().getPersonId()).get();

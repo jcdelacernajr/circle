@@ -107,53 +107,9 @@ public class AccountSetupController extends BaseContoller {
 	    		organizationsList.add(organizationDataModel);
     		}
 	    	
-	    	// List of branch
-	    	List<Branch> bList = branchRepository.findAll();
-	    	ArrayList<Object> branchList = new ArrayList<Object>();
-	    	for(Branch branch: bList) {
-	    		// Display the selected branch
-	    		BranchDataModel branchDataModel = new BranchDataModel();
-	    		Long branchId = user.getBranch().getBranchId();
-	    		if(branchId == branch.getBranchId()) {
-	    			branchDataModel.setValue(branch.getBranchId());
-	    			branchDataModel.setSelected(true);
-	    			branchDataModel.setText(branch.getBranchName());
-	    		} 
-	    		else { 
-	    			// Display the list of branch
-	    			branchDataModel.setValue(branch.getBranchId());
-	    			branchDataModel.setText(branch.getBranchName());
-	    		}
-	    		// Add the list.
-	    		branchList.add(branchDataModel);
-    		}
-	    	
-	    	// List of department
-	    	/*List<Department> departments = departmentRepository.findAll();
-	    	ArrayList<Object> departmentsList = new ArrayList<Object>();
-	    	for(Department depa : departments) {
-	    		// Display the selected department
-	    		DepartmentDataModel departmentDataModel = new DepartmentDataModel();
-	    		Long departmentId = user.getDepartment().getDepartmentId();
-	    		if(departmentId == depa.getDepartmentId()) {
-	    			departmentDataModel.setValue(depa.getDepartmentId());
-	    			departmentDataModel.setSelected(true);
-	    			departmentDataModel.setText(depa.getDepartmentName());
-	    		} 
-	    		else { 
-	    			// Display the list of department
-	    			departmentDataModel.setValue(depa.getDepartmentId());
-	    			departmentDataModel.setText(depa.getDepartmentName());
-	    		}
-	    		// Add the list.
-	    		departmentsList.add(departmentDataModel);
-    		}*/
-	    	
 	    	// Get person data.
 	    	Person person = personRepository.findById(user.getPerson().getPersonId()).get();
 	    	model.addAttribute("organizations", organizationsList);
-	    	model.addAttribute("branch", branchList);
-	    	//model.addAttribute("departments", departmentsList);
 	    	model.addAttribute("firstName", person.getFirstName());
 	    	model.addAttribute("middleName", person.getMiddleName());
 	    	model.addAttribute("lastName", person.getLastName());
@@ -164,7 +120,7 @@ public class AccountSetupController extends BaseContoller {
 	    	
         	return "account_setup";
     	} catch (NullPointerException err) {
-    		log.error("account-setup: No photo found! took " + Utils.timestampToDate(System.currentTimeMillis()) + " Error: "+ err.getMessage());
+    		log.error("account-setup " + Utils.timestampToDate(System.currentTimeMillis()) + " Error: "+ err.getMessage());
     	}
     	return "account_setup";
     }
@@ -216,53 +172,9 @@ public class AccountSetupController extends BaseContoller {
 	    		organizationsList.add(organizationDataModel);
     		}
 	    	
-	    	// List of branch
-	    	/*List<Branch> bList = branchRepository.findAll();
-	    	ArrayList<Object> branchList = new ArrayList<Object>();
-	    	for(Branch branch: bList) {
-	    		// Display the selected branch
-	    		BranchDataModel branchDataModel = new BranchDataModel();
-	    		Long branchId = user.getBranch().getBranchId();
-	    		if(branchId == branch.getBranchId()) {
-	    			branchDataModel.setValue(branch.getBranchId());
-	    			branchDataModel.setSelected(true);
-	    			branchDataModel.setText(branch.getBranchName());
-	    		} 
-	    		else { 
-	    			// Display the list of branch
-	    			branchDataModel.setValue(branch.getBranchId());
-	    			branchDataModel.setText(branch.getBranchName());
-	    		}
-	    		// Add the list.
-	    		branchList.add(branchDataModel);
-    		}
-	    	
-	    	// List of department
-	    	List<Department> departments = departmentRepository.findAll();
-	    	ArrayList<Object> departmentsList = new ArrayList<Object>();
-	    	for(Department depa : departments) {
-	    		// Display the selected department
-	    		DepartmentDataModel departmentDataModel = new DepartmentDataModel();
-	    		Long departmentId = user.getDepartment().getDepartmentId();
-	    		if(departmentId == depa.getDepartmentId()) {
-	    			departmentDataModel.setValue(depa.getDepartmentId());
-	    			departmentDataModel.setSelected(true);
-	    			departmentDataModel.setText(depa.getDepartmentName());
-	    		} 
-	    		else { 
-	    			// Display the list of department
-	    			departmentDataModel.setValue(depa.getDepartmentId());
-	    			departmentDataModel.setText(depa.getDepartmentName());
-	    		}
-	    		// Add the list.
-	    		departmentsList.add(departmentDataModel);
-    		}*/
-	    	
 	    	// Get person data.
 	    	Person person = personRepository.findById(user.getPerson().getPersonId()).get();
 	    	model.addAttribute("organizations", organizationsList);
-	    	//model.addAttribute("branch", branchList);
-	    	//model.addAttribute("departments", departmentsList);
 	    	model.addAttribute("firstName", person.getFirstName());
 	    	model.addAttribute("middleName", person.getMiddleName());
 	    	model.addAttribute("lastName", person.getLastName());
@@ -279,6 +191,13 @@ public class AccountSetupController extends BaseContoller {
 		return "account_setup";
 	}
     
+    /**
+     * Display the list of branch when the user select one of the organization .
+     * The list is invoked by ajax and display to Bootstrap select picker.
+     * 
+     * @param organizationId
+     * @return branch list base on the selected organization.
+     * */
     @GetMapping("/branch-list")
     public @ResponseBody List<BranchDataModel> branchList(@RequestParam(value="organizationId", required=true) long organizationId) {
     	return branchService.branchList(organizationId);

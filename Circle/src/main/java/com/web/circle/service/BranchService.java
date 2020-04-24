@@ -9,6 +9,11 @@ import com.web.circle.model.BranchDataModel;
  */
 public interface BranchService {
 
+	/**
+	 * List of branch 
+	 * 
+	 * @param organizationId
+	 * */
 	List<BranchDataModel> branchList(long organizationId);
 	
 }
