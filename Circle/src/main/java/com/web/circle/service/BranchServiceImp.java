@@ -13,6 +13,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.web.circle.model.BranchDataModel;
 import com.web.circle.model.entity.Branch;
+import com.web.circle.model.entity.Users;
 import com.web.circle.repository.BranchRepository;
 
 /**
@@ -25,7 +26,7 @@ public class BranchServiceImp implements BranchService {
 	private BranchRepository branchRepository;
 
 	@Override
-	public List<BranchDataModel> branchList(long organizationId) {
+	public List<BranchDataModel> branchList(long organizationId, Users user) {
 		try {
 			ObjectMapper objectMapper = new ObjectMapper();
 			// List of branch
@@ -33,10 +34,20 @@ public class BranchServiceImp implements BranchService {
 			
 	    	JSONArray array = new JSONArray();
 			for(Branch b: bList) {
-				JSONObject jOb = new JSONObject();
-				jOb.put("value", b.getBranchId());
-				jOb.put("text", b.getBranchName());
-				array.put(jOb);
+				if(b.getBranchId() == user.getBranch().getBranchId()) {
+					JSONObject jOb = new JSONObject();
+					jOb.put("value", b.getBranchId());
+					jOb.put("selected", true);
+					jOb.put("text", b.getBranchName());
+					array.put(jOb);
+				}
+				else {
+					JSONObject jOb = new JSONObject();
+					jOb.put("value", b.getBranchId());
+					jOb.put("text", b.getBranchName());
+					
+					array.put(jOb);
+				}
 			}
 	    	
 	    	JsonParser jParser = new JsonParser();

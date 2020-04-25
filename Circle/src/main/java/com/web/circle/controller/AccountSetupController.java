@@ -200,7 +200,7 @@ public class AccountSetupController extends BaseContoller {
      * */
     @GetMapping("/branch-list")
     public @ResponseBody List<BranchDataModel> branchList(@RequestParam(value="organizationId", required=true) long organizationId) {
-    	return branchService.branchList(organizationId);
+    	return branchService.branchList(organizationId, getCurrentLoggedUser());
     }
 	
 	 /**

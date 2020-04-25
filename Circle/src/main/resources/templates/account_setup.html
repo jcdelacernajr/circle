@@ -275,6 +275,7 @@
                      <label for="branch">Branch</label> 
                       <div class="circle-select">
 	                     <select type="branch" class="form-control selectpicker" data-live-search="true" name="branch" id="branch" required=""> 
+	                     <option></option>
 	                     </select>
                      </div> 
                    </div><!-- /grid column -->
@@ -349,24 +350,8 @@
     <script src="#" th:src="@{~/assets/javascript/pages/bootstrap-select.min.js}"></script>
     <script src="#" th:src="@{~/assets/javascript/pages/bootstrap-datepicker.min.js}"></script>
     <script type="text/javascript">
-	   	$(function (){
-	   		
-	   		$('#organization').change(
-				function() {
-					$.getJSON("/branch-list",{
-						organizationId: $(this).val(),
-						ajax: 'true'
-					}, 
-					function(data) {
-						var item = null;
-						$.each(data, function(i, ui) {
-							item += '<option value="' + ui.value + '">' + ui.text + '</option>';
-					});
-					item += '</option>';
-					$('#branch').html(item).selectpicker('refresh');;
-				});		
-			});
-	   		
+    $(document).ready(function(){
+	   	$(function (){	   			   		
 	   		function readerPhotoUrl(input) {
 	   			if(input.files && input.files[0]) {
 	   				var reader = new FileReader();
@@ -391,6 +376,54 @@
 				autoclose: true,
 			})
 	   	});
-     </script>
+	   	
+    	var data = $('select[name="organization"]').val();
+		$.getJSON("/branch-list",{ organizationId: data, ajax: 'true'}, 
+		function(data) {
+			var item = '<option value="1" >Nothing selected</option>';
+			var selected;
+			$.each(data, function(i, ui) {
+				if(ui.selected) {
+					item += '<option value="' + ui.value + '" selected="selected">' + ui.text + '</option>';
+					selected = ui.value;
+				}
+				else {
+					item += '<option value="' + ui.value + '">' + ui.text + '</option>';
+				}
+			});
+			
+			$('#branch').html(item).selectpicker('refresh');
+			$("#branch").selectpicker('val', selected);
+		}).fail(function(jqxhr, status, error){
+			alert("Request faild: "+ JSON.stringify(jqxhr) + ", Please try again...");
+		});	 
+		
+		$('#organization').change(
+		function() {
+			$.getJSON("/branch-list",{
+				organizationId: $(this).val(),
+				ajax: 'true'
+			}, 
+			function(data) {
+				var item = '<option value="1">Nothing selected</option>';
+				var selected;
+				$.each(data, function(i, ui) {
+					if(ui.selected) {
+						item += '<option value="' + ui.value + '" selected="selected">' + ui.text + '</option>';
+						selected = ui.value;
+					}
+					else {
+						item += '<option value="' + ui.value + '">' + ui.text + '</option>';
+					}
+				});
+					$('#branch').html(item).selectpicker('refresh');
+					$("#branch").selectpicker('val', selected);
+				}).fail(function(jqxhr, status, error){
+					alert("Request faild: "+ JSON.stringify(jqxhr) + ", Please try again...");
+			});		
+		}); 
+    	
+   	});
+   </script>
   </body>
 </html>
