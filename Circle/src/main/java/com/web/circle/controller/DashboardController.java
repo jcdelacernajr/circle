@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 
  */
 @Controller
-@RequestMapping("/dashboard")
+@RequestMapping("/human-resources/dashboard")
 public class DashboardController {
 	
     @GetMapping
     public String dashboard(){
-        return "dashboard";
+        return "human_resources/dashboard";
     }
     
 }

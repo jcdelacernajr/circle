@@ -20,7 +20,7 @@ import com.web.circle.repository.UserRepository;
  * 
  */
 @Controller
-@RequestMapping("maintenance/user/")
+@RequestMapping("human-resources/maintenance/user/")
 public class UserMaintenanceController {
 	
 	private final UserRepository userRepository;
@@ -38,7 +38,7 @@ public class UserMaintenanceController {
         }
         model.addAttribute("users", userRepository.findAll());
         
-        return "maintenance/user/index";
+        return "human_resources/maintenance/user/index";
     }
 	
 }

@@ -55,65 +55,6 @@
             <!-- /.top-bar-item -->
             <!-- .top-bar-item -->
             <div class="top-bar-item top-bar-item-right px-0 d-none d-sm-flex">
-            
-            <ul sec:authorize="isAuthenticated()" class="header-nav nav">
-                <!-- .nav-item -->
-                <li class="nav-item dropdown header-nav-dropdown">
-                  <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="oi oi-grid-three-up"></span>
-                  </a>
-                  <div class="dropdown-arrow"></div>
-                  <!-- .dropdown-menu -->
-                  <div class="dropdown-menu dropdown-menu-rich dropdown-menu-right">
-                    <!-- .dropdown-sheets -->
-                    <div class="dropdown-sheets">
-                      <!-- .dropdown-sheet-item -->
-                      <div sec:authorize="hasRole('ROLE_HUMAN_RESOURCES')" class="dropdown-sheet-item">
-                        <a href="dashboard" class="tile-wrapper">
-                          <span class="tile tile-lg bg-indigo">
-                            <i class="oi oi-people"></i>
-                          </span>
-                          <span class="tile-peek">Human Resources</span>
-                        </a>
-                      </div>
-                      <!-- /.dropdown-sheet-item -->
-                      <!-- .dropdown-sheet-item -->
-                      <div sec:authorize="hasRole('ROLE_INVENTORY_MANAGEMENT')" class="dropdown-sheet-item">
-                        <a href="#" class="tile-wrapper">
-                          <span class="tile tile-lg bg-teal">
-                            <i class="oi oi-fork"></i>
-                          </span>
-                          <span class="tile-peek">Inventory Management</span>
-                        </a>
-                      </div>
-                      <!-- /.dropdown-sheet-item -->
-                      <!-- .dropdown-sheet-item -->
-                      <div sec:authorize="hasRole('ROLE_COMPANY_PROFILING')" class="dropdown-sheet-item">
-                        <a href="#" class="tile-wrapper">
-                          <span class="tile tile-lg bg-pink">
-                            <i class="fa fa-tasks"></i>
-                          </span>
-                          <span class="tile-peek">Company Profiling</span>
-                        </a>
-                      </div>
-                      <!-- /.dropdown-sheet-item -->
-                       <div sec:authorize="hasRole('ROLE_HOME')" class="dropdown-sheet-item">
-                        <a href="#" class="tile-wrapper">
-                          <span class="tile tile-lg bg-pink">
-                            <i class="fa fa-tasks"></i>
-                          </span>
-                          <span class="tile-peek">Profile</span>
-                        </a>
-                      </div>
-                      <!-- /.dropdown-sheet-item -->
-                    </div>
-                    <!-- .dropdown-sheets -->
-                  </div>
-                  <!-- .dropdown-menu -->
-                </li>
-                <!-- /.nav-item -->
-              </ul>
-            
               <!-- .btn-account -->
               <div class="dropdown">
                 <button class="btn-account d-none d-md-flex" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

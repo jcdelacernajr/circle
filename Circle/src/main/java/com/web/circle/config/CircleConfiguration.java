@@ -50,8 +50,8 @@ public class CircleConfiguration extends WebSecurityConfigurerAdapter {
 		       .antMatchers("/index").permitAll()
 		       .antMatchers("/signup").permitAll()
 		       .antMatchers("/account-setup").hasRole("ACCOUNT_SETUP") // This for newly registered user.
-		       .antMatchers("/dashboard").hasAnyRole("HUMAN_RESOURCES","INVENTORY_MANAGEMENT","COMPANY_PROFILING")
-		       .antMatchers("/maintenance/**").hasAnyRole("SUPER_USER","ADMIN")
+		       .antMatchers("/human-resources/*").hasAnyRole("HUMAN_RESOURCES","INVENTORY_MANAGEMENT","COMPANY_PROFILING")
+		       .antMatchers("/human-resources/maintenance/**").hasAnyRole("SUPER_USER","ADMIN")
 		       .antMatchers("/admin/**").hasAnyRole("SUPER_USER","ADMIN")
 		       .antMatchers("/management/**").hasAnyRole("SUPER_USER","ADMIN")
 		       .antMatchers("/api/public/management/*").hasRole("SUPER_USER")
