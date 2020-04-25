@@ -21,7 +21,7 @@ public final class Utils {
 	 * 
 	 * */
 	public static Date stringToDate(String strDate) throws ParseException {
-		Date date = new SimpleDateFormat("yyyy-mm-dd").parse(strDate);
+		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
 		return date;
 	}
 	
@@ -32,7 +32,7 @@ public final class Utils {
 	 * @param date
 	 * */
 	public static String dateToString(Date date) {
-		DateFormat dFormat = new SimpleDateFormat("yyyy-mm-dd"); 
+		DateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd"); 
 		return dFormat.format(date);
 	}
 	
