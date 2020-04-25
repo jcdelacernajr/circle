@@ -16,14 +16,18 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
  * For super account
  * Username: super	
  * Password: 1
- * 
+ * Hashed: $2a$10$7XfvhikJ3zxXsLNWX2JL..aWwP8qkuW/ok/NhByyVm7RGVHzNpVTe
+ * -------------------------
  * For admin account
  * Username: admin	
  * Password: 1
+ * Hashed: $2a$10$7XfvhikJ3zxXsLNWX2JL..aWwP8qkuW/ok/NhByyVm7RGVHzNpVTe
  * -------------------------
  * For User account
  * Username: user
  * Password: 1
+ * Hashed: $2a$10$7XfvhikJ3zxXsLNWX2JL..aWwP8qkuW/ok/NhByyVm7RGVHzNpVTe
+ * -------------------------
  * 
  * @author jr
  * */

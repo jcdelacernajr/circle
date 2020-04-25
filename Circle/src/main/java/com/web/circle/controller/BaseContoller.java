@@ -10,6 +10,7 @@ import com.web.circle.repository.DepartmentRepository;
 import com.web.circle.repository.OrganizationRepository;
 import com.web.circle.repository.PersonRepository;
 import com.web.circle.repository.UserRepository;
+import com.web.circle.utils.Utils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,11 +40,13 @@ public class BaseContoller {
 
 	/**
 	 * Get current logged user data 
+	 * 
+	 * @param strCaller The name method.
 	 * */
-	public Users getCurrentLoggedUser() {
+	public Users getCurrentLoggedUser(String strCaller) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Users user = userRepository.findByUsername(auth.getName());
-		log.info("getCurrentLoggedUser() ID: "+ user.getUserId());
+		log.info(strCaller + " [ID: "+ user.getUserId() + "], [Date: "+ Utils.timestampToDate(System.currentTimeMillis()) + "]");        
 		return user;
 	}
 	

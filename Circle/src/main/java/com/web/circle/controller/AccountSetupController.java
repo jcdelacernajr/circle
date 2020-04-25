@@ -78,10 +78,9 @@ public class AccountSetupController extends BaseContoller {
      */
     @GetMapping("/account-setup")
     public String accountSetup(final Model model) {
-    	log.info("loadAccountSetup() :" + Utils.timestampToDate(System.currentTimeMillis()));
 		try {
 	    	// Get current logged user.
-	    	Users user = getCurrentLoggedUser();
+	    	Users user = getCurrentLoggedUser("accountSetupIndex()");
 	    	// Get person photo 
 	    	String fileName = user.getPerson().getUploadFile().getFileName();
 	    	// User profile picture.
@@ -127,7 +126,7 @@ public class AccountSetupController extends BaseContoller {
     
     @PostMapping("/account-setup-form") // TODO
 	public String accountSetup(@ModelAttribute AccountSetupForm form, RedirectAttributes attributes, Model model) {
-		Users user = getCurrentLoggedUser();
+		Users user = getCurrentLoggedUser("accountSetupForm()");
 		try {
 			// Store the file data.
 			Long fileId = null;
@@ -200,7 +199,7 @@ public class AccountSetupController extends BaseContoller {
      * */
     @GetMapping("/branch-list")
     public @ResponseBody List<BranchDataModel> branchList(@RequestParam(value="organizationId", required=true) long organizationId) {
-    	return branchService.branchList(organizationId, getCurrentLoggedUser());
+    	return branchService.branchList(organizationId, getCurrentLoggedUser("branchList()"));
     }
 	
 	 /**

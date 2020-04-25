@@ -45,7 +45,6 @@ public class BranchServiceImp implements BranchService {
 					JSONObject jOb = new JSONObject();
 					jOb.put("value", b.getBranchId());
 					jOb.put("text", b.getBranchName());
-					
 					array.put(jOb);
 				}
 			}
