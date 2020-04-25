@@ -170,9 +170,9 @@
                   </ol>
                 </nav>
                 
-                <div th:if="${message}" class="col-md-8 mb-1">
+                <div th:if="${param.success}" class="col-md-8 mb-1">
                     <div class="alert alert-success alert-dismissible fade show">
-                      <strong>Well done! </strong><span th:text="${message}"></span></div>
+                      <strong>Well done! </strong><span>You have successfully update your personal information.</span></div>
                  </div>
               </header>
               <!-- /.page-title-bar -->

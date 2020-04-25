@@ -139,55 +139,16 @@ public class AccountSetupController extends BaseContoller {
 				// User profile picture.
 		    	model.addAttribute("photoUrl", fileDownloadUrl(data.getFileName(), "/media/download/"));
 			} 
-			else {
-				// Get person last photo 
-		    	String fileName = user.getPerson().getUploadFile().getFileName();
-		    	// User profile picture.
-		    	model.addAttribute("photoUrl", fileDownloadUrl(fileName, "/media/download/"));
-			}
 			
 			// Set user id
 			form.setUserId(user.getUserId());
 			// Update the user data.
 			accountSetupService.updateUser(form, fileId);
-
-	    	// List of organization
-	    	List<Organizations> organizations = organizationRepository.findAll();
-	    	ArrayList<Object> organizationsList = new ArrayList<Object>();
-	    	for(Organizations orga : organizations) {
-	    		// Display the selected organization
-	    		OrganizationDataModel organizationDataModel = new OrganizationDataModel();
-	    		if(user.getOrganizations().getOrganizationId() == orga.getOrganizationId()) {
-		    		organizationDataModel.setValue(orga.getOrganizationId());
-		    		organizationDataModel.setSelected(true);
-		    		organizationDataModel.setText(orga.getEstablishmentName());
-	    		} 
-	    		else { 
-	    			// Display the list of organizations
-	    			organizationDataModel.setValue(orga.getOrganizationId());
-		    		organizationDataModel.setText(orga.getEstablishmentName());
-	    		}
-	    		// Add the list.
-	    		organizationsList.add(organizationDataModel);
-    		}
-	    	
-	    	// Get person data.
-	    	Person person = personRepository.findById(user.getPerson().getPersonId()).get();
-	    	model.addAttribute("organizations", organizationsList);
-	    	model.addAttribute("firstName", person.getFirstName());
-	    	model.addAttribute("middleName", person.getMiddleName());
-	    	model.addAttribute("lastName", person.getLastName());
-	    	model.addAttribute("extension", person.getNameExtension());
-	    	model.addAttribute("citizenship", person.getCitizenship());
-	    	model.addAttribute("dateOfBerth", Utils.dateToString(person.getDateOfBerth()));
-	    	model.addAttribute("address", person.getAddress());
-	    	model.addAttribute("message","You have successfully update your personal information.");
-	    	
 		} catch (FileStorageException err) {
-			model.addAttribute("error", "Unable to store the file");
-			return "account_setup";
+			log.error("accountSetup(): ", err.getMessage());
+			return "redirect:/account-setup?error";
 		}
-		return "account_setup";
+		return "redirect:/account-setup?success";
 	}
     
     /**
