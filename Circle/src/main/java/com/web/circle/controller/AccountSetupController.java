@@ -54,7 +54,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Controller
-public class AccountSetupController extends BaseContoller {
+public class AccountSetupController extends BaseController {
 
 	// Initialize repository.
 	public AccountSetupController(UserRepository userRepository,

@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <head>
+	<title>Circle | Public Page</title>
+	</head>
+  <head th:insert="clients/fragments/header.html :: header"></head>
+  <body>
+    <!-- .app -->
+    <div class="app">
+      <!-- .app-header -->
+      <header th:insert="clients/fragments/topbar.html :: topbar"></header>
+      <!-- /.app-header -->
+      <!-- .app-aside -->
+      <aside th:insert="clients/fragments/aside.html :: aside"></aside>
+      <!-- /.app-aside -->
+      
+      <span th:text="${#httpServletRequest.requestURI}"></span>
+      
+    </div>
+    <!-- /.app -->
+    <div th:insert="clients/fragments/footer.html :: footer"></div>
+  </body>
+</html>

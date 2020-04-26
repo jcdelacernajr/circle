@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
  * @since April 2020
  * */
 @Slf4j
-public class BaseContoller {
+public class BaseController {
 	
 	// Initialize user repository
 	public UserRepository userRepository;
@@ -28,7 +28,7 @@ public class BaseContoller {
 	public OrganizationRepository organizationRepository;
 	public DepartmentRepository departmentRepository;
 	public BranchRepository branchRepository;
-	public BaseContoller(UserRepository userRepository,
+	public BaseController(UserRepository userRepository,
 			PersonRepository personRepository, OrganizationRepository organizationRepository,
 			DepartmentRepository departmentRepository, BranchRepository branchRepository) {
 		this.userRepository = userRepository;
