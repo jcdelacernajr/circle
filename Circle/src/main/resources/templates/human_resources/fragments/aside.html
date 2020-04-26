@@ -96,7 +96,7 @@
              <!-- .menu-item -->
              <li class="menu-item has-child">
                <a href="#" class="menu-link">
-                 <span class="menu-icon oi oi-grid-two-up"></span>
+                 <span class="menu-icon oi oi-person"></span>
                  <span class="menu-text">My Account</span>
                </a>
                <!-- child menu -->
@@ -123,7 +123,7 @@
              <!-- .menu-item -->
              <li sec:authorize="hasAnyRole('ROLE_CREATOR','ROLE_SUPER_USER','ROLE_ADMIN')" class="menu-item has-child">
                <a href="#" class="menu-link">
-                 <span class="menu-icon oi oi-puzzle-piece"></span>
+                 <span class="menu-icon oi oi-wrench"></span>
                  <span class="menu-text">Maintenance</span>
                </a>
                <!-- child menu -->
@@ -152,13 +152,76 @@
              <!-- /.menu-item -->
             
              <!-- .menu-header -->
-             <li class="menu-header">Pages </li>
+             <li sec:authorize="hasRole('ROLE_CREATOR')" class="menu-header">Pages </li>
              <!-- /.menu-header -->
              <!-- .menu-item -->
-             <li class="menu-item has-child">
+             <li sec:authorize="hasRole('ROLE_CREATOR')" class="menu-item has-child">
                <a href="#" class="menu-link">
-                 <span class="menu-icon oi oi-wrench"></span>
-                 <span class="menu-text">Auth</span>
+                 <span class="menu-icon oi oi-infinity"></span>
+                 <span class="menu-text">Apps</span>
+               </a>
+               <!-- child menu -->
+               <ul class="menu">
+                 <li class="menu-item">
+                   <a href="app-messages.html" class="menu-link">Messages</a>
+                 </li>
+                 <li class="menu-item">
+                   <a href="app-conversations.html" class="menu-link">Conversations</a>
+                 </li>
+                 <li class="menu-item">
+                   <a href="app-tasks.html" class="menu-link">Tasks</a>
+                 </li>
+                 <li class="menu-item">
+                   <a href="app-feeds.html" class="menu-link">Feeds</a>
+                 </li>
+               </ul>
+               <!-- /child menu -->
+             </li>
+             <!-- /.menu-item -->
+             <!-- .menu-item -->
+             <li sec:authorize="hasRole('ROLE_CREATOR')" class="menu-item has-child">
+               <a href="#" class="menu-link">
+                 <span class="menu-icon oi oi-people"></span>
+                 <span class="menu-text">User</span>
+               </a>
+               <!-- child menu -->
+               <ul class="menu">
+                 <li class="menu-item">
+                   <a href="user-profile.html" class="menu-link">Profile</a>
+                 </li>
+                 <li class="menu-item">
+                   <a href="user-activities.html" class="menu-link">Activities</a>
+                 </li>
+                 <li class="menu-item">
+                   <a href="user-teams.html" class="menu-link">Teams</a>
+                 </li>
+                 <li class="menu-item">
+                   <a href="user-projects.html" class="menu-link">Projects</a>
+                 </li>
+                 <li class="menu-item">
+                   <a href="user-tasks.html" class="menu-link">Tasks</a>
+                 </li>
+                 <li class="menu-item">
+                   <a href="user-profile-settings.html" class="menu-link">Profile Settings</a>
+                 </li>
+                 <li class="menu-item">
+                   <a href="user-account-settings.html" class="menu-link">Account Settings</a>
+                 </li>
+                 <li class="menu-item">
+                   <a href="user-billing-settings.html" class="menu-link">Billing Settings</a>
+                 </li>
+                 <li class="menu-item">
+                   <a href="user-notification-settings.html" class="menu-link">Notification Settings</a>
+                 </li>
+               </ul>
+               <!-- /child menu -->
+             </li>
+             <!-- /.menu-item -->
+             <!-- .menu-item -->
+             <li sec:authorize="hasRole('ROLE_CREATOR')" class="menu-item has-child">
+               <a href="#" class="menu-link">
+                 <span class="menu-icon far fa-file"></span>
+                 <span class="menu-text">Organization</span>
                </a>
                <!-- child menu -->
                <ul class="menu">
@@ -209,69 +272,6 @@
                  </li>
                  <li class="menu-item">
                    <a href="auth-lockscreen.html" class="menu-link">Screen Locked</a>
-                 </li>
-               </ul>
-               <!-- /child menu -->
-             </li>
-             <!-- /.menu-item -->
-             <!-- .menu-item -->
-             <li class="menu-item has-child">
-               <a href="#" class="menu-link">
-                 <span class="menu-icon oi oi-people"></span>
-                 <span class="menu-text">User</span>
-               </a>
-               <!-- child menu -->
-               <ul class="menu">
-                 <li class="menu-item">
-                   <a href="user-profile.html" class="menu-link">Profile</a>
-                 </li>
-                 <li class="menu-item">
-                   <a href="user-activities.html" class="menu-link">Activities</a>
-                 </li>
-                 <li class="menu-item">
-                   <a href="user-teams.html" class="menu-link">Teams</a>
-                 </li>
-                 <li class="menu-item">
-                   <a href="user-projects.html" class="menu-link">Projects</a>
-                 </li>
-                 <li class="menu-item">
-                   <a href="user-tasks.html" class="menu-link">Tasks</a>
-                 </li>
-                 <li class="menu-item">
-                   <a href="user-profile-settings.html" class="menu-link">Profile Settings</a>
-                 </li>
-                 <li class="menu-item">
-                   <a href="user-account-settings.html" class="menu-link">Account Settings</a>
-                 </li>
-                 <li class="menu-item">
-                   <a href="user-billing-settings.html" class="menu-link">Billing Settings</a>
-                 </li>
-                 <li class="menu-item">
-                   <a href="user-notification-settings.html" class="menu-link">Notification Settings</a>
-                 </li>
-               </ul>
-               <!-- /child menu -->
-             </li>
-             <!-- /.menu-item -->
-             <!-- .menu-item -->
-             <li class="menu-item has-child">
-               <a href="#" class="menu-link">
-                 <span class="menu-icon oi oi-infinity"></span>
-                 <span class="menu-text">Apps</span>
-               </a>
-               <!-- child menu -->
-               <ul class="menu">
-                 <li class="menu-item">
-                   <a href="app-messages.html" class="menu-link">Messages</a>
-                 </li>
-                 <li class="menu-item">
-                   <a href="app-conversations.html" class="menu-link">Conversations</a>
-                 </li>
-                 <li class="menu-item">
-                   <a href="app-tasks.html" class="menu-link">Tasks</a>
-                 </li>
-                 <li class="menu-item">
-                   <a href="app-feeds.html" class="menu-link">Feeds</a>
                  </li>
                </ul>
                <!-- /child menu -->

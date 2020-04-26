@@ -124,7 +124,7 @@ public class AccountSetupController extends BaseContoller {
     	return "account_setup";
     }
     
-    @PostMapping("/account-setup-form") // TODO
+    @PostMapping("/account-setup-form") 
 	public String accountSetup(@ModelAttribute AccountSetupForm form, RedirectAttributes attributes, Model model) {
 		Users user = getCurrentLoggedUser("accountSetupForm()");
 		try {
