@@ -21,3 +21,12 @@ label {
 	border: 1px solid #d4d5d7; 
 	border-radius: 5px;
 }
+
+.has-sidebar-expand-xl.has-sidebar-fluid .page-inner {
+    margin-right: calc(100vw - 37.5rem);
+}
+
+.has-sidebar-expand-xl.has-sidebar-fluid .page-sidebar {
+    width: calc(100vw - 37.5rem);
+    max-width: calc(100vw - 37.5rem);
+}

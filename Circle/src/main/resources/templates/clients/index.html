@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
   <head>
-	<title>Circle | Public Page</title>
+	<title>Circle | Clients</title>
 	</head>
   <head th:insert="clients/fragments/header.html :: header"></head>
   <body>
@@ -15,8 +15,196 @@
       <!-- .app-aside -->
       <aside th:insert="clients/fragments/aside.html :: aside"></aside>
       <!-- /.app-aside -->
-      
-      <span th:text="${#httpServletRequest.requestURI}"></span>
+	  
+	  <main class="app-main">
+	  	<div class="wrapper">
+	  		<div class="page has-sidebar has-sidebar-fluid has-sidebar-expand-xl has-sidebar-open">
+	  		
+		  		<div class="page-inner page-inner-fill position-relative">
+		  			<div class="table-responsive">
+                        <!-- .table -->
+                        <table class="table">
+                          <!-- thead -->
+                          <thead>
+                            <tr>
+                              <th style="min-width:260px"> Task </th>
+                              <th> Due Date </th>
+                              <th> Estimate </th>
+                              <th> Worked </th>
+                            </tr>
+                          </thead>
+                          <!-- /thead -->
+                          <!-- tbody -->
+                          <tbody>
+                            <!-- tr -->
+                            <tr>
+                              <td class="align-middle text-truncate">
+                                <a href="#project" class="tile tile-circle bg-indigo text-white mr-1">SP</a>
+                                <a href="#task">Make lemonade from scratch</a>
+                              </td>
+                              <td class="align-middle"> Apr 02 </td>
+                              <td class="align-middle"> 24:00 </td>
+                              <td class="align-middle"> 16:36 </td>
+                            </tr>
+                            <!-- /tr -->
+                            <!-- tr -->
+                            <tr>
+                              <td class="align-middle text-truncate">
+                                <a href="#project" class="tile tile-circle bg-blue text-white mr-1">LT</a>
+                                <a href="#task">Mix up a pitcher of sangria</a>
+                              </td>
+                              <td class="align-middle"> In 3 days </td>
+                              <td class="align-middle"> 04:00 </td>
+                              <td class="align-middle"> 03:36 </td>
+                            </tr>
+                            <!-- /tr -->
+                            <!-- tr -->
+                            <tr>
+                              <td class="align-middle text-truncate">
+                                <a href="#project" class="tile tile-circle bg-yellow text-white mr-1">OS</a>
+                                <a href="#task">Ride a roller coaster</a>
+                              </td>
+                              <td class="align-middle"> Tomorrow </td>
+                              <td class="align-middle"> 48:00 </td>
+                              <td class="align-middle"> 50:02 </td>
+                            </tr>
+                            <!-- /tr -->
+                            <!-- tr -->
+                            <tr>
+                              <td class="align-middle text-truncate">
+                                <a href="#project" class="tile tile-circle bg-yellow text-white mr-1">OS</a>
+                                <a href="#task">Have a picnic in the park</a>
+                              </td>
+                              <td class="align-middle"> In 2 days </td>
+                              <td class="align-middle"> 12:00 </td>
+                              <td class="align-middle"> 08:36 </td>
+                            </tr>
+                            <!-- /tr -->
+                            <!-- tr -->
+                            <tr>
+                              <td class="align-middle text-truncate">
+                                <a href="#project" class="tile tile-circle bg-pink text-white mr-1">SP</a>
+                                <a href="#task">Dangle your feet off a dock</a>
+                              </td>
+                              <td class="align-middle"> Apr 07 </td>
+                              <td class="align-middle"> 6:00 </td>
+                              <td class="align-middle"> 03:11 </td>
+                            </tr>
+                            <!-- /tr -->
+                             <!-- tr -->
+                            <tr>
+                              <td class="align-middle text-truncate">
+                                <a href="#project" class="tile tile-circle bg-pink text-white mr-1">SP</a>
+                                <a href="#task">Dangle your feet off a dock</a>
+                              </td>
+                              <td class="align-middle"> Apr 07 </td>
+                              <td class="align-middle"> 6:00 </td>
+                              <td class="align-middle"> 03:11 </td>
+                            </tr>
+                            <!-- /tr -->
+                             <!-- tr -->
+                            <tr>
+                              <td class="align-middle text-truncate">
+                                <a href="#project" class="tile tile-circle bg-pink text-white mr-1">SP</a>
+                                <a href="#task">Dangle your feet off a dock</a>
+                              </td>
+                              <td class="align-middle"> Apr 07 </td>
+                              <td class="align-middle"> 6:00 </td>
+                              <td class="align-middle"> 03:11 </td>
+                            </tr>
+                            <!-- /tr -->
+                             <!-- tr -->
+                            <tr>
+                              <td class="align-middle text-truncate">
+                                <a href="#project" class="tile tile-circle bg-pink text-white mr-1">SP</a>
+                                <a href="#task">Dangle your feet off a dock</a>
+                              </td>
+                              <td class="align-middle"> Apr 07 </td>
+                              <td class="align-middle"> 6:00 </td>
+                              <td class="align-middle"> 03:11 </td>
+                            </tr>
+                            <!-- /tr -->
+                             <!-- tr -->
+                            <tr>
+                              <td class="align-middle text-truncate">
+                                <a href="#project" class="tile tile-circle bg-pink text-white mr-1">SP</a>
+                                <a href="#task">Dangle your feet off a dock</a>
+                              </td>
+                              <td class="align-middle"> Apr 07 </td>
+                              <td class="align-middle"> 6:00 </td>
+                              <td class="align-middle"> 03:11 </td>
+                            </tr>
+                            <!-- /tr -->
+                             <!-- tr -->
+                            <tr>
+                              <td class="align-middle text-truncate">
+                                <a href="#project" class="tile tile-circle bg-pink text-white mr-1">SP</a>
+                                <a href="#task">Dangle your feet off a dock</a>
+                              </td>
+                              <td class="align-middle"> Apr 07 </td>
+                              <td class="align-middle"> 6:00 </td>
+                              <td class="align-middle"> 03:11 </td>
+                            </tr>
+                            <!-- /tr -->
+                             <!-- tr -->
+                            <tr>
+                              <td class="align-middle text-truncate">
+                                <a href="#project" class="tile tile-circle bg-pink text-white mr-1">SP</a>
+                                <a href="#task">Dangle your feet off a dock</a>
+                              </td>
+                              <td class="align-middle"> Apr 07 </td>
+                              <td class="align-middle"> 6:00 </td>
+                              <td class="align-middle"> 03:11 </td>
+                            </tr>
+                            <!-- /tr -->
+                             <!-- tr -->
+                            <tr>
+                              <td class="align-middle text-truncate">
+                                <a href="#project" class="tile tile-circle bg-pink text-white mr-1">SP</a>
+                                <a href="#task">Dangle your feet off a dock</a>
+                              </td>
+                              <td class="align-middle"> Apr 07 </td>
+                              <td class="align-middle"> 6:00 </td>
+                              <td class="align-middle"> 03:11 </td>
+                            </tr>
+                            <!-- /tr -->
+                             <!-- tr -->
+                            <tr>
+                              <td class="align-middle text-truncate">
+                                <a href="#project" class="tile tile-circle bg-pink text-white mr-1">SP</a>
+                                <a href="#task">Dangle your feet off a dock</a>
+                              </td>
+                              <td class="align-middle"> Apr 07 </td>
+                              <td class="align-middle"> 6:00 </td>
+                              <td class="align-middle"> 03:11 </td>
+                            </tr>
+                            <!-- /tr -->
+                             <!-- tr -->
+                            <tr>
+                              <td class="align-middle text-truncate">
+                                <a href="#project" class="tile tile-circle bg-pink text-white mr-1">SP</a>
+                                <a href="#task">Dangle your feet off a dock</a>
+                              </td>
+                              <td class="align-middle"> Apr 07 </td>
+                              <td class="align-middle"> 6:00 </td>
+                              <td class="align-middle"> 03:11 </td>
+                            </tr>
+                            <!-- /tr -->
+                          </tbody>
+                          <!-- /tbody -->
+                        </table>
+                        <!-- /.table -->
+                      </div>
+		  			
+		  			
+		  		</div>
+		  		
+		  		<div class="page-sidebar bg-light">
+		  		
+		  		</div>
+	  		</div>
+	  	</div>
+	  </main>      
       
     </div>
     <!-- /.app -->
