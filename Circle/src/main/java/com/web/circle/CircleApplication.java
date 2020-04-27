@@ -83,5 +83,8 @@ public class CircleApplication {
  * 5. https://memorynotfound.com/spring-mail-sending-email-freemarker-html-template-example/ Send email
  * 6. https://memorynotfound.com/spring-security-forgot-password-send-email-reset-password/ // forgot password
  * 
+ * Bootstrap table
+ * 7. https://examples.bootstrap-table.com/#
+ * 8. https://live.bootstrap-table.com/example/welcome.html
  * 
  * */

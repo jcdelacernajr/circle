@@ -30,3 +30,12 @@ label {
     width: calc(100vw - 37.5rem);
     max-width: calc(100vw - 37.5rem);
 }
+
+.page-navs {
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+
