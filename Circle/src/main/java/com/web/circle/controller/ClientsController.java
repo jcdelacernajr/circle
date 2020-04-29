@@ -3,10 +3,13 @@ package com.web.circle.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.web.circle.model.ClientTableDataModel;
 import com.web.circle.model.OrganizationDataModel;
@@ -16,6 +19,7 @@ import com.web.circle.repository.DepartmentRepository;
 import com.web.circle.repository.OrganizationRepository;
 import com.web.circle.repository.PersonRepository;
 import com.web.circle.repository.UserRepository;
+import com.web.circle.service.OrganizationsService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,7 +38,11 @@ public class ClientsController extends BaseController {
 			BranchRepository branchRepository) {
 		super(userRepository, personRepository, organizationRepository, departmentRepository, branchRepository);
 	}
+	
+	@Autowired
+	OrganizationsService organizationsService;
 
+	
 	@GetMapping("index")
     public String index(Model model) {
 		// List of organization
@@ -56,4 +64,22 @@ public class ClientsController extends BaseController {
         return "clients/index";
     }
 	
+	/**
+	 * OnClick table row
+	 * Get the selected organization data
+	 * 
+	 * @param 
+	 * */
+	@GetMapping("/selected-organization")
+	public @ResponseBody List<ClientTableDataModel> organizationData(@RequestParam(value="organizationId", required=true) long organizationId) {
+		return organizationsService.organization(organizationId);
+	}
 }
+
+
+
+
+
+
+
+

@@ -17,10 +17,10 @@
 <body>
 	<div class="app">
       <!-- .app-header -->
-      <header th:insert="human_resources/fragments/topbar.html :: topbar"></header>
+      <header th:insert="fragments/topbar.html :: topbar"></header>
       <!-- /.app-header -->
       <!-- .app-aside -->
-      <aside th:insert="human_resources/fragments/aside.html :: aside"></aside>
+      <aside th:insert="fragments/aside.html :: aside"></aside>
       <!-- /.app-aside -->
       <!-- Page content goes here -->
       <!-- .app-main -->
@@ -85,7 +85,11 @@
 	            }
 	        },
 	        "columns": [
-	            {"data": "userId", "width": "5%"},
+	            {"data": "userId", "width": "5%",
+	            		"render": function(data, type, row, meta) {
+	            			return '<a href="#' + row.id + '" target="_blanck" >' + data + '</a>';
+	            		}
+	            },
 	            {"data": "organization","width": "20%"},
 	            {"data": "email", "width": "20%"},
 	            {"data": "username", "width": "20%"},

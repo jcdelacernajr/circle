@@ -77,6 +77,9 @@ public class CircleApplication {
 }
 
 /**
+ * For JPA Query example
+ * https://lishman.io/spring-data-jpa-repository-queries
+ * 
  * List of Todo..
  * 1. User sign up fill all the information needed for registration.
  * 2.0 https://www.javadevjournal.com/spring/spring-file-upload/
@@ -91,5 +94,8 @@ public class CircleApplication {
  * Bootstrap table
  * 7. https://examples.bootstrap-table.com/#
  * 8. https://live.bootstrap-table.com/example/welcome.html
+ * 
+ * Thymleaf form sample
+ * https://www.tucanoo.com/build-a-crm-with-spring-boot-and-thymeleaf/
  * 
  * */
