@@ -38,7 +38,7 @@ public class ClientsController extends BaseController {
 	@GetMapping("index")
     public String index(Model model) {
 		// List of organization
-    	List<Organizations> organizations = organizationRepository.findAll();
+    	List<Organizations> organizations = organizationRepository.getOrganizationList();
     	ArrayList<Object> organizationsList = new ArrayList<Object>();
     	for(Organizations orga : organizations) {
     		// Organization
