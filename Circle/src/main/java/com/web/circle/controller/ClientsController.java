@@ -74,6 +74,20 @@ public class ClientsController extends BaseController {
 	public @ResponseBody List<ClientTableDataModel> organizationData(@RequestParam(value="organizationId", required=true) long organizationId) {
 		return organizationsService.organization(organizationId);
 	}
+	
+	@RequestMapping("page-sidebar")
+	public String pageSideBar(Model model, @RequestParam(value="organizationId") long organizationId) {
+		// Organization data.
+		Organizations or = organizationRepository.findById(organizationId).get();
+		model.addAttribute("organizationId", or.getOrganizationId());
+		model.addAttribute("establishmentName", or.getEstablishmentName());
+		model.addAttribute("address", or.getAddress());
+		model.addAttribute("email", or.getEmail());
+		model.addAttribute("postalCode", or.getPostalCode());
+		model.addAttribute("telephone", or.getTelephoneNo());
+		model.addAttribute("website", or.getWebsite());
+		return "clients/page_sidebar :: page-sidebar";
+	}
 }
 
 

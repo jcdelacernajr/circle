@@ -1,5 +1,6 @@
 package com.web.circle.model;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,15 +13,15 @@ import lombok.Setter;
  * */
 @Setter
 @Getter
-public class ClientTableDataModel {
+public class ClientBranchDataModel {
 
-	private Long organizationId;
-	private String establishmentName;
+	private ObjectNode branch;
+	private Long branchId;
+	private String branchName;
 	private String address;
 	private String email;
 	private String postalCode;
 	private String telephoneNo;
 	private String website;
 	
-	public ClientTableDataModel() {}
 }
