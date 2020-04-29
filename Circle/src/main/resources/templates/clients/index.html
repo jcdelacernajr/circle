@@ -29,108 +29,17 @@
 	              	</header>
 		  			<div class="table-responsive">
                         <!-- .table -->
-                        <table id="table" data-toggle="table" class="table">
+                        <table id="tableOrganization" class="table">
                           <!-- thead -->
                           
                           <!-- /thead -->
                           <!-- tbody -->
                           <tbody>
-                            <!-- tr -->
-                            <tr>
-                              <td class="align-middle text-truncate">
-                                <a href="#project" class="tile tile-circle bg-indigo text-white mr-1">SP</a>
-                                <a href="#task">Make lemonade from scratch</a>
-                              </td>
-                            </tr>
-                            <!-- tr -->
-                            <tr>
-                              <td class="align-middle text-truncate">
-                                <a href="#project" class="tile tile-circle bg-indigo text-white mr-1">SP</a>
-                                <a href="#task">Make lemonade from scratch</a>
-                              </td>
-                            </tr>
-                            <!-- tr -->
-                            <tr>
-                              <td class="align-middle text-truncate">
-                                <a href="#project" class="tile tile-circle bg-indigo text-white mr-1">SP</a>
-                                <a href="#task">Make lemonade from scratch</a>
-                              </td>
-                            </tr>
-                            <!-- tr -->
-                            <tr>
-                              <td class="align-middle text-truncate">
-                                <a href="#project" class="tile tile-circle bg-indigo text-white mr-1">SP</a>
-                                <a href="#task">Make lemonade from scratch</a>
-                              </td>
-                            </tr>
-                            <!-- tr -->
-                            <tr>
-                              <td class="align-middle text-truncate">
-                                <a href="#project" class="tile tile-circle bg-indigo text-white mr-1">SP</a>
-                                <a href="#task">Make lemonade from scratch</a>
-                              </td>
-                            </tr>
-                            <!-- tr -->
-                            <tr>
-                              <td class="align-middle text-truncate">
-                                <a href="#project" class="tile tile-circle bg-indigo text-white mr-1">SP</a>
-                                <a href="#task">Make lemonade from scratch</a>
-                              </td>
-                            </tr>
-                            <!-- tr -->
-                            <tr>
-                              <td class="align-middle text-truncate">
-                                <a href="#project" class="tile tile-circle bg-indigo text-white mr-1">SP</a>
-                                <a href="#task">Make lemonade from scratch</a>
-                              </td>
-                            </tr>
-                            <!-- tr -->
-                            <tr>
-                              <td class="align-middle text-truncate">
-                                <a href="#project" class="tile tile-circle bg-indigo text-white mr-1">SP</a>
-                                <a href="#task">Make lemonade from scratch</a>
-                              </td>
-                            </tr>
-                            <!-- tr -->
-                            <tr>
-                              <td class="align-middle text-truncate">
-                                <a href="#project" class="tile tile-circle bg-indigo text-white mr-1">SP</a>
-                                <a href="#task">Make lemonade from scratch</a>
-                              </td>
-                            </tr>
-                            <!-- tr -->
-                            <tr>
-                              <td class="align-middle text-truncate">
-                                <a href="#project" class="tile tile-circle bg-indigo text-white mr-1">SP</a>
-                                <a href="#task">Make lemonade from scratch</a>
-                              </td>
-                            </tr>
-                            <!-- tr -->
-                            <tr>
-                              <td class="align-middle text-truncate">
-                                <a href="#project" class="tile tile-circle bg-indigo text-white mr-1">SP</a>
-                                <a href="#task">Make lemonade from scratch</a>
-                              </td>
-                            </tr>
-                            <!-- tr -->
-                            <tr>
-                              <td class="align-middle text-truncate">
-                                <a href="#project" class="tile tile-circle bg-indigo text-white mr-1">SP</a>
-                                <a href="#task">Make lemonade from scratch</a>
-                              </td>
-                            </tr>
-                            <!-- tr -->
-                            <tr>
-                              <td class="align-middle text-truncate">
-                                <a href="#project" class="tile tile-circle bg-indigo text-white mr-1">SP</a>
-                                <a href="#task">Make lemonade from scratch</a>
-                              </td>
-                            </tr>
-                            <!-- tr -->
-                            <tr>
-                              <td class="align-middle text-truncate">
-                                <a href="#project" class="tile tile-circle bg-indigo text-white mr-1">SP</a>
-                                <a href="#task">Make lemonade from scratch</a>
+                            <!-- Organization list -->
+                            <tr th:each="organization : ${organizations}">
+                            	<td class="align-middle text-truncate">
+                                <a th:href="${organization.organizationId}" class="tile tile-circle bg-indigo text-white mr-1">SP</a>
+                                <a href="#" th:text="${organization.establishmentName}" ></a>
                               </td>
                             </tr>
                           </tbody>
@@ -866,7 +775,19 @@
     <!-- /.app -->
     <div th:insert="clients/fragments/footer.html :: footer"></div>
     <script>
-    
+    	$(document).ready(function(){
+    		var table = $('#tableOrganization');
+    		$('#tableOrganization tr').click(function(){
+   				$(this).children('td').children('input').prop('checked', true);
+   				$('#tableOrganization tr').removeClass('selected');
+   			  	$(this).toggleClass('selected');
+   			  	
+   			 	var href = $(this).find("a").attr("href");
+				alert("Clicked: "+ href);
+   				
+    		});
+    		
+    	});
     	
     </script>
   </body>

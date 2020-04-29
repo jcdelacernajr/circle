@@ -38,4 +38,8 @@ label {
     padding-top: 1rem;
 }
 
+tr.selected {
+  background: #ddd;
+}
+
 

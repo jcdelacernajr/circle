@@ -13,6 +13,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 /**
  * https://localhost:8443/
+ * For the creator account
+ * Username: thecreator@circle.com	
+ * Password: 1
+ * Hashed: $2a$10$7XfvhikJ3zxXsLNWX2JL..aWwP8qkuW/ok/NhByyVm7RGVHzNpVTe
+ * -------------------------
  * For super account
  * Username: super	
  * Password: 1
