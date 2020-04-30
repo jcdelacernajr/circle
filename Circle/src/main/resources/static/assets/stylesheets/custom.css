@@ -47,3 +47,10 @@ tr.selected {
     font-weight: 500;
 }
 
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 200px;
+}
+

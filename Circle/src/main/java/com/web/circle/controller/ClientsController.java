@@ -11,14 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.web.circle.model.BranchTableDataModel;
 import com.web.circle.model.ClientTableDataModel;
 import com.web.circle.model.OrganizationDataModel;
+import com.web.circle.model.entity.Branch;
 import com.web.circle.model.entity.Organizations;
 import com.web.circle.repository.BranchRepository;
 import com.web.circle.repository.DepartmentRepository;
 import com.web.circle.repository.OrganizationRepository;
 import com.web.circle.repository.PersonRepository;
 import com.web.circle.repository.UserRepository;
+import com.web.circle.service.BranchService;
 import com.web.circle.service.OrganizationsService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -41,6 +44,8 @@ public class ClientsController extends BaseController {
 	
 	@Autowired
 	OrganizationsService organizationsService;
+	@Autowired
+	BranchService branchService;
 
 	
 	@GetMapping("index")
@@ -94,6 +99,7 @@ public class ClientsController extends BaseController {
 		model.addAttribute("type",or.getType());
 		model.addAttribute("jurisdiction",or.getJurisdiction());
 		model.addAttribute("dissolved",or.getDissolved());
+		model.addAttribute("branchList", branchService.branchList(organizationId));
 		return "clients/page_sidebar :: page-sidebar";
 	}
 }

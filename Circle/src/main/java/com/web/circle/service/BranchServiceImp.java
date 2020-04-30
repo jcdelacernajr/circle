@@ -1,5 +1,6 @@
 package com.web.circle.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -12,7 +13,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.web.circle.model.BranchDataModel;
+import com.web.circle.model.BranchTableDataModel;
+import com.web.circle.model.ClientTableDataModel;
 import com.web.circle.model.entity.Branch;
+import com.web.circle.model.entity.Organizations;
 import com.web.circle.model.entity.Users;
 import com.web.circle.repository.BranchRepository;
 
@@ -57,6 +61,21 @@ public class BranchServiceImp implements BranchService {
 			
 		}
 		return null;
+	}
+
+	@Override
+	public ArrayList<Object> branchList(long organizationId) {
+    	List<Branch> branch = branchRepository.findBranchsByOrganization(organizationId);
+    	ArrayList<Object> branchList = new ArrayList<Object>();
+    	for(Branch b : branch) {
+    		BranchTableDataModel branchTableDataModel = new BranchTableDataModel();
+    		branchTableDataModel.setBranchId(b.getBranchId());
+    		branchTableDataModel.setBranchName(b.getBranchName());
+    		branchTableDataModel.setAddress(b.getAddress());
+    		// Add the list.
+    		branchList.add(branchTableDataModel);
+		}
+		return branchList;
 	}
 
 }

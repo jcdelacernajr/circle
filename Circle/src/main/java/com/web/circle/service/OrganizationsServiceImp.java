@@ -22,8 +22,6 @@ public class OrganizationsServiceImp implements OrganizationsService {
 	
 	@Autowired
 	private OrganizationRepository organizationRepository;
-	@Autowired
-	private BranchRepository branchRepository;
 
 	@Override
 	public List<ClientTableDataModel> organization(long organizationId) {
