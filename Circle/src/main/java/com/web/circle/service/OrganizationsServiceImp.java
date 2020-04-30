@@ -40,6 +40,7 @@ public class OrganizationsServiceImp implements OrganizationsService {
 				jOb.put("postalCode", o.getPostalCode());
 				jOb.put("telephone", o.getTelephoneNo());
 				jOb.put("website", o.getWebsite());
+				
 				array.put(jOb);
 			}
 			

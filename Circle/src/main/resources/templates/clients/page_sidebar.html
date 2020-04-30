@@ -22,7 +22,7 @@
           <!-- .nav-tabs -->
           <ul class="nav nav-tabs">
             <li class="nav-item">
-              <a class="nav-link active show" data-toggle="tab" href="#client-billing-contact">Information</a>
+              <a class="nav-link active show" data-toggle="tab" href="#client-information">Information</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#client-tasks">Branch</a>
@@ -35,15 +35,24 @@
         <!-- .tab-content -->
         <div class="tab-content pt-4" id="clientDetailsTabs">
           <!-- .tab-pane -->
-          <div class="tab-pane fade show active" id="client-billing-contact" role="tabpanel" aria-labelledby="client-billing-contact-tab">
+          <div class="tab-pane fade show active" id="client-information" role="tabpanel" aria-labelledby="client-billing-contact-tab">
             <!-- .card -->
             <div class="card">
               <!-- .card-body -->
               <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center">
-                  <h2 id="client-billing-contact-tab" class="card-title"> Billing Address </h2><button type="button" class="btn btn-link" data-toggle="modal" data-target="#clientBillingEditModal">Edit</button>
+                  <h2 id="client-billing-contact-tab" class="card-title"> <span th:text="${type}"></span></h2><button type="button" class="btn btn-link" data-toggle="modal" data-target="#clientBillingEditModal">Edit</button>
                 </div>
-                <address> 280 Suzanne Throughway, Breannabury<br> San Francisco, 45801<br> United States </address>
+                
+                <!-- Heading -->
+                <p th:text="${company_heading}" ></p>
+                <span class="text-muted-1 mr-2">Location:</span> <span><u th:text="${address}"></u></span><br>
+                <span class="text-muted-1 mr-2">Jurisdiction: </span> <span><u th:text="${jurisdiction}"></u></span><br>
+                <span class="text-muted-1 mr-2">Organization executive: </span> <span><u th:text="${executive}"></u></span><br>
+                <span class="text-muted-1 mr-2">Founded: </span> <span><u th:text="${founded}"></u></span><br>
+                <span class="text-muted-1 mr-2">Annual budget: </span> <span><u th:text="${annualBudget}"></u></span><br>
+                <span class="text-muted-1 mr-2">Predecessor: </span> <span><u th:text="${predecessor}"></u></span>
+                
               </div><!-- /.card-body -->
             </div><!-- /.card -->
             <!-- .card -->

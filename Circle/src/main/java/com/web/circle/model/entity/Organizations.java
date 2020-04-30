@@ -1,5 +1,7 @@
 package com.web.circle.model.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,8 +22,23 @@ public class Organizations extends CircleAuditing {
 	@Column(name = "organization_id")
 	private long organizationId;
 	
+	@Column(name = "company_heading")
+	private String companyHeading;
+	
 	@Column(name = "establishment_name")
 	private String establishmentName;
+	
+	@Column(name = "founded")
+	private Date founded;
+	
+	@Column(name = "executive")
+	private String executive;
+	
+	@Column(name = "annual_budget")
+	private Double annualBudget;
+	
+	@Column(name = "predecessor")
+	private String predecessor;
 	
 	@Column(name = "telephone_no")
 	private String telephoneNo;
@@ -38,6 +55,71 @@ public class Organizations extends CircleAuditing {
 	@Column(name = "postal_code")
 	private String postalCode;
 	
+	@Column(name = "type")
+	private String type;
+	
+	@Column(name = "jurisdiction")
+	private String jurisdiction;
+	
+	@Column(name = "dissolved")
+	private String dissolved;
+
+	public long getOrganizationId() {
+		return organizationId;
+	}
+
+	public void setOrganizationId(long organizationId) {
+		this.organizationId = organizationId;
+	}
+
+	public String getCompanyHeading() {
+		return companyHeading;
+	}
+
+	public void setCompanyHeading(String companyHeading) {
+		this.companyHeading = companyHeading;
+	}
+
+	public String getEstablishmentName() {
+		return establishmentName;
+	}
+
+	public void setEstablishmentName(String establishmentName) {
+		this.establishmentName = establishmentName;
+	}
+
+	public Date getFounded() {
+		return founded;
+	}
+
+	public void setFounded(Date founded) {
+		this.founded = founded;
+	}
+
+	public String getExecutive() {
+		return executive;
+	}
+
+	public void setExecutive(String executive) {
+		this.executive = executive;
+	}
+
+	public Double getAnnualBudget() {
+		return annualBudget;
+	}
+
+	public void setAnnualBudget(Double annualBudget) {
+		this.annualBudget = annualBudget;
+	}
+
+	public String getPredecessor() {
+		return predecessor;
+	}
+
+	public void setPredecessor(String predecessor) {
+		this.predecessor = predecessor;
+	}
+
 	public String getTelephoneNo() {
 		return telephoneNo;
 	}
@@ -78,20 +160,28 @@ public class Organizations extends CircleAuditing {
 		this.postalCode = postalCode;
 	}
 
-	public long getOrganizationId() {
-		return organizationId;
+	public String getType() {
+		return type;
 	}
 
-	public void setOrganizationId(long organizationId) {
-		this.organizationId = organizationId;
+	public void setType(String type) {
+		this.type = type;
 	}
 
-	public String getEstablishmentName() {
-		return establishmentName;
+	public String getJurisdiction() {
+		return jurisdiction;
 	}
 
-	public void setEstablishmentName(String establishmentName) {
-		this.establishmentName = establishmentName;
+	public void setJurisdiction(String jurisdiction) {
+		this.jurisdiction = jurisdiction;
+	}
+
+	public String getDissolved() {
+		return dissolved;
+	}
+
+	public void setDissolved(String dissolved) {
+		this.dissolved = dissolved;
 	}
 	
 }

@@ -86,6 +86,14 @@ public class ClientsController extends BaseController {
 		model.addAttribute("postalCode", or.getPostalCode());
 		model.addAttribute("telephone", or.getTelephoneNo());
 		model.addAttribute("website", or.getWebsite());
+		model.addAttribute("company_heading", or.getCompanyHeading());
+		model.addAttribute("founded",or.getFounded());
+		model.addAttribute("executive",or.getExecutive());
+		model.addAttribute("annualBudget",or.getAnnualBudget());
+		model.addAttribute("predecessor",or.getPredecessor());
+		model.addAttribute("type",or.getType());
+		model.addAttribute("jurisdiction",or.getJurisdiction());
+		model.addAttribute("dissolved",or.getDissolved());
 		return "clients/page_sidebar :: page-sidebar";
 	}
 }

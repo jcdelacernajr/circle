@@ -42,4 +42,8 @@ tr.selected {
   background: #ddd;
 }
 
+.text-muted-1 {
+    color: #000000!important;
+    font-weight: 500;
+}
 
