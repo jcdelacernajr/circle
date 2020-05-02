@@ -22,9 +22,14 @@
 	  		
 		  		<div class="page-inner page-inner-fill position-relative">
 		  			<header class="page-navs bg-light shadow-sm">
+		  				 <div class="card-header-list d-flex">
+			                <button type="button" class="btn btn-primary ml-auto" style="width: 100%;">Add Client</button>
+			            </div>
 		                <!-- .input-group -->
 		                <div class="input-group has-clearable">
-		                  <button type="button" class="close" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times-circle"></i></span></button> <label class="input-group-prepend" for="searchClients"><span class="input-group-text"><span class="oi oi-magnifying-glass"></span></span></label> <input type="text" class="form-control" id="searchClients" data-filter=".board .list-group-item" placeholder="Find clients">
+		                  <button type="button" class="close" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times-circle"></i></span> </button> 
+		                  <label class="input-group-prepend" for="searchClients"><span class="input-group-text"><span class="oi oi-magnifying-glass"></span></span></label> 
+		                  <input type="text" class="form-control" id="searchClients" data-filter=".board .list-group-item" placeholder="Find clients">
 		                </div><!-- /.input-group -->
 	              	</header>
 		  			<div class="table-responsive">
@@ -126,10 +131,7 @@
    				$(this).children('td').children('input').prop('checked', true);
    				$('#tableOrganization tr').removeClass('selected');
    			  	$(this).toggleClass('selected');
-   			  	
    			 	var href = $(this).find("a").attr("href");
-				//alert("Clicked: "+ href);
-   				
 				var url = "/clients/page-sidebar";
 				$('#page-sidebar').load(url, {
 					organizationId: href
@@ -137,11 +139,8 @@
 				function(data, status, jqXGR){
 					// TODO..			
 				});
-				
     		});
-    		
     	});
-    	
     </script>
   </body>
 </html>

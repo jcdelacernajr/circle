@@ -54,3 +54,13 @@ tr.selected {
     padding-bottom: 200px;
 }
 
+.pt-4, .py-4 {
+    padding-top: 0.5rem!important;
+}
+
+.card-header-list {
+    padding-bottom: 1rem;
+    margin-bottom: 0;
+    background-color: transparent;
+}
+

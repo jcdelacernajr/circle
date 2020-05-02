@@ -63,6 +63,9 @@ public class Organizations extends CircleAuditing {
 	
 	@Column(name = "dissolved")
 	private String dissolved;
+	
+	@Column(name = "license_fk")
+	private String license;
 
 	public long getOrganizationId() {
 		return organizationId;
