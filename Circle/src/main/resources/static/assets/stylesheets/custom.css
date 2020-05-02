@@ -64,3 +64,13 @@ tr.selected {
     background-color: transparent;
 }
 
+.page-title-bar-client-form {
+    padding-right: 0;
+    padding-left: 0;
+    width: max-content;
+}
+
+.client-form-control {
+	padding-left: 2rem;
+}
+

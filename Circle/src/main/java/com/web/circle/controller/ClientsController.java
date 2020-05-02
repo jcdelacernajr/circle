@@ -102,6 +102,12 @@ public class ClientsController extends BaseController {
 		model.addAttribute("branchList", branchService.branchList(organizationId));
 		return "clients/page_sidebar :: page-sidebar";
 	}
+	
+	@RequestMapping("add-client-form")
+	public String addClientForm(Model model) {
+		
+		return "clients/add_client_form :: add-client-form";
+	}
 }
 
 

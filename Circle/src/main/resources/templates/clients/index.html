@@ -23,7 +23,7 @@
 		  		<div class="page-inner page-inner-fill position-relative">
 		  			<header class="page-navs bg-light shadow-sm">
 		  				 <div class="card-header-list d-flex">
-			                <button type="button" class="btn btn-primary ml-auto" style="width: 100%;">Add Client</button>
+			                <button id="addClientButton" type="button" class="btn btn-primary ml-auto" style="width: 100%;">Add Client</button>
 			            </div>
 		                <!-- .input-group -->
 		                <div class="input-group has-clearable">
@@ -126,6 +126,7 @@
     <div th:insert="clients/fragments/footer.html :: footer"></div>
     <script>
     	$(document).ready(function(){
+    		
     		var table = $('#tableOrganization');
     		$('#tableOrganization tr').click(function(){
    				$(this).children('td').children('input').prop('checked', true);
@@ -137,8 +138,18 @@
 					organizationId: href
 				},
 				function(data, status, jqXGR){
+					// TODO..
+					//alert("status: "+ status + " jqxgr: "+ JSON.stringify(jqXGR));
+				});
+    		});
+    		
+    		$('#addClientButton').bind("click", function(){
+    			var url = "/clients/add-client-form";
+    			$('#page-sidebar').load(url,
+				function(data, status, jqXGR){
 					// TODO..			
 				});
+    			
     		});
     	});
     </script>
