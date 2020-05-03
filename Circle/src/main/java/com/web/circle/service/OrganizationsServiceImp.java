@@ -2,6 +2,8 @@ package com.web.circle.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +13,16 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.web.circle.controller.DTO.form.OrganizationSetupForm;
 import com.web.circle.model.ClientTableDataModel;
-import com.web.circle.model.entity.Branch;
+import com.web.circle.model.entity.License;
 import com.web.circle.model.entity.Organizations;
-import com.web.circle.repository.BranchRepository;
+import com.web.circle.model.entity.UploadFile;
+import com.web.circle.model.entity.Users;
 import com.web.circle.repository.OrganizationRepository;
 
 @Service
+@Transactional
 public class OrganizationsServiceImp implements OrganizationsService {
 	
 	@Autowired
@@ -52,4 +57,54 @@ public class OrganizationsServiceImp implements OrganizationsService {
 		return null;
 	}
 
+	@Override
+	public Organizations record(OrganizationSetupForm form) {
+		
+		// Organization table
+		Organizations organization = new Organizations();
+		organization.setEstablishmentName(form.getEstablishmentName());
+		organization.setType(form.getType());
+		organization.setAddress(form.getAddress());
+		
+		// License table.
+		License license = new License();
+		license.setLicenseId(0);
+		license.setCircleKey("KEYKEYKEY");
+		
+		// User table.
+		Users user = new Users();
+		user.setUserId(form.getUserId());
+		
+		license.setUsers(user);
+		
+		organization.setLicense(license);
+		
+		// File data.
+		Long fileId = form.getFileId(); 
+		if(fileId != null) {
+			UploadFile uploadFile = new UploadFile();
+			uploadFile.setUploadFileId(fileId);
+			organization.setUploadFile(uploadFile);
+		}
+		
+		return organizationRepository.save(null);
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

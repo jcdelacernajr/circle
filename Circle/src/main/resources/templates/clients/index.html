@@ -1,130 +1,171 @@
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-  <head>
-	<title>Circle | Clients</title>
-	</head>
-  <head th:insert="clients/fragments/header.html :: header"></head>
-  <body>
-    <!-- .app -->
-    <div class="app">
-      <!-- .app-header -->
-      <header th:insert="fragments/topbar.html :: topbar"></header>
-      <!-- /.app-header -->
-      <!-- .app-aside -->
-      <aside th:insert="fragments/aside.html :: aside"></aside>
-      <!-- /.app-aside -->
-	  
-	  <main class="app-main">
-	  	<div class="wrapper">
-	  		<div class="page has-sidebar has-sidebar-fluid has-sidebar-expand-xl has-sidebar-open">
-	  		
-		  		<div class="page-inner page-inner-fill position-relative">
-		  			<header class="page-navs bg-light shadow-sm">
-		  				 <div class="card-header-list d-flex">
-			                <button id="addClientButton" type="button" class="btn btn-primary ml-auto" style="width: 100%;">Add Client</button>
-			            </div>
-		                <!-- .input-group -->
-		                <div class="input-group has-clearable">
-		                  <button type="button" class="close" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times-circle"></i></span> </button> 
-		                  <label class="input-group-prepend" for="searchClients"><span class="input-group-text"><span class="oi oi-magnifying-glass"></span></span></label> 
-		                  <input type="text" class="form-control" id="searchClients" data-filter=".board .list-group-item" placeholder="Find clients">
-		                </div><!-- /.input-group -->
-	              	</header>
-		  			<div class="table-responsive">
-                        <!-- .table -->
-                        <table id="tableOrganization" class="table">
-                          <!-- thead -->
-                          
-                          <!-- /thead -->
-                          <!-- tbody -->
-                          <tbody>
-                            <!-- Organization list -->
-                            <tr th:each="organization : ${organizations}">
-                            	<td class="align-middle text-truncate">
-                                <a th:href="${organization.organizationId}" class="tile tile-circle bg-indigo text-white mr-1">SP</a>
-                                <a href="#" th:text="${organization.establishmentName}" ></a>
-                              </td>
-                            </tr>
-                          </tbody>
-                          <!-- /tbody -->
-                        </table>
-                        <!-- /.table -->
-                      </div>
-		  		</div>
-		  		
-		  		<!-- <div id="page-sidebar" th:insert="clients/page_sidebar.html :: page-sidebar"></div> -->
-		  		<div id="page-sidebar"></div>
-		  		
-		  		
-		  		<!-- Edit form modal -->
-		  		<form id="clientBillingEditForm" name="clientBillingEditForm">
-              <div class="modal fade has-shown" id="clientBillingEditModal" tabindex="-1" role="dialog" aria-labelledby="clientBillingEditModalLabel" aria-hidden="true" style="display: none;">
-                <!-- .modal-dialog -->
-                <div class="modal-dialog" role="document">
-                  <!-- .modal-content -->
-                  <div class="modal-content">
-                    <!-- .modal-header -->
-                    <div class="modal-header">
-                      <h6 id="clientBillingEditModalLabel" class="modal-title inline-editable">
-                        <span class="sr-only">Client name</span> <input type="text" class="form-control form-control-lg" value="Zathunicon, Inc." placeholder="E.g. Stilearning, Inc." required="">
-                      </h6>
-                    </div><!-- /.modal-header -->
-                    <!-- .modal-body -->
-                    <div class="modal-body">
-                      <!-- .form-row -->
-                      <div class="form-row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label for="ceStreet">Street</label> <input type="text" id="ceStreet" class="form-control" value="280 Suzanne Throughway">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="ceSuite">Suite</label> <input type="text" id="ceSuite" class="form-control" value="Breannabury">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="ceZip">Zip</label> <input type="text" id="ceZip" class="form-control" value="45801">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="ceCountry">Country</label> <select id="ceCountry" class="custom-select d-block w-100">
-                              <option value=""> Choose... </option>
-                              <option selected=""> United States </option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="ceCity">City</label> <select id="ceCity" class="custom-select d-block w-100">
-                              <option value=""> Choose... </option>
-                              <option selected=""> San Francisco </option>
-                            </select>
-                          </div>
-                        </div>
-                      </div><!-- /.form-row -->
-                    </div><!-- /.modal-body -->
-                    <!-- .modal-footer -->
-                    <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary">Save</button> <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-                    </div><!-- /.modal-footer -->
-                  </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-              </div>
-            </form>
-		  		
-	  		</div>
-	  	</div>
-	  </main>      
-      
-    </div>
-    <!-- /.app -->
-    <div th:insert="clients/fragments/footer.html :: footer"></div>
-    <script>
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<title>Circle | Clients</title>
+</head>
+<head th:insert="clients/fragments/header.html :: header"></head>
+<head>
+<link rel="stylesheet" href="#"
+	th:href="@{~/assets/stylesheets/bootstrap-select.min.css}">
+<link rel="stylesheet" href="#"
+	th:href="@{~/assets/stylesheets/bootstrap-datepicker3.css}">
+</head>
+<body>
+	<!-- .app -->
+	<div class="app">
+		<!-- .app-header -->
+		<header th:insert="fragments/topbar.html :: topbar"></header>
+		<!-- /.app-header -->
+		<!-- .app-aside -->
+		<aside th:insert="fragments/aside.html :: aside"></aside>
+		<!-- /.app-aside -->
+
+		<main class="app-main">
+			<div class="wrapper">
+				<div
+					class="page has-sidebar has-sidebar-fluid has-sidebar-expand-xl has-sidebar-open">
+
+					<div class="page-inner page-inner-fill position-relative">
+						<header class="page-navs bg-light shadow-sm">
+							<div class="card-header-list d-flex">
+								<button id="addClientButton" type="button"
+									class="btn btn-primary ml-auto" style="width: 100%;">Add
+									new client</button>
+							</div>
+							<!-- .input-group -->
+							<div class="input-group has-clearable">
+								<button type="button" class="close" aria-label="Close">
+									<span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
+								</button>
+								<label class="input-group-prepend" for="searchClients"><span
+									class="input-group-text"><span
+										class="oi oi-magnifying-glass"></span></span></label> <input type="text"
+									class="form-control" id="searchClients"
+									data-filter=".board .list-group-item"
+									placeholder="Find clients">
+							</div>
+							<!-- /.input-group -->
+						</header>
+						<div class="table-responsive">
+							<!-- .table -->
+							<table id="tableOrganization" class="table">
+								<!-- thead -->
+
+								<!-- /thead -->
+								<!-- tbody -->
+								<tbody>
+									<!-- Organization list -->
+									<tr th:each="organization : ${organizations}">
+										<td class="align-middle text-truncate"><a
+											th:href="${organization.organizationId}"
+											class="tile tile-circle bg-indigo text-white mr-1">SP</a> <a
+											href="#" th:text="${organization.establishmentName}"></a></td>
+									</tr>
+								</tbody>
+								<!-- /tbody -->
+							</table>
+							<!-- /.table -->
+						</div>
+					</div>
+
+					<!-- <div id="page-sidebar" th:insert="clients/page_sidebar.html :: page-sidebar"></div> -->
+					<div id="page-sidebar"></div>
+
+
+					<!-- Edit form modal -->
+					<form id="clientBillingEditForm" name="clientBillingEditForm">
+						<div class="modal fade has-shown" id="clientBillingEditModal"
+							tabindex="-1" role="dialog"
+							aria-labelledby="clientBillingEditModalLabel" aria-hidden="true"
+							style="display: none;">
+							<!-- .modal-dialog -->
+							<div class="modal-dialog" role="document">
+								<!-- .modal-content -->
+								<div class="modal-content">
+									<!-- .modal-header -->
+									<div class="modal-header">
+										<h6 id="clientBillingEditModalLabel"
+											class="modal-title inline-editable">
+											<span class="sr-only">Client name</span> <input type="text"
+												class="form-control form-control-lg"
+												value="Zathunicon, Inc."
+												placeholder="E.g. Stilearning, Inc." required="">
+										</h6>
+									</div>
+									<!-- /.modal-header -->
+									<!-- .modal-body -->
+									<div class="modal-body">
+										<!-- .form-row -->
+										<div class="form-row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label for="ceStreet">Street</label> <input type="text"
+														id="ceStreet" class="form-control"
+														value="280 Suzanne Throughway">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="ceSuite">Suite</label> <input type="text"
+														id="ceSuite" class="form-control" value="Breannabury">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="ceZip">Zip</label> <input type="text"
+														id="ceZip" class="form-control" value="45801">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="ceCountry">Country</label> <select
+														id="ceCountry" class="custom-select d-block w-100">
+														<option value="">Choose...</option>
+														<option selected="">United States</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="ceCity">City</label> <select id="ceCity"
+														class="custom-select d-block w-100">
+														<option value="">Choose...</option>
+														<option selected="">San Francisco</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<!-- /.form-row -->
+									</div>
+									<!-- /.modal-body -->
+									<!-- .modal-footer -->
+									<div class="modal-footer">
+										<button type="submit" class="btn btn-primary">Save</button>
+										<button type="button" class="btn btn-light"
+											data-dismiss="modal">Close</button>
+									</div>
+									<!-- /.modal-footer -->
+								</div>
+								<!-- /.modal-content -->
+							</div>
+							<!-- /.modal-dialog -->
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</main>
+
+	</div>
+	<!-- /.app -->
+	<div th:insert="clients/fragments/footer.html :: footer"></div>
+	<script src="#"
+		th:src="@{~/assets/javascript/pages/bootstrap-select.min.js}"></script>
+	<script src="#"
+		th:src="@{~/assets/javascript/pages/bootstrap-datepicker.min.js}"></script>
+	<script>
     	$(document).ready(function(){
     		
     		var table = $('#tableOrganization');
@@ -144,14 +185,15 @@
     		});
     		
     		$('#addClientButton').bind("click", function(){
-    			var url = "/clients/add-client-form";
+    			var url = "/clients/add-client-page";
     			$('#page-sidebar').load(url,
 				function(data, status, jqXGR){
 					// TODO..			
 				});
     			
     		});
+    		
     	});
     </script>
-  </body>
+</body>
 </html>

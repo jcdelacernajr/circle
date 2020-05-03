@@ -1,296 +1,352 @@
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-  <head>
-	<title>Circle | Account Setup Page</title>
-	</head>
-  <head th:insert="human_resources/fragments/header.html :: header"></head>
-  <head>
-  <link rel="stylesheet" href="#" th:href="@{~/assets/stylesheets/bootstrap-select.min.css}"> 
-  <link rel="stylesheet" href="#" th:href="@{~/assets/stylesheets/bootstrap-datepicker3.css}"> 
-  </head>
-  <body>
-    <!-- .app -->
-    <div class="app has-fullwidth">
-      <!-- .app-header -->
-      <header class="app-header">
-        <!-- .top-bar -->
-        <div class="top-bar">
-          <!-- .top-bar-brand -->
-          <div class="top-bar-brand">
-            <a th:href="@{~/}">
-              <img src="assets/images/brand-inverse.png" height="32" alt="">
-            </a>
-          </div>
-          <!-- /.top-bar-brand -->
-          <!-- .top-bar-list -->
-          <div class="top-bar-list">
-            <!-- .top-bar-item -->
-            <div class="top-bar-item px-2 d-md-none d-lg-none d-xl-none">
-              <!-- toggle menu -->
-              <button class="hamburger hamburger-squeeze" type="button" data-toggle="aside" aria-label="Menu" aria-controls="navigation">
-                <span class="hamburger-box">
-                  <span class="hamburger-inner"></span>
-                </span>
-              </button>
-              <!-- /toggle menu -->
-            </div>
-            <!-- /.top-bar-item -->
-            <!-- .top-bar-item -->
-            <div class="top-bar-item top-bar-item-full">
-              <!-- .top-bar-search -->
-              <div class="top-bar-search">
-                <div class="input-group input-group-search">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">
-                      <span class="oi oi-magnifying-glass"></span>
-                    </span>
-                  </div>
-                  <input type="text" class="form-control" aria-label="Search" placeholder="Search"> </div>
-              </div>
-              
-              <!-- /.top-bar-search -->
-            </div>
-            <!-- /.top-bar-item -->
-            <!-- .top-bar-item -->
-            <div class="top-bar-item top-bar-item-right px-0 d-none d-sm-flex">
-              <!-- .btn-account -->
-              <div class="dropdown">
-                <button class="btn-account d-none d-md-flex" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span class="user-avatar">
-                    <img src="assets/images/avatars/profile.jpg" alt="">
-                  </span>
-                  <span class="account-summary pr-lg-4 d-none d-lg-block">
-                    <span class="account-name" sec:authentication="name"></span>
-                    <span class="account-description"></span>
-                  </span>
-                </button>
-                <div class="dropdown-arrow dropdown-arrow-left"></div>
-                <!-- .dropdown-menu -->
-                <div class="dropdown-menu">
-                  <h6 class="dropdown-header d-none d-md-block d-lg-none"></h6>
-                   <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/logout}">
-	                  <a class="dropdown-item" href="user-profile.html">
-	                    <span class="dropdown-icon oi oi-person"></span> 
-	                    <button class="dropdown-item btn-sm" sec:authorize="isAuthenticated()" type="submit">Logout</button>
-	                	<button class="dropdown-item btn-sm" sec:authorize="isAnonymous()" th:href="@{~/login}" type="submit">Sign in</button>
-	                    </a>
-                   </form>
-                   	<a class="dropdown-item" href="signup" sec:authorize="isAnonymous()">
-                    <span class="dropdown-icon oi oi-account-logout"></span>Signup</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Help Center</a>
-                  <a class="dropdown-item" href="#">Ask Forum</a>
-                  <a class="dropdown-item" href="#">Keyboard Shortcuts</a>
-                </div>
-                <!-- /.dropdown-menu -->
-              </div>
-              <!-- /.btn-account -->
-            </div>
-            <!-- /.top-bar-item -->
-          </div>
-          <!-- /.top-bar-list -->
-        </div>
-        <!-- /.top-bar -->
-      </header>
-      <!-- /.app-header -->
-      <!-- .app-aside -->
-      <aside class="app-aside">
-        <!-- .aside-content -->
-        <div class="aside-content">
-          <!-- .aside-header -->
-          <header class="aside-header">
-            <!-- toggle menu -->
-            <button class="hamburger hamburger-squeeze" type="button" data-toggle="aside" aria-label="Menu" aria-controls="navigation">
-              <span class="hamburger-box">
-                <span class="hamburger-inner"></span>
-              </span>
-            </button>
-            <!-- /toggle menu -->
-            <!-- .btn-account -->
-            <button class="btn-account d-flex d-md-none" type="button" data-toggle="collapse" data-target="#dropdown-aside">
-              <span class="user-avatar user-avatar-lg">
-                <img src="assets/images/avatars/profile.jpg" alt="">
-              </span>
-              <span class="account-icon">
-                <span class="fa fa-caret-down fa-lg"></span>
-              </span>
-              <span class="account-summary">
-                <span class="account-name" sec:authentication="name"></span>
-                <span class="account-description"></span>
-              </span>
-            </button>
-            <!-- /.btn-account -->
-            <!-- .dropdown-aside -->
-            <div id="dropdown-aside" class="dropdown-aside collapse">
-              <!-- dropdown-items -->
-              <div class="pb-3">
-                <a class="dropdown-item" href="user-profile.html">
-                  <span class="dropdown-icon oi oi-person"></span> Profile</a>
-                <a class="dropdown-item" href="auth-signin-v1.html">
-                  <span class="dropdown-icon oi oi-account-logout"></span> Logout</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Help Center</a>
-                <a class="dropdown-item" href="#">Ask Forum</a>
-                <a class="dropdown-item" href="#">Keyboard Shortcuts</a>
-              </div>
-              <!-- /dropdown-items -->
-            </div>
-            <!-- /.dropdown-aside -->
-            <!-- .top-bar-brand -->
-            <div class="top-bar-brand">
-              <a href="index.html">
-                <img src="assets/images/brand.png" height="32" alt="">
-              </a>
-            </div>
-            <!-- /.top-bar-brand -->
-          </header>
-          <!-- /.aside-header -->
-          
-        </div>
-        <!-- /.aside-content -->
-      </aside>
-      <!-- /.app-aside -->
-      <!-- .app-main -->
-      <main class="app-main">
-        <!-- .wrapper -->
-        <div class="wrapper">
-          <!-- .page -->
-          <div class="page">
-            <!-- .page-inner -->
-            <div sec:authorize="isAuthenticated()" class="page-inner">
-              <!-- .page-title-bar -->
-              <header class="page-title-bar">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item active">
-                      <a href="#"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Account setup</a>
-                    </li>
-                  </ol>
-                </nav>
-                
-                <div th:if="${param.success}" class="col-md-8 mb-1">
-                    <div class="alert alert-success alert-dismissible fade show">
-                      <strong>Well done! </strong><span>You have successfully update your personal information.</span></div>
-                 </div>
-              </header>
-              <!-- /.page-title-bar -->
-              <!-- .page-section -->
-              <!-- Account Setup -->
-              <div class="page-section">
-               <form method="post" th:action="@{/account-setup-form}" enctype="multipart/form-data">
-               	<div class="form-row" style="margin-bottom:20px;">
-             	   <!-- grid column -->
-			      <div th:if="${photoUrl}" class="col-md-3 md-3">
-			      	<label for="profilePicture">
-			      	<input type="file" name="file" id="profilePicture" class="form-control" style="width:200px; display:none;">
-                    <img id="photo" class="img-thumbnail" style="width:200px;height:200px;" th:src="${photoUrl}" alt="...">
-                    </label>
-			      </div>
-			      <div th:unless="${photoUrl}" class="col-md-3 md-3">
-			      <label for="profilePicture">
-			      	<input type="file" name="file" id="profilePicture" class="form-control" style="width:200px; display:none;">
-                    <img id="photo" class="img-thumbnail" style="width:200px;height:200px;" th:src="@{~/assets/images/avatars/photo.jpg}" alt="...">
-                    </label>
-			      </div>
-		         </div>
-                 <div class="form-row">
-                   <!-- grid column -->
-                   <div class="col-md-3 mb-3">
-                     <label for="organization">Organization</label> 
-                     <div class="circle-select">
-	                     <select type="organization" class="form-control selectpicker" data-live-search="true" name="organization" id="organization" required=""> 
-							  <option
-							  	th:each="organization : ${organizations}"
-							  	th:value="${organization.value}"
-							  	th:selected="${organization.selected}"
-							  	th:text="${organization.text}">
-							  </option>
-	                     </select>
-                     </div>
-                     <div class="invalid-feedback"> Valid first name is required. </div>
-                   </div><!-- /grid column -->
-                    <!-- grid column -->
-                   <div class="col-md-3 mb-3">
-                     <label for="branch">Branch</label> 
-                      <div class="circle-select">
-	                     <select type="branch" class="form-control selectpicker" data-live-search="true" name="branch" id="branch" required=""> 
-	                     <option></option>
-	                     </select>
-                     </div> 
-                   </div><!-- /grid column -->
-                   </div>
-               	<!-- .form-row -->
-                 <div class="form-row">
-                   <!-- grid column -->
-                   <div class="col-md-3 mb-3">
-                     <label for="firstName">First name</label> <input type="firstName" th:value="${firstName}" class="form-control" name="firstName" id="firstName" required="">
-                     <div class="invalid-feedback"> Valid first name is required. </div>
-                   </div><!-- /grid column -->
-                   <!-- grid column -->
-                   <div class="col-md-1 mb-1">
-                     <label for="middleName">Middle name</label> <input type="middleName" th:value="${middleName}" class="form-control" name="middleName" id="middleName" required="">
-                     <div class="invalid-feedback"> Valid last name is required. </div>
-                   </div><!-- /grid column -->
-                   <!-- grid column -->
-                   <div class="col-md-3 mb-3">
-                     <label for="lastName">Last name</label> <input type="lastName" th:value="${lastName}" class="form-control" name="lastName" id="lastName" required="">
-                     <div class="invalid-feedback"> Valid last name is required. </div>
-                   </div><!-- /grid column -->
-                   <!-- grid column -->
-                   <div class="col-md-1 mb-1">
-                     <label for="extension">Extension</label> <input type="extension" th:value="${extension}" class="form-control" name="extension" id="nameExtension" required="">
-                     <div class="invalid-feedback"> Valid last name is required. </div>
-                   </div><!-- /grid column -->
-                 </div>
-                 <!-- /.form-row -->
-                 <!-- .form-row -->
-                 <div class="form-row">
-                    <!-- grid column -->
-                   <div class="col-md-2 mb-1">
-                     <label for="citizenship">Citizenship</label> <input type="citizenship" th:value="${citizenship}" class="form-control" name="citizenship" id="citizenship" required="">
-                     <div class="invalid-feedback"> Valid last name is required. </div>
-                   </div><!-- /grid column -->
-                   <!-- grid column -->
-                   <div class="col-md-2 mb-1">
-                  	  <label for="dateOfBerth">Date of berth</label> 
-                      <input class="form-control" th:value="${dateOfBerth}"  id="dateOfBerth" name="dateOfBerth" placeholder="YYY/MM/DD" type="dateOfBerth" required="" />
-                      <div class="invalid-feedback"> Valid last name is required. </div>
-                   </div><!-- /grid column -->
-                 </div>
-                  <!-- .form-row -->
-                 <div class="form-row">
-                    <!-- grid column -->
-                   <div class="col-md-8 mb-1">
-                     <label for="Address">Address</label> <textarea type="address" th:text="${address}" class="form-control" name="address" id="address" required=""></textarea>
-                     <div class="invalid-feedback"> Valid last name is required. </div>
-                   </div><!-- /grid column -->
-                   </div>
-                    <!-- .form-row -->
-                 <div class="form-row">
-	                 <div class="col-md-8 mb-1 text-right">
-	                   <button style="margin-top: 10px;" class="btn btn-primary" type="submit">Submit</button>
-	                 </div>
-                 </div>
-               </form>
-     		  </div>
-              <!-- /.Account Setup -->
-              <!-- /.page-section -->
-            </div>
-            <!-- /.page-inner -->
-          </div>
-          <!-- /.page -->
-        </div>
-        <!-- /.wrapper -->
-      </main>
-      <!-- /.app-main -->
-    </div>
-    <!-- /.app -->
-    <div th:insert="human_resources/fragments/footer.html :: footer"></div>
-    <script src="#" th:src="@{~/assets/javascript/pages/bootstrap-select.min.js}"></script>
-    <script src="#" th:src="@{~/assets/javascript/pages/bootstrap-datepicker.min.js}"></script>
-    <script type="text/javascript">
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<title>Circle | Account Setup Page</title>
+</head>
+<head th:insert="human_resources/fragments/header.html :: header"></head>
+<head>
+<link rel="stylesheet" href="#"
+	th:href="@{~/assets/stylesheets/bootstrap-select.min.css}">
+<link rel="stylesheet" href="#"
+	th:href="@{~/assets/stylesheets/bootstrap-datepicker3.css}">
+</head>
+<body>
+	<!-- .app -->
+	<div class="app has-fullwidth">
+		<!-- .app-header -->
+		<header class="app-header">
+			<!-- .top-bar -->
+			<div class="top-bar">
+				<!-- .top-bar-brand -->
+				<div class="top-bar-brand">
+					<a th:href="@{~/}"> <img src="assets/images/brand-inverse.png"
+						height="32" alt="">
+					</a>
+				</div>
+				<!-- /.top-bar-brand -->
+				<!-- .top-bar-list -->
+				<div class="top-bar-list">
+					<!-- .top-bar-item -->
+					<div class="top-bar-item px-2 d-md-none d-lg-none d-xl-none">
+						<!-- toggle menu -->
+						<button class="hamburger hamburger-squeeze" type="button"
+							data-toggle="aside" aria-label="Menu" aria-controls="navigation">
+							<span class="hamburger-box"> <span class="hamburger-inner"></span>
+							</span>
+						</button>
+						<!-- /toggle menu -->
+					</div>
+					<!-- /.top-bar-item -->
+					<!-- .top-bar-item -->
+					<div class="top-bar-item top-bar-item-full">
+						<!-- .top-bar-search -->
+						<div class="top-bar-search">
+							<div class="input-group input-group-search">
+								<div class="input-group-prepend">
+									<span class="input-group-text"> <span
+										class="oi oi-magnifying-glass"></span>
+									</span>
+								</div>
+								<input type="text" class="form-control" aria-label="Search"
+									placeholder="Search">
+							</div>
+						</div>
+
+						<!-- /.top-bar-search -->
+					</div>
+					<!-- /.top-bar-item -->
+					<!-- .top-bar-item -->
+					<div class="top-bar-item top-bar-item-right px-0 d-none d-sm-flex">
+						<!-- .btn-account -->
+						<div class="dropdown">
+							<button class="btn-account d-none d-md-flex" type="button"
+								data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false">
+								<span class="user-avatar"> <img
+									src="assets/images/avatars/profile.jpg" alt="">
+								</span> <span class="account-summary pr-lg-4 d-none d-lg-block">
+									<span class="account-name" sec:authentication="name"></span> <span
+									class="account-description"></span>
+								</span>
+							</button>
+							<div class="dropdown-arrow dropdown-arrow-left"></div>
+							<!-- .dropdown-menu -->
+							<div class="dropdown-menu">
+								<h6 class="dropdown-header d-none d-md-block d-lg-none"></h6>
+								<form class="form-inline my-2 my-lg-0" form-method="post"
+									th:action="@{/logout}">
+									<a class="dropdown-item" href="user-profile.html"> <span
+										class="dropdown-icon oi oi-person"></span>
+										<button class="dropdown-item btn-sm"
+											sec:authorize="isAuthenticated()" type="submit">Logout</button>
+										<button class="dropdown-item btn-sm"
+											sec:authorize="isAnonymous()" th:href="@{~/login}"
+											type="submit">Sign in</button>
+									</a>
+								</form>
+								<a class="dropdown-item" href="signup"
+									sec:authorize="isAnonymous()"> <span
+									class="dropdown-icon oi oi-account-logout"></span>Signup
+								</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="#">Help Center</a> <a
+									class="dropdown-item" href="#">Ask Forum</a> <a
+									class="dropdown-item" href="#">Keyboard Shortcuts</a>
+							</div>
+							<!-- /.dropdown-menu -->
+						</div>
+						<!-- /.btn-account -->
+					</div>
+					<!-- /.top-bar-item -->
+				</div>
+				<!-- /.top-bar-list -->
+			</div>
+			<!-- /.top-bar -->
+		</header>
+		<!-- /.app-header -->
+		<!-- .app-aside -->
+		<aside class="app-aside">
+			<!-- .aside-content -->
+			<div class="aside-content">
+				<!-- .aside-header -->
+				<header class="aside-header">
+					<!-- toggle menu -->
+					<button class="hamburger hamburger-squeeze" type="button"
+						data-toggle="aside" aria-label="Menu" aria-controls="navigation">
+						<span class="hamburger-box"> <span class="hamburger-inner"></span>
+						</span>
+					</button>
+					<!-- /toggle menu -->
+					<!-- .btn-account -->
+					<button class="btn-account d-flex d-md-none" type="button"
+						data-toggle="collapse" data-target="#dropdown-aside">
+						<span class="user-avatar user-avatar-lg"> <img
+							src="assets/images/avatars/profile.jpg" alt="">
+						</span> <span class="account-icon"> <span
+							class="fa fa-caret-down fa-lg"></span>
+						</span> <span class="account-summary"> <span class="account-name"
+							sec:authentication="name"></span> <span
+							class="account-description"></span>
+						</span>
+					</button>
+					<!-- /.btn-account -->
+					<!-- .dropdown-aside -->
+					<div id="dropdown-aside" class="dropdown-aside collapse">
+						<!-- dropdown-items -->
+						<div class="pb-3">
+							<a class="dropdown-item" href="user-profile.html"> <span
+								class="dropdown-icon oi oi-person"></span> Profile
+							</a> <a class="dropdown-item" href="auth-signin-v1.html"> <span
+								class="dropdown-icon oi oi-account-logout"></span> Logout
+							</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Help Center</a> <a
+								class="dropdown-item" href="#">Ask Forum</a> <a
+								class="dropdown-item" href="#">Keyboard Shortcuts</a>
+						</div>
+						<!-- /dropdown-items -->
+					</div>
+					<!-- /.dropdown-aside -->
+					<!-- .top-bar-brand -->
+					<div class="top-bar-brand">
+						<a href="index.html"> <img src="assets/images/brand.png"
+							height="32" alt="">
+						</a>
+					</div>
+					<!-- /.top-bar-brand -->
+				</header>
+				<!-- /.aside-header -->
+
+			</div>
+			<!-- /.aside-content -->
+		</aside>
+		<!-- /.app-aside -->
+		<!-- .app-main -->
+		<main class="app-main">
+			<!-- .wrapper -->
+			<div class="wrapper">
+				<!-- .page -->
+				<div class="page">
+					<!-- .page-inner -->
+					<div sec:authorize="isAuthenticated()" class="page-inner">
+						<!-- .page-title-bar -->
+						<header class="page-title-bar">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item active"><a href="#"><i
+											class="breadcrumb-icon fa fa-angle-left mr-2"></i>Account
+											setup</a></li>
+								</ol>
+							</nav>
+
+							<div th:if="${param.success}" class="col-md-8 mb-1">
+								<div class="alert alert-success alert-dismissible fade show">
+									<strong>Well done! </strong><span>You have successfully
+										update your personal information.</span>
+								</div>
+							</div>
+						</header>
+						<!-- /.page-title-bar -->
+						<!-- .page-section -->
+						<!-- Account Setup -->
+						<div class="page-section">
+							<form method="post" th:action="@{/account-setup-form}"
+								enctype="multipart/form-data">
+								<div class="form-row" style="margin-bottom: 20px;">
+									<!-- grid column -->
+									<div th:if="${photoUrl}" class="col-md-3 md-3">
+										<label for="profilePicture"> <input type="file"
+											name="file" id="profilePicture" class="form-control"
+											style="width: 200px; display: none;"> <img id="photo"
+											class="img-thumbnail" style="width: 200px; height: 200px;"
+											th:src="${photoUrl}" alt="...">
+										</label>
+									</div>
+									<div th:unless="${photoUrl}" class="col-md-3 md-3">
+										<label for="profilePicture"> <input type="file"
+											name="file" id="profilePicture" class="form-control"
+											style="width: 200px; display: none;"> <img id="photo"
+											class="img-thumbnail" style="width: 200px; height: 200px;"
+											th:src="@{~/assets/images/avatars/photo.jpg}" alt="...">
+										</label>
+									</div>
+								</div>
+								<div class="form-row">
+									<!-- grid column -->
+									<div class="col-md-3 mb-3">
+										<label for="organization">Organization</label>
+										<div class="circle-select">
+											<select type="organization" class="form-control selectpicker"
+												data-live-search="true" name="organization"
+												id="organization" required="">
+												<option th:each="organization : ${organizations}"
+													th:value="${organization.value}"
+													th:selected="${organization.selected}"
+													th:text="${organization.text}"></option>
+											</select>
+										</div>
+										<div class="invalid-feedback">Valid first name is
+											required.</div>
+									</div>
+									<!-- /grid column -->
+									<!-- grid column -->
+									<div class="col-md-3 mb-3">
+										<label for="branch">Branch</label>
+										<div class="circle-select">
+											<select type="branch" class="form-control selectpicker"
+												data-live-search="true" name="branch" id="branch"
+												required="">
+												<option></option>
+											</select>
+										</div>
+									</div>
+									<!-- /grid column -->
+								</div>
+								<!-- .form-row -->
+								<div class="form-row">
+									<!-- grid column -->
+									<div class="col-md-3 mb-3">
+										<label for="firstName">First name</label> <input
+											type="firstName" th:value="${firstName}" class="form-control"
+											name="firstName" id="firstName" required="">
+										<div class="invalid-feedback">Valid first name is
+											required.</div>
+									</div>
+									<!-- /grid column -->
+									<!-- grid column -->
+									<div class="col-md-1 mb-1">
+										<label for="middleName">Middle name</label> <input
+											type="middleName" th:value="${middleName}"
+											class="form-control" name="middleName" id="middleName"
+											required="">
+										<div class="invalid-feedback">Valid last name is
+											required.</div>
+									</div>
+									<!-- /grid column -->
+									<!-- grid column -->
+									<div class="col-md-3 mb-3">
+										<label for="lastName">Last name</label> <input type="lastName"
+											th:value="${lastName}" class="form-control" name="lastName"
+											id="lastName" required="">
+										<div class="invalid-feedback">Valid last name is
+											required.</div>
+									</div>
+									<!-- /grid column -->
+									<!-- grid column -->
+									<div class="col-md-1 mb-1">
+										<label for="extension">Extension</label> <input
+											type="extension" th:value="${extension}" class="form-control"
+											name="extension" id="nameExtension" required="">
+										<div class="invalid-feedback">Valid last name is
+											required.</div>
+									</div>
+									<!-- /grid column -->
+								</div>
+								<!-- /.form-row -->
+								<!-- .form-row -->
+								<div class="form-row">
+									<!-- grid column -->
+									<div class="col-md-2 mb-1">
+										<label for="citizenship">Citizenship</label> <input
+											type="citizenship" th:value="${citizenship}"
+											class="form-control" name="citizenship" id="citizenship"
+											required="">
+										<div class="invalid-feedback">Valid last name is
+											required.</div>
+									</div>
+									<!-- /grid column -->
+									<!-- grid column -->
+									<div class="col-md-2 mb-1">
+										<label for="dateOfBerth">Date of berth</label> <input
+											class="form-control" th:value="${dateOfBerth}"
+											id="dateOfBerth" name="dateOfBerth" placeholder="YYY/MM/DD"
+											type="dateOfBerth" required="" />
+										<div class="invalid-feedback">Valid last name is
+											required.</div>
+									</div>
+									<!-- /grid column -->
+								</div>
+								<!-- .form-row -->
+								<div class="form-row">
+									<!-- grid column -->
+									<div class="col-md-8 mb-1">
+										<label for="Address">Address</label>
+										<textarea type="address" th:text="${address}"
+											class="form-control" name="address" id="address" required=""></textarea>
+										<div class="invalid-feedback">Valid last name is
+											required.</div>
+									</div>
+									<!-- /grid column -->
+								</div>
+								<!-- .form-row -->
+								<div class="form-row">
+									<div class="col-md-8 mb-1 text-right">
+										<button style="margin-top: 10px;" class="btn btn-primary"
+											type="submit">Submit</button>
+									</div>
+								</div>
+							</form>
+						</div>
+						<!-- /.Account Setup -->
+						<!-- /.page-section -->
+					</div>
+					<!-- /.page-inner -->
+				</div>
+				<!-- /.page -->
+			</div>
+			<!-- /.wrapper -->
+		</main>
+		<!-- /.app-main -->
+	</div>
+	<!-- /.app -->
+	<div th:insert="human_resources/fragments/footer.html :: footer"></div>
+	<script src="#"
+		th:src="@{~/assets/javascript/pages/bootstrap-select.min.js}"></script>
+	<script src="#"
+		th:src="@{~/assets/javascript/pages/bootstrap-datepicker.min.js}"></script>
+	<script type="text/javascript">
     $(document).ready(function(){
 	   	$(function (){	   			   		
 	   		function readerPhotoUrl(input) {
@@ -366,5 +422,5 @@
     	
    	});
    </script>
-  </body>
+</body>
 </html>

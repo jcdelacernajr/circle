@@ -7,21 +7,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.web.circle.controller.DTO.form.OrganizationSetupForm;
+import com.web.circle.exception.FileStorageException;
 import com.web.circle.model.BranchTableDataModel;
 import com.web.circle.model.ClientTableDataModel;
+import com.web.circle.model.FileMetaDataModel;
 import com.web.circle.model.OrganizationDataModel;
 import com.web.circle.model.entity.Branch;
 import com.web.circle.model.entity.Organizations;
+import com.web.circle.model.entity.Users;
 import com.web.circle.repository.BranchRepository;
 import com.web.circle.repository.DepartmentRepository;
 import com.web.circle.repository.OrganizationRepository;
 import com.web.circle.repository.PersonRepository;
 import com.web.circle.repository.UserRepository;
 import com.web.circle.service.BranchService;
+import com.web.circle.service.FileStorageService;
 import com.web.circle.service.OrganizationsService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -46,7 +54,8 @@ public class ClientsController extends BaseController {
 	OrganizationsService organizationsService;
 	@Autowired
 	BranchService branchService;
-
+	@Autowired
+	FileStorageService fileStorageService;
 
 	/**
 	 * Display the list of organizations
@@ -114,14 +123,45 @@ public class ClientsController extends BaseController {
 	}
 	
 	/**
-	 * Add client form.
-	 * 
+	 * Add client page.
 	 * 
 	 * */
-	@RequestMapping("add-client-form")
+	@RequestMapping("add-client-page")
 	public String addClientForm(Model model) {
+		return "clients/add_client_page :: add-client-page";
+	}
+	
+	/**
+	 * Organization form
+	 * 
+	 * TODO...
+	 * https://riptutorial.com/thymeleaf/example/21967/ajax-form-submition-with-jquery
+	 * 
+	 * */
+	@PostMapping("/clients/organization-setup-form")
+	public String organizationSetupForm(@ModelAttribute OrganizationSetupForm form, RedirectAttributes attr, Model model) {
+		Users user = getCurrentLoggedUser("organizationSetupForm(");
+		try {
+			// Store the file data.
+			Long fileId = null;
+			FileMetaDataModel data = null;
+			// If the user have no selected new photo
+			// This function will get the previews photo.
+			if(!form.getFile().isEmpty()) {
+				data = fileStorageService.store(form.getFile(), user);
+				fileId = data.getFileId();
+				form.setFileId(fileId);
+			} 
+			
+			// Set user id
+			form.setUserId(user.getUserId());
+			organizationsService.record(form);
+		} catch (FileStorageException err) {
+			log.error("organizationSetupForm(): ", err.getMessage());
+			return "redirect:/clients/index?success";
+		}
 		
-		return "clients/add_client_form :: add-client-form";
+		return "redirect:/clients/index?success";
 	}
 }
 

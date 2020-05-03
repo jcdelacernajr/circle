@@ -2,6 +2,7 @@ package com.web.circle.model.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -67,9 +68,35 @@ public class Organizations extends CircleAuditing {
 	@Column(name = "dissolved")
 	private String dissolved;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	/**
+	 * The organization license.
+	 * */
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "license_fk")
 	private License license;
+	
+	/**
+	 * The current used logo of organization
+	 * */
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "logo_id")
+	private UploadFile uploadFile;
+
+	public License getLicense() {
+		return license;
+	}
+
+	public void setLicense(License license) {
+		this.license = license;
+	}
+
+	public UploadFile getUploadFile() {
+		return uploadFile;
+	}
+
+	public void setUploadFile(UploadFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
 
 	public long getOrganizationId() {
 		return organizationId;

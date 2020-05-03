@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+
+<div th:fragment="add-client-page" class="page-sidebar bg-light">
+
+	<div class="page-inner">
+		<!-- .page-title-bar -->
+		<header class="page-title-bar-client-form">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item active"><a href="#"><i
+							class="breadcrumb-icon fa fa-angle-left mr-2"></i>Organization
+							setup</a></li>
+				</ol>
+			</nav>
+		</header>
+		<!-- /.page-title-bar -->
+	</div>
+	<form method="post" th:action="@{~/clients/organization-setup-form}" enctype="multipart/form-data"
+		class="client-form-control">
+		<div class="form-row" style="margin-bottom: 20px;">
+			<!-- grid column -->
+			<div class="col-md-3 md-3">
+				<label for="organizationLogo"> <input type="file" name="file"
+					id="organizationLogo" class="form-control"
+					style="width: 100px; display: none;"> <img id="logo"
+					class="img-thumbnail" style="width: 100px; height: 100px;"
+					th:src="@{~/media/download/default-no-image.png}"
+					alt="...">
+				</label>
+			</div>
+		</div>
+		<div class="form-row">
+			<!-- grid column -->
+			<div class="col-md-8 mb-3">
+				<label for="establishmentName">Organization</label> <input
+					type="establishmentName" value="" class="form-control"
+					name="organization" id="establishmentName" required="">
+			</div>
+			<!-- /grid column -->
+		</div>
+		<!-- /.form-row -->
+		<!-- .form-row -->
+		<div class="form-row">
+			<!-- grid column -->
+			<div class="col-md-2 mb-1">
+				<label for="type">Type</label>
+				<div class="circle-select">
+					<select type="type" class="form-control selectpicker"
+						data-live-search="true" name="type"
+						id="type">
+						<option value="0">Nothing selected</option>
+						<option value="1">Government</option>
+						<option value="2">Private</option>
+					</select>
+				</div>
+			
+			</div>
+			<!-- /grid column -->
+		</div>
+		<!-- .form-row -->
+		<div class="form-row">
+			<!-- grid column -->
+			<div class="col-md-8 mb-1">
+				<label for="Address">Address</label>
+				<textarea type="address" class="form-control" name="address"
+					id="address" required=""></textarea>
+			</div>
+			<!-- /grid column -->
+		</div>
+		<!-- .form-row -->
+		<div class="form-row">
+			<div class="col-md-8 mb-1 text-right">
+				<button style="margin-top: 10px;" class="btn btn-primary"
+					type="submit">Submit</button>
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">
+	 	$(document).ready(function(){
+	 		function readerLogoUrl(input) {
+	   			if(input.files && input.files[0]) {
+	   				var reader = new FileReader();
+	   				reader.onload = function(e) {
+	   					$('#logo').attr('src',e.target.result);
+	   				}
+	   				reader.readAsDataURL(input.files[0]);
+	   			}
+	   		}
+	   		$("#organizationLogo").change(function() {
+	   			readerLogoUrl(this);
+	   		});
+	   		
+	   		$('.selectpicker').selectpicker();
+		});
+	</script>
+</div>
+</html>
