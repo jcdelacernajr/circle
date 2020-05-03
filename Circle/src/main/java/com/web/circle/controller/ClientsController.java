@@ -47,7 +47,11 @@ public class ClientsController extends BaseController {
 	@Autowired
 	BranchService branchService;
 
-	
+
+	/**
+	 * Display the list of organizations
+	 * on client page.
+	 * */
 	@GetMapping("index")
     public String index(Model model) {
 		// List of organization
@@ -80,6 +84,11 @@ public class ClientsController extends BaseController {
 		return organizationsService.organization(organizationId);
 	}
 	
+	/**
+	 * Display the organization data and the list of branches.
+	 * 
+	 * @param organizationId
+	 * */
 	@RequestMapping("page-sidebar")
 	public String pageSideBar(Model model, @RequestParam(value="organizationId") long organizationId) {
 		// Organization data.
@@ -99,10 +108,16 @@ public class ClientsController extends BaseController {
 		model.addAttribute("type",or.getType());
 		model.addAttribute("jurisdiction",or.getJurisdiction());
 		model.addAttribute("dissolved",or.getDissolved());
+		// List of branch
 		model.addAttribute("branchList", branchService.branchList(organizationId));
 		return "clients/page_sidebar :: page-sidebar";
 	}
 	
+	/**
+	 * Add client form.
+	 * 
+	 * 
+	 * */
 	@RequestMapping("add-client-form")
 	public String addClientForm(Model model) {
 		
