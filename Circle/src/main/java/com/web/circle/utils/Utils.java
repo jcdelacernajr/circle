@@ -17,20 +17,33 @@ import java.util.UUID;
 public final class Utils {
 	
 	/**
+	 * Convert hex to string
+	 * 
+	 * @param
+	 * @return string
+	 * */
+	public static String hexadecimalToString(String value) {
+		StringBuilder  output = new StringBuilder("");
+		for(int i = 0; i < value.length(); i += 2) {
+			String str = value.substring(i, i + 2);
+			output.append((char) Integer.parseInt(str, 16));
+		}
+		return output.toString();
+	}
+	
+	/**
 	 * Convert string to Hex
 	 * 
 	 * @param value
 	 * @return hex
 	 * */
 	public static String stringToHexadecimal(String value) {
-		String hex = "";
-		for(int i=0;i<value.length(); i++) {
-			char ch = value.charAt(i);
-			int in = (int)ch;
-			String part = Integer.toHexString(in);
-			hex += part;
-		}
-		return hex + ":" + UUID.randomUUID();
+		char[] chars = value.toCharArray();
+	    StringBuilder hex = new StringBuilder();
+	    for (char ch : chars) {
+	        hex.append(Integer.toHexString((int) ch));
+	    }
+	    return hex.toString();
 	}
 
 	/**

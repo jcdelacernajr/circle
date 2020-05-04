@@ -34,6 +34,7 @@ import com.web.circle.repository.UserRepository;
 import com.web.circle.service.BranchService;
 import com.web.circle.service.FileStorageService;
 import com.web.circle.service.OrganizationsService;
+import com.web.circle.utils.Utils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -123,6 +124,10 @@ public class ClientsController extends BaseController {
 		model.addAttribute("circle_key",or.getLicense().getCircleKey());
 		// List of branch
 		model.addAttribute("branchList", branchService.branchList(organizationId));
+		
+		// For debugging
+		// log.info("hex to string: "+ Utils.hexadecimalToString(or.getLicense().getCircleKey()));
+		
 		return "clients/page_sidebar :: page-sidebar";
 	}
 	
