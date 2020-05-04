@@ -1,7 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
 
 <div th:fragment="add-client-page" class="page-sidebar bg-light">
 
@@ -15,10 +14,25 @@
 							setup</a></li>
 				</ol>
 			</nav>
+			<div id="success" style="display: none" class="col-md-12 mb-1">
+				<div class="alert alert-success alert-dismissible fade show">
+					<strong>Well done! </strong><span>You have successfully
+						added a new Organization.</span>
+				</div>
+			</div>
+			<div id="error" style="display: none" class="col-md-12 mb-1">
+				<div class="alert alert-warning has-icon" role="alert">
+	                <div class="alert-icon">
+	                  <span class="fa fa-bullhorn"></span>
+	                </div>
+	                <span>Something went wrong. Please try again... </span>
+	            </div>
+            </div>
+			
 		</header>
 		<!-- /.page-title-bar -->
 	</div>
-	<form method="post" th:action="@{~/clients/organization-setup-form}" enctype="multipart/form-data"
+	<form id="organization-form"
 		class="client-form-control">
 		<div class="form-row" style="margin-bottom: 20px;">
 			<!-- grid column -->
@@ -35,9 +49,9 @@
 		<div class="form-row">
 			<!-- grid column -->
 			<div class="col-md-8 mb-3">
-				<label for="establishmentName">Organization</label> <input
-					type="establishmentName" value="" class="form-control"
-					name="organization" id="establishmentName" required="">
+				<label for="establishmentName">Organization</label> 
+				<input type="establishmentName" value="" class="form-control"
+					name="establishmentName" id="establishmentName" required="">
 			</div>
 			<!-- /grid column -->
 		</div>
@@ -51,9 +65,9 @@
 					<select type="type" class="form-control selectpicker"
 						data-live-search="true" name="type"
 						id="type">
-						<option value="0">Nothing selected</option>
-						<option value="1">Government</option>
-						<option value="2">Private</option>
+						<option value="Nothing selected">Nothing selected</option>
+						<option value="Government">Government</option>
+						<option value="Private">Private</option>
 					</select>
 				</div>
 			
@@ -79,7 +93,36 @@
 		</div>
 	</form>
 	<script type="text/javascript">
-	 	$(document).ready(function(){
+	 	$(document).ready(function() {
+	 		$('.selectpicker').selectpicker();
+	 		
+	 		$("#organization-form").on("submit", function(e) {
+	 			e.preventDefault();
+	 			$.ajax({
+	 				url: "/clients/submit-organization-form",
+	 				type: "POST",
+	 				data: new FormData(this),
+	 				enctype: 'multipart/form-data',
+	 				processData: false,
+	 				contentType: false,
+	 				cache: false,
+	 				success: function(res) {
+	 					var data = JSON.parse(res);
+						if(data.status == '0') {
+							$('#error').show();
+						}
+						if(data.status == '1') {
+							$('#success').show();
+						} 
+						$("#logo").attr('src','/media/download/default-no-image.png');
+	 					$("#organization-form").trigger("reset");
+	 				},
+	 				error: function(err) {
+	 					alert("Error status: "+ err.status + " Please try again...");
+	 				}
+	 			});
+	 		});
+	 		
 	 		function readerLogoUrl(input) {
 	   			if(input.files && input.files[0]) {
 	   				var reader = new FileReader();
@@ -93,7 +136,6 @@
 	   			readerLogoUrl(this);
 	   		});
 	   		
-	   		$('.selectpicker').selectpicker();
 		});
 	</script>
 </div>

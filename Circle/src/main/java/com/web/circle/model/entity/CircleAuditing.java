@@ -26,7 +26,7 @@ public abstract class CircleAuditing implements Serializable {
     @CreatedDate
     private Date createdAt;
 
-    //@Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "date_modified", nullable = true)
     @LastModifiedDate
     private Date updatedAt;

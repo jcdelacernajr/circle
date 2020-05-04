@@ -62,6 +62,7 @@ public class OrganizationsServiceImp implements OrganizationsService {
 		
 		// Organization table
 		Organizations organization = new Organizations();
+		organization.setOrganizationId(0);
 		organization.setEstablishmentName(form.getEstablishmentName());
 		organization.setType(form.getType());
 		organization.setAddress(form.getAddress());
@@ -74,7 +75,7 @@ public class OrganizationsServiceImp implements OrganizationsService {
 		// User table.
 		Users user = new Users();
 		user.setUserId(form.getUserId());
-		
+		license.setOrganizations(organization);
 		license.setUsers(user);
 		
 		organization.setLicense(license);
@@ -87,7 +88,7 @@ public class OrganizationsServiceImp implements OrganizationsService {
 			organization.setUploadFile(uploadFile);
 		}
 		
-		return organizationRepository.save(null);
+		return organizationRepository.save(organization);
 	}
 
 }

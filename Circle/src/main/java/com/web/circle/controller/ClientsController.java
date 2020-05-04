@@ -3,7 +3,10 @@ package com.web.circle.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -138,15 +141,15 @@ public class ClientsController extends BaseController {
 	 * https://riptutorial.com/thymeleaf/example/21967/ajax-form-submition-with-jquery
 	 * 
 	 * */
-	@PostMapping("/clients/organization-setup-form")
-	public String organizationSetupForm(@ModelAttribute OrganizationSetupForm form, RedirectAttributes attr, Model model) {
+	@PostMapping("/submit-organization-form")
+	@ResponseBody
+	public ResponseEntity<String> organizationSetupForm(@ModelAttribute OrganizationSetupForm form) {
 		Users user = getCurrentLoggedUser("organizationSetupForm(");
 		try {
+			
 			// Store the file data.
 			Long fileId = null;
 			FileMetaDataModel data = null;
-			// If the user have no selected new photo
-			// This function will get the previews photo.
 			if(!form.getFile().isEmpty()) {
 				data = fileStorageService.store(form.getFile(), user);
 				fileId = data.getFileId();
@@ -155,13 +158,20 @@ public class ClientsController extends BaseController {
 			
 			// Set user id
 			form.setUserId(user.getUserId());
+			// Record the data.
 			organizationsService.record(form);
+			
 		} catch (FileStorageException err) {
-			log.error("organizationSetupForm(): ", err.getMessage());
-			return "redirect:/clients/index?success";
+			JSONObject obj = new JSONObject();
+			obj.put("status", 0);
+			obj.put("message", "Storing file error");
+			return new ResponseEntity<>(obj.toString(), HttpStatus.BAD_REQUEST);
 		}
 		
-		return "redirect:/clients/index?success";
+		JSONObject obj = new JSONObject();
+		obj.put("status", 1);
+		obj.put("message", "success");
+		return new ResponseEntity<>(obj.toString(), HttpStatus.OK);
 	}
 }
 
