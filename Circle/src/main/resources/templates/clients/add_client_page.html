@@ -22,82 +22,83 @@
 			</div>
 			<div id="error" style="display: none" class="col-md-12 mb-1">
 				<div class="alert alert-warning has-icon" role="alert">
-	                <div class="alert-icon">
-	                  <span class="fa fa-bullhorn"></span>
-	                </div>
-	                <span>Something went wrong. Please try again... </span>
-	            </div>
-            </div>
-			
+					<div class="alert-icon">
+						<span class="fa fa-bullhorn"></span>
+					</div>
+					<span>Something went wrong. Please try again... </span>
+				</div>
+			</div>
+
 		</header>
 		<!-- /.page-title-bar -->
 	</div>
-	<form id="organization-form"
-		class="client-form-control">
-		<div class="form-row" style="margin-bottom: 20px;">
-			<!-- grid column -->
-			<div class="col-md-3 md-3">
-				<label for="organizationLogo"> <input type="file" name="file"
-					id="organizationLogo" class="form-control"
-					style="width: 100px; display: none;"> <img id="logo"
-					class="img-thumbnail" style="width: 100px; height: 100px;"
-					th:src="@{~/media/download/default-no-image.png}"
-					alt="...">
-				</label>
-			</div>
-		</div>
-		<div class="form-row">
-			<!-- grid column -->
-			<div class="col-md-8 mb-3">
-				<label for="establishmentName">Organization</label> 
-				<input type="establishmentName" value="" class="form-control"
-					name="establishmentName" id="establishmentName" required="">
-			</div>
-			<!-- /grid column -->
-		</div>
-		<!-- /.form-row -->
-		<!-- .form-row -->
-		<div class="form-row">
-			<!-- grid column -->
-			<div class="col-md-2 mb-1">
-				<label for="type">Type</label>
-				<div class="circle-select">
-					<select type="type" class="form-control selectpicker"
-						data-live-search="true" name="type"
-						id="type">
-						<option value="Nothing selected">Nothing selected</option>
-						<option value="Government">Government</option>
-						<option value="Private">Private</option>
-					</select>
+	<form id="organization-form" class="client-form-control col-md-8 mb-1 ">
+		<div class="element_overlap">
+			<div class="form-row" style="margin-bottom: 20px;">
+				<!-- grid column -->
+				<div class="col-md-3 md-3">
+					<label for="organizationLogo"> <input type="file"
+						name="file" id="organizationLogo" class="form-control"
+						style="width: 100px; display: none;"> <img id="logo"
+						class="img-thumbnail" style="width: 100px; height: 100px;"
+						th:src="@{~/media/download/default-no-image.png}" alt="...">
+					</label>
 				</div>
-			
 			</div>
-			<!-- /grid column -->
-		</div>
-		<!-- .form-row -->
-		<div class="form-row">
-			<!-- grid column -->
-			<div class="col-md-8 mb-1">
-				<label for="Address">Address</label>
-				<textarea type="address" class="form-control" name="address"
-					id="address" required=""></textarea>
+			<div class="form-row">
+				<!-- grid column -->
+				<div class="col-md-12 mb-3">
+					<label for="establishmentName">Organization</label> <input
+						type="establishmentName" value="" class="form-control"
+						name="establishmentName" id="establishmentName" required="">
+				</div>
+				<!-- /grid column -->
 			</div>
-			<!-- /grid column -->
-		</div>
-		<!-- .form-row -->
-		<div class="form-row">
-			<div class="col-md-8 mb-1 text-right">
-				<button style="margin-top: 10px;" class="btn btn-primary"
-					type="submit">Submit</button>
+			<!-- /.form-row -->
+			<!-- .form-row -->
+			<div class="form-row">
+				<!-- grid column -->
+				<div class="col-md-4 mb-1">
+					<label for="type">Type</label>
+					<div class="circle-select">
+						<select type="type" class="form-control selectpicker"
+							data-live-search="true" name="type" id="type">
+							<option value="Nothing selected">Nothing selected</option>
+							<option value="Government">Government</option>
+							<option value="Private">Private</option>
+						</select>
+					</div>
+
+				</div>
+				<!-- /grid column -->
+			</div>
+			<!-- .form-row -->
+			<div class="form-row">
+				<!-- grid column -->
+				<div class="col-md-12 mb-1">
+					<label for="Address">Address</label>
+					<textarea type="address" class="form-control" name="address"
+						id="address" required=""></textarea>
+				</div>
+				<!-- /grid column -->
+			</div>
+			<!-- .form-row -->
+			<div class="form-row">
+				<div class="col-md-12 mb-1 text-right">
+					<button style="margin-top: 10px;" class="btn btn-primary"
+						type="submit">Submit</button>
+				</div>
 			</div>
 		</div>
 	</form>
+
 	<script type="text/javascript">
 	 	$(document).ready(function() {
 	 		$('.selectpicker').selectpicker();
 	 		
 	 		$("#organization-form").on("submit", function(e) {
 	 			e.preventDefault();
+	 			$(".element_overlap").LoadingOverlay("show");
 	 			$.ajax({
 	 				url: "/clients/submit-organization-form",
 	 				type: "POST",
@@ -107,6 +108,7 @@
 	 				contentType: false,
 	 				cache: false,
 	 				success: function(res) {
+	 					$(".element_overlap").LoadingOverlay("hide", true);
 	 					var data = JSON.parse(res);
 						if(data.status == '0') {
 							$('#error').show();
@@ -118,6 +120,7 @@
 	 					$("#organization-form").trigger("reset");
 	 				},
 	 				error: function(err) {
+	 					$(".element_overlap").LoadingOverlay("hide", true);
 	 					alert("Error status: "+ err.status + " Please try again...");
 	 				}
 	 			});

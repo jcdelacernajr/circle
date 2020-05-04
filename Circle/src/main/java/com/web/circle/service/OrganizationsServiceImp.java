@@ -20,6 +20,7 @@ import com.web.circle.model.entity.Organizations;
 import com.web.circle.model.entity.UploadFile;
 import com.web.circle.model.entity.Users;
 import com.web.circle.repository.OrganizationRepository;
+import com.web.circle.utils.Utils;
 
 @Service
 @Transactional
@@ -70,7 +71,7 @@ public class OrganizationsServiceImp implements OrganizationsService {
 		// License table.
 		License license = new License();
 		license.setLicenseId(0);
-		license.setCircleKey("KEYKEYKEY");
+		license.setCircleKey(Utils.stringToHexadecimal(form.getEstablishmentName()));
 		
 		// User table.
 		Users user = new Users();

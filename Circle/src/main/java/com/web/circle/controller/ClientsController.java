@@ -120,6 +120,7 @@ public class ClientsController extends BaseController {
 		model.addAttribute("type",or.getType());
 		model.addAttribute("jurisdiction",or.getJurisdiction());
 		model.addAttribute("dissolved",or.getDissolved());
+		model.addAttribute("circle_key",or.getLicense().getCircleKey());
 		// List of branch
 		model.addAttribute("branchList", branchService.branchList(organizationId));
 		return "clients/page_sidebar :: page-sidebar";
