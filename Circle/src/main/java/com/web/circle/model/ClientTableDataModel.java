@@ -15,6 +15,7 @@ import lombok.Setter;
 public class ClientTableDataModel {
 
 	private Long organizationId;
+	private String logoUrl;
 	private String establishmentName;
 	private String address;
 	private String email;

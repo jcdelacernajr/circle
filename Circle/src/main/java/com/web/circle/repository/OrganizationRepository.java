@@ -14,7 +14,7 @@ public interface OrganizationRepository extends JpaRepository<Organizations, Lon
 	/**
 	 * Get all the organizations data. 
 	 * */
-	@Query("FROM Organizations WHERE organization_id != 1")
+	@Query("FROM Organizations WHERE organization_id != 1 ORDER BY organization_id DESC")
 	List<Organizations> getOrganizationList();
 	
 	/**

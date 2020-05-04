@@ -72,11 +72,11 @@ public class ClientsController extends BaseController {
     	for(Organizations orga : organizations) {
     		// Organization
     		ClientTableDataModel clientTableDataModel = new ClientTableDataModel();
-    		
 			// Get the list of organizations
     		clientTableDataModel.setOrganizationId(orga.getOrganizationId());
+    		// Logo url.
+    		clientTableDataModel.setLogoUrl(fileDownloadUrl(orga.getUploadFile().getFileName(), "/media/download/"));
     		clientTableDataModel.setEstablishmentName(orga.getEstablishmentName());
-    		
     		// Add the list.
     		organizationsList.add(clientTableDataModel);
 		}
@@ -105,7 +105,7 @@ public class ClientsController extends BaseController {
 	public String pageSideBar(Model model, @RequestParam(value="organizationId") long organizationId) {
 		// Organization data.
 		Organizations or = organizationRepository.findById(organizationId).get();
-		model.addAttribute("organizationId", or.getOrganizationId());
+		model.addAttribute("organizationId", or.getOrganizationId());		
 		model.addAttribute("establishmentName", or.getEstablishmentName());
 		model.addAttribute("address", or.getAddress());
 		model.addAttribute("email", or.getEmail());
