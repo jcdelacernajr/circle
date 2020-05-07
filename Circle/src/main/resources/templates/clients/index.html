@@ -41,8 +41,8 @@
 								</button>
 								<label class="input-group-prepend" for="searchClients"><span
 									class="input-group-text"><span
-										class="oi oi-magnifying-glass"></span></span></label> <input type="text"
-									class="form-control" id="searchClients"
+										class="oi oi-magnifying-glass"></span></span></label> 
+										<input type="text" class="form-control" id="searchClients"
 									data-filter=".board .list-group-item"
 									placeholder="Find clients">
 							</div>
@@ -74,7 +74,7 @@
 					</div>
 
 					<!-- <div id="page-sidebar" th:insert="clients/page_sidebar.html :: page-sidebar"></div> -->
-					<div id="page-sidebar"></div>
+					<div id="page-sidebar" class="element_overlap"></div>
 
 
 					<!-- Edit form modal -->
@@ -170,10 +170,30 @@
 	<script src="#" th:src="@{~/assets/javascript/pages/loadingoverlay_progress.min.js}"></script>
 	
 	<script>
-    	$(document).ready(function(){
+    	$(document).ready(function() {
+    		
+    		$("#searchClients").keyup(function() {
+    			var td, i, txtValue;
+    			var search = $("#searchClients").val();	
+    			var filter = search.toUpperCase();
+    			var table = $("#tableOrganization");
+    			var tr = $("#tableOrganization tr");
+    			for (i = 0; i < tr.length; i++) {
+    			    td = tr[i].getElementsByTagName("td")[0];
+    			    if (td) {
+    			      txtValue = td.textContent || td.innerText;
+    			      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+    			        tr[i].style.display = "";
+    			      } else {
+    			        tr[i].style.display = "none";
+    			      }
+    			    }       
+    		  	}
+    		});
     		
     		var table = $('#tableOrganization');
     		$('#tableOrganization tr').click(function(){
+    			$(".element_overlap").LoadingOverlay("show");
    				$(this).children('td').children('input').prop('checked', true);
    				$('#tableOrganization tr').removeClass('selected');
    			  	$(this).toggleClass('selected');
@@ -182,17 +202,17 @@
 				$('#page-sidebar').load(url, {
 					organizationId: href
 				},
-				function(data, status, jqXGR){
-					// TODO..
-					//alert("status: "+ status + " jqxgr: "+ JSON.stringify(jqXGR));
+				function(data, status, jqXGR) {
+					$(".element_overlap").LoadingOverlay("hide", true);
 				});
     		});
     		
-    		$('#addClientButton').bind("click", function(){
+    		$('#addClientButton').bind("click", function() {
+    			$(".element_overlap").LoadingOverlay("show");
     			var url = "/clients/add-client-page";
     			$('#page-sidebar').load(url,
-				function(data, status, jqXGR){
-					// TODO..			
+				function(data, status, jqXGR) {
+    				$(".element_overlap").LoadingOverlay("hide", true);	
 				});
     			
     		});
