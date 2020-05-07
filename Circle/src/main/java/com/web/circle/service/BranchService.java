@@ -19,6 +19,7 @@ public interface BranchService {
 	 * 
 	 * @param organizationId
 	 * @param user
+	 * @deprecated
 	 * */
 	List<BranchDataModel> branchList(long organizationId, Users user);
 	

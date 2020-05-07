@@ -30,7 +30,7 @@ public class BranchServiceImp implements BranchService {
 	
 	@Autowired
 	private BranchRepository branchRepository;
-
+	
 	@Override
 	public List<BranchDataModel> branchList(long organizationId, Users user) {
 		try {
