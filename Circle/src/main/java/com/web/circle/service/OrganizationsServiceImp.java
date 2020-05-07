@@ -43,8 +43,7 @@ public class OrganizationsServiceImp implements OrganizationsService {
 				jOb.put("email", o.getEmail());
 				jOb.put("postalCode", o.getPostalCode());
 				jOb.put("telephone", o.getTelephoneNo());
-				jOb.put("website", o.getWebsite());
-				
+				jOb.put("website", o.getWebsite());				
 				array.put(jOb);
 			}
 			
@@ -86,6 +85,12 @@ public class OrganizationsServiceImp implements OrganizationsService {
 		if(fileId != null) {
 			UploadFile uploadFile = new UploadFile();
 			uploadFile.setUploadFileId(fileId);
+			organization.setUploadFile(uploadFile);
+		} else {
+			// Set the logo id to 1. 
+			// if the organization has no logo yet.
+			UploadFile uploadFile = new UploadFile();
+			uploadFile.setUploadFileId(1); // The default-no-image id 
 			organization.setUploadFile(uploadFile);
 		}
 		

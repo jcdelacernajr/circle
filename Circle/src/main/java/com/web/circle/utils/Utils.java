@@ -7,6 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 
 /**
  * Utility class
@@ -15,6 +17,16 @@ import java.util.UUID;
  * @author Juanito C. Dela Cerna Jr. April 2020
  * */
 public final class Utils {
+	
+	/**
+	 * For file download
+	 * 
+	 * @param fileName
+	 * @param baseURL
+	 * */
+	public static String fileDownloadUrl(final String fileName, final String baseURL){
+        return ServletUriComponentsBuilder.fromCurrentContextPath().path(baseURL).path(fileName).toUriString();
+    }
 	
 	/**
 	 * Convert hex to string

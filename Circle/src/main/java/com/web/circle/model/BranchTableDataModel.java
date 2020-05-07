@@ -22,5 +22,6 @@ public class BranchTableDataModel {
 	private String postalCode;
 	private String telephoneNo;
 	private String website;
-
+	private String logoUrl;
+	
 }

@@ -3,8 +3,10 @@ package com.web.circle.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.web.circle.controller.DTO.form.BranchSetupForm;
 import com.web.circle.model.BranchDataModel;
 import com.web.circle.model.BranchTableDataModel;
+import com.web.circle.model.entity.Branch;
 import com.web.circle.model.entity.Users;
 
 /**
@@ -26,4 +28,11 @@ public interface BranchService {
 	 * @param organizationId
 	 * */
 	ArrayList<Object> branchList(long organizationId);
+	
+	/**
+	 * Add new branch record
+	 * 
+	 * @param form
+	 * */
+	Branch record(BranchSetupForm form);
 }

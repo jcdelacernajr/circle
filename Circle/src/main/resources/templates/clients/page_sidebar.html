@@ -90,7 +90,8 @@
 				<div class="card">
 					<!-- .card-header -->
 					<div class="card-header d-flex">
-						<button type="button" class="btn btn-primary ml-auto">Add
+						<button id="addNewBranch" type="button" class="btn btn-primary ml-auto" data-toggle="modal"
+								data-target="#addNewBranchModal">Add
 							branch</button>
 					</div>
 					<!-- /.card-header -->
@@ -111,9 +112,13 @@
 							<tbody>
 								<!-- tr -->
 								<tr th:each="branch : ${branchList}">
-									<td class="align-middle text-truncate"><a href="#"
-										class="tile bg-pink text-white mr-2">SP</a> <a href="#"
-										th:text="${branch.branchName}"></a></td>
+									<td class="align-middle text-truncate">
+									<a href="#">
+										<span class="user-avatar">
+								             <img th:src="${branch.logoUrl}" alt="">
+								           </span>
+									</a> 
+									<a href="#" th:text="${branch.branchName}"></a></td>
 									<td class="align-middle"><span th:text="${branch.address}"></span></td>
 									<td class="align-middle text-right">
 										<div class="dropdown">

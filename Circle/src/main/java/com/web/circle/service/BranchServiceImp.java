@@ -12,6 +12,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.web.circle.controller.DTO.form.BranchSetupForm;
 import com.web.circle.model.BranchDataModel;
 import com.web.circle.model.BranchTableDataModel;
 import com.web.circle.model.ClientTableDataModel;
@@ -19,6 +20,7 @@ import com.web.circle.model.entity.Branch;
 import com.web.circle.model.entity.Organizations;
 import com.web.circle.model.entity.Users;
 import com.web.circle.repository.BranchRepository;
+import com.web.circle.utils.Utils;
 
 /**
  * @author Juanito C. Dela Dela Cerna Jr. March 2020
@@ -72,10 +74,17 @@ public class BranchServiceImp implements BranchService {
     		branchTableDataModel.setBranchId(b.getBranchId());
     		branchTableDataModel.setBranchName(b.getBranchName());
     		branchTableDataModel.setAddress(b.getAddress());
+    		branchTableDataModel.setLogoUrl(Utils.fileDownloadUrl(b.getUploadFile().getFileName(), "/media/download/"));
     		// Add the list.
     		branchList.add(branchTableDataModel);
 		}
 		return branchList;
+	}
+
+	@Override
+	public Branch record(BranchSetupForm form) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

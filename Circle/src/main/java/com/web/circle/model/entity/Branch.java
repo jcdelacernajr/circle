@@ -45,6 +45,21 @@ public class Branch extends CircleAuditing {
 	
 	@Column(name = "postal_code")
 	private String postalCode;
+	
+	/**
+	 * The current used branch logo 
+	 * */
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "logo_id")
+	private UploadFile uploadFile;
+
+	public UploadFile getUploadFile() {
+		return uploadFile;
+	}
+
+	public void setUploadFile(UploadFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
 
 	public String getPostalCode() {
 		return postalCode;
