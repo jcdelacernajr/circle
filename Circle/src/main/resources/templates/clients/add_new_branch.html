@@ -2,21 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<form th:fragment="add-new-branch-form" id="addNewBranchForm"
-	name="addNewBranchForm">
-	<div class="modal fade has-shown" id="addNewBranchModal"
-		tabindex="-1" role="dialog"
-		aria-labelledby="addNewBranchModalLabel" aria-hidden="true"
-		style="display: none;">
+<form th:fragment="add-new-branch-form">
+	<div class="modal fade has-shown" id="addNewBranchModal" tabindex="-1"
+		role="dialog" aria-labelledby="addNewBranchModalLabel"
+		aria-hidden="true" style="display: none;">
 		<!-- .modal-dialog -->
 		<div class="modal-dialog" role="document">
 			<!-- .modal-content -->
 			<div class="modal-content">
 				<!-- .modal-header -->
 				<div class="modal-header">
-					<h6 id="addNewBranchModalLabel"
-						class="modal-title inline-editable">
-						<span>Add new branch</span> 
+					<h6 id="addNewBranchModalLabel" class="modal-title inline-editable">
+						<span>Add new branch</span>
 					</h6>
 				</div>
 				<!-- /.modal-header -->
@@ -26,10 +23,10 @@
 					<div class="form-row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="branchLogo"> 
-									<input type="file" name="file" id="organizationLogo" class="form-control"
-									style="width: 100px; display: none;"> 
-									<img id="logo" class="img-thumbnail" style="width: 100px; height: 100px;"
+								<label for="branchLogo"> <input type="file" name="file"
+									id="branchLogo" class="form-control"
+									style="width: 100px; display: none;"> <img id="logo"
+									class="img-thumbnail" style="width: 100px; height: 100px;"
 									th:src="@{~/media/download/default-no-image.png}" alt="...">
 								</label>
 							</div>
@@ -37,17 +34,17 @@
 						<div class="col-md-12">
 							<div class="form-group">
 								<label for="ceStreet">Branch name</label> <input type="text"
-									id="ceStreet" class="form-control"
-									value="">
+									id="ceStreet" class="form-control" value="" required="">
 							</div>
 						</div>
 						<div class="col-md-12">
 							<div class="form-group">
-								<label for="ceSuite">Address</label> 
-								<textarea type="address" class="form-control" name="address" id="address" required=""></textarea>
+								<label for="ceSuite">Address</label>
+								<textarea type="address" class="form-control" name="address"
+									id="address" required=""></textarea>
 							</div>
 						</div>
-						
+
 					</div>
 					<!-- /.form-row -->
 				</div>
