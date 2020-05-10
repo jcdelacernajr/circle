@@ -90,9 +90,12 @@
 				<div class="card">
 					<!-- .card-header -->
 					<div class="card-header d-flex">
-						<button id="addNewBranch" type="button" class="btn btn-primary ml-auto" data-toggle="modal"
+						<input hidden id="organizationId" th:value="${organizationId}">
+						<!-- <button id="addNewBranch" type="button" class="btn btn-primary ml-auto" th:onclick="'openAddNewBranchModal(\'' + ${organizationId} +'\');'">Add
+							branch</button> -->
+						 <button id="addNewBranch" type="button" class="btn btn-primary ml-auto" data-toggle="modal"
 								data-target="#addNewBranchModal">Add
-							branch</button>
+							branch</button> 
 					</div>
 					<!-- /.card-header -->
 					<!-- .table-responsive -->
@@ -298,6 +301,40 @@
 		<!-- /.tab-content -->
 	</div>
 	<!-- /.sidebar-section -->
+	
+	<script>
+		$('#addNewBranchModal').on('show.bs.modal', function(event) {
+			var modal = $(this)
+			modal.find('.modal-body #organizationId').val($("#organizationId").val());
+		})
+	
+		/**
+		$('#exampleModal').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget) 
+                var recipient = button.data('whatever') 
+                var modal = $(this)
+                modal.find('.modal-title').text('New message to ' + recipient)
+                modal.find('.modal-body input').val(recipient)
+                //I would prevent the default behaviour of the button
+                event.preventDefault();
+                //AJAX Call
+                $.ajax({
+                    type : 'POST',
+                    url : "/showarea",
+                    success : function(data) {2
+                         //Get Area name after AJAX call
+                         var nomArea = data;
+                         //Valorize HTML
+                         $("#areaValue").html(nomeArea);
+                         //Finally open popup
+                    }
+                });
+            })
+		*/
+		
+		
+	</script>
+	
 </div>
 
 </html>

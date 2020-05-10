@@ -18,6 +18,7 @@ public class BranchSetupForm {
 	private Long userId;
 	private Long fileId;
 	private MultipartFile file;
+	private String organizationId;
 	private String branchName;
 	private String address;
 

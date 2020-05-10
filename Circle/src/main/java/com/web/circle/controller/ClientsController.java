@@ -3,12 +3,16 @@ package com.web.circle.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.web.circle.controller.DTO.form.BranchSetupForm;
 import com.web.circle.controller.DTO.form.OrganizationSetupForm;
 import com.web.circle.exception.FileStorageException;
 import com.web.circle.model.BranchTableDataModel;
@@ -103,7 +108,12 @@ public class ClientsController extends BaseController {
 	 * @param organizationId
 	 * */
 	@RequestMapping("page-sidebar")
-	public String pageSideBar(Model model, @RequestParam(value="organizationId") long organizationId) {
+	public String pageSideBar(Model model, @RequestParam(value="organizationId") long organizationId,
+			HttpServletResponse response) {
+		// Cookie. not used
+		//Cookie cookie = new Cookie("temp", Long.toString(organizationId));
+		//response.addCookie(cookie);
+		
 		// Organization data.
 		Organizations or = organizationRepository.findById(organizationId).get();
 		model.addAttribute("organizationId", or.getOrganizationId());		
@@ -177,6 +187,21 @@ public class ClientsController extends BaseController {
 		JSONObject obj = new JSONObject();
 		obj.put("status", 1);
 		obj.put("message", "success");
+		return new ResponseEntity<>(obj.toString(), HttpStatus.OK);
+	}
+	
+	/**
+	 * Branch form
+	 * 
+	 * */
+	@PostMapping("/submit-branch-form")
+	@ResponseBody
+	public ResponseEntity<String> branchSetupForm(@ModelAttribute BranchSetupForm form) {
+		
+		
+		JSONObject obj = new JSONObject();
+		obj.put("status", 1);
+		obj.put("message", "Success! One branch record added.");
 		return new ResponseEntity<>(obj.toString(), HttpStatus.OK);
 	}
 }

@@ -76,8 +76,74 @@
 					<!-- <div id="page-sidebar" th:insert="clients/page_sidebar.html :: page-sidebar"></div> -->
 					<div id="page-sidebar" class="element_overlap"></div>
 
-					<form th:insert="clients/add_new_branch.html :: add-new-branch-form" 
-					id="addNewBranchForm" name="addNewBranchForm"></form>
+					<!-- <div th:insert="clients/add_new_branch.html :: add-new-branch-fragment"></div> -->
+					
+	<form id="add-new-branch-form" name="add-new-branch-form">
+		<div class="modal fade has-shown" id="addNewBranchModal" tabindex="-1"
+			role="dialog" aria-labelledby="addNewBranchModalLabel"
+			aria-hidden="true" style="display: none;">
+			<!-- .modal-dialog -->
+			<div class="modal-dialog" role="document">
+				<!-- .modal-content -->
+				<div class="modal-content">
+					<!-- .modal-header -->
+					<div class="modal-header">
+						<h6 id="addNewBranchModalLabel"
+							class="modal-title inline-editable">
+							<span>Add new branch</span>
+							<span> </span>
+						</h6>
+					</div>
+					<!-- /.modal-header -->
+					<!-- .modal-body -->
+					<div class="modal-body">
+						<!-- .form-row -->
+						<div class="form-row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="branchLogo"> <input type="file" name="file"
+										id="branchLogo" class="form-control" style="width: 100px; display: none;"> <img id="logo"
+										class="img-thumbnail" style="width: 100px; height: 100px;"
+										th:src="@{~/media/download/default-no-image.png}" alt="...">
+									</label>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<label hidden for="organizationId">Branch name</label>
+									<input hidden type="organizationId" id="organizationId" name="organizationId" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<label for="branchName">Branch name</label>
+									<input type="branchName" id="branchName" name="branchName" class="form-control" required="">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<label for="address">Address</label>
+									<textarea type="address" class="form-control" name="address"
+										id="address" required=""></textarea>
+								</div>
+							</div>
+						</div>
+						<!-- /.form-row -->
+					</div>
+					<!-- /.modal-body -->
+					<!-- .modal-footer -->
+					<div class="modal-footer">
+						<div class="response"></div>
+						<button type="submit" class="btn btn-primary">Save</button>
+						<button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+					</div>
+					<!-- /.modal-footer -->
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+	</form>
 
 					<!-- Edit form modal -->
 					<form id="clientBillingEditForm" name="clientBillingEditForm">
@@ -219,6 +285,42 @@
     			
     		});
     		
+    		$("#add-new-branch-form").on("submit", function(e) {
+	 			e.preventDefault();
+	 			$(".modal-footer").LoadingOverlay("show");
+	 			$.ajax({
+	 				url: "/clients/submit-branch-form",
+	 				type: "POST",
+	 				data: new FormData(this),
+	 				enctype: 'multipart/form-data',
+	 				processData: false,
+	 				contentType: false,
+	 				cache: false,
+	 				success: function(res) {
+	 					$(".modal-footer").LoadingOverlay("hide", true);
+	 					var data = JSON.parse(res);
+	 					
+						if(data.status == '0') {
+							$('.response').html('<div class="branch-modal-alert alert-warning">'+data.message+'</div>');
+						}
+						
+						if(data.status == '1') {
+							$('.response').html('<div class="branch-modal-alert alert-success">'+data.message+'</div>');
+							$("#logo").attr('src','/media/download/default-no-image.png');
+							$("#branchName").val("");
+							$("#address").val("");
+						} 
+						
+	 					//$("#add-new-branch-form").trigger("reset");
+						///$("#add-new-branch-form").modal('toggle');
+	 				},
+	 				error: function(err) {
+	 					$(".modal-footer").LoadingOverlay("hide", true);
+	 					alert("Error status: "+ err.status + " Please try again...");
+	 				}
+	 			});
+	 		});
+    		
     		function readerBranchLogoUrl(input) {
 				if (input.files && input.files[0]) {
 					var reader = new FileReader();
@@ -232,6 +334,7 @@
 				readerBranchLogoUrl(this);
 			});
     		
+			
     	});
     </script>
 </body>
