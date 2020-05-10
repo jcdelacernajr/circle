@@ -180,7 +180,7 @@ public class ClientsController extends BaseController {
 		} catch (FileStorageException err) {
 			JSONObject obj = new JSONObject();
 			obj.put("status", 0);
-			obj.put("message", "Storing file error");
+			obj.put("message", "Storing file and data error.");
 			return new ResponseEntity<>(obj.toString(), HttpStatus.BAD_REQUEST);
 		}
 		
@@ -197,7 +197,26 @@ public class ClientsController extends BaseController {
 	@PostMapping("/submit-branch-form")
 	@ResponseBody
 	public ResponseEntity<String> branchSetupForm(@ModelAttribute BranchSetupForm form) {
-		
+		Users user = getCurrentLoggedUser("organizationSetupForm(");
+		try {
+			// Store the file data.
+			Long fileId = null;
+			FileMetaDataModel data = null;
+			if(!form.getFile().isEmpty()) {
+				data = fileStorageService.store(form.getFile(), user);
+				fileId = data.getFileId();
+				form.setFileId(fileId);
+			} 
+			// Set user id
+			form.setUserId(user.getUserId());
+			// Record the branch data.
+			branchService.record(form);
+		} catch(FileStorageException err) {
+			JSONObject obj = new JSONObject();
+			obj.put("status", 0);
+			obj.put("message", "Storing file and data error.");
+			return new ResponseEntity<>(obj.toString(), HttpStatus.BAD_REQUEST);
+		}
 		
 		JSONObject obj = new JSONObject();
 		obj.put("status", 1);
