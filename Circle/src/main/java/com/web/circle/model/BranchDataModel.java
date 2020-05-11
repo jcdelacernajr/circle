@@ -9,6 +9,8 @@ import lombok.Setter;
  * Branch data model
  * This is use by AccountSetupController class @see {@link AccountSetupController }}
  * 
+ * For select option.
+ * 
  * @author Juanito C. Dela Dela Cerna Jr. April 2020
  */
 @Setter

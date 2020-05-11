@@ -20,4 +20,9 @@ public interface BranchRepository extends JpaRepository<Branch, Long> {
 	@Query("FROM Branch WHERE organization_fk=:organizationId")
 	List<Branch> findBranchsByOrganization(@Param("organizationId") long organizationId);
 	
+	/**
+	 * Get the list of branch.
+	 * */
+	@Query("FROM Branch WHERE branch_id != 1 ORDER BY branch_id DESC")
+	List<Branch> getBranchList();
 }

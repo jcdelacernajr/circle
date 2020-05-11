@@ -29,11 +29,6 @@
 
 					<div class="page-inner page-inner-fill position-relative">
 						<header class="page-navs bg-light shadow-sm">
-							<div class="card-header-list d-flex">
-								<button id="addClientButton" type="button"
-									class="btn btn-primary ml-auto" style="width: 100%;">Add
-									new client</button>
-							</div>
 							<!-- .input-group -->
 							<div class="input-group has-clearable">
 								<button type="button" class="close" aria-label="Close">
@@ -50,21 +45,21 @@
 						</header>
 						<div class="table-responsive">
 							<!-- .table -->
-							<table id="tableOrganization" class="table">
+							<table id="tableBranch" class="table">
 								<!-- thead -->
 
 								<!-- /thead -->
 								<!-- tbody -->
 								<tbody>
-									<!-- Organization list -->
-									<tr th:each="organization : ${organizations}">
+									<!-- list -->
+									<tr th:each="branch : ${branchList}">
 										<td class="align-middle text-truncate">
-										<a th:href="${organization.organizationId}">
+										<a th:href="${branch.branchId}">
 											<span class="user-avatar">
-								             <img th:src="${organization.logoUrl}" alt="">
+								             <img th:src="${branch.logoUrl}" alt="">
 								           </span>
 										</a> 
-										<a href="#" th:text="${organization.establishmentName}"></a></td>
+										<a href="#" th:text="${branch.branchName}"></a></td>
 									</tr>
 								</tbody>
 								<!-- /tbody -->
@@ -73,157 +68,7 @@
 						</div>
 					</div>
 
-					<!-- <div id="page-sidebar" th:insert="clients/page_sidebar.html :: page-sidebar"></div> -->
 					<div id="page-sidebar" class="element_overlap"></div>
-
-					<!-- <div th:insert="clients/add_new_branch.html :: add-new-branch-fragment"></div> -->
-					
-	<form id="add-new-branch-form" name="add-new-branch-form">
-		<div class="modal fade has-shown" id="addNewBranchModal" tabindex="-1"
-			role="dialog" aria-labelledby="addNewBranchModalLabel"
-			aria-hidden="true" style="display: none;">
-			<!-- .modal-dialog -->
-			<div class="modal-dialog" role="document">
-				<!-- .modal-content -->
-				<div class="modal-content">
-					<!-- .modal-header -->
-					<div class="modal-header">
-						<h6 id="addNewBranchModalLabel"
-							class="modal-title inline-editable">
-							<span>Add new branch</span>
-							<span> </span>
-						</h6>
-					</div>
-					<!-- /.modal-header -->
-					<!-- .modal-body -->
-					<div class="modal-body">
-						<!-- .form-row -->
-						<div class="form-row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label for="branchLogo"> <input type="file" name="file"
-										id="branchLogo" class="form-control" style="width: 100px; display: none;"> <img id="logo"
-										class="img-thumbnail" style="width: 100px; height: 100px;"
-										th:src="@{~/media/download/default-no-image.png}" alt="...">
-									</label>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="form-group">
-									<label hidden for="organizationId">Branch name</label>
-									<input hidden type="organizationId" id="organizationId" name="organizationId" class="form-control">
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="form-group">
-									<label for="branchName">Branch name</label>
-									<input type="branchName" id="branchName" name="branchName" class="form-control" required="">
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="form-group">
-									<label for="address">Address</label>
-									<textarea type="address" class="form-control" name="address"
-										id="address" required=""></textarea>
-								</div>
-							</div>
-						</div>
-						<!-- /.form-row -->
-					</div>
-					<!-- /.modal-body -->
-					<!-- .modal-footer -->
-					<div class="modal-footer">
-						<div class="response"></div>
-						<button type="submit" class="btn btn-primary">Save</button>
-						<button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-					</div>
-					<!-- /.modal-footer -->
-				</div>
-				<!-- /.modal-content -->
-			</div>
-			<!-- /.modal-dialog -->
-		</div>
-	</form>
-
-					<!-- Edit form modal -->
-					<form id="clientBillingEditForm" name="clientBillingEditForm">
-						<div class="modal fade has-shown" id="clientBillingEditModal"
-							tabindex="-1" role="dialog"
-							aria-labelledby="clientBillingEditModalLabel" aria-hidden="true"
-							style="display: none;">
-							<!-- .modal-dialog -->
-							<div class="modal-dialog" role="document">
-								<!-- .modal-content -->
-								<div class="modal-content">
-									<!-- .modal-header -->
-									<div class="modal-header">
-										<h6 id="clientBillingEditModalLabel"
-											class="modal-title inline-editable">
-											<span class="sr-only">Client name</span> <input type="text"
-												class="form-control form-control-lg"
-												value="Zathunicon, Inc."
-												placeholder="E.g. Stilearning, Inc." required="">
-										</h6>
-									</div>
-									<!-- /.modal-header -->
-									<!-- .modal-body -->
-									<div class="modal-body">
-										<!-- .form-row -->
-										<div class="form-row">
-											<div class="col-md-12">
-												<div class="form-group">
-													<label for="ceStreet">Street</label> <input type="text"
-														id="ceStreet" class="form-control"
-														value="280 Suzanne Throughway">
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label for="ceSuite">Suite</label> <input type="text"
-														id="ceSuite" class="form-control" value="Breannabury">
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label for="ceZip">Zip</label> <input type="text"
-														id="ceZip" class="form-control" value="45801">
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label for="ceCountry">Country</label> <select
-														id="ceCountry" class="custom-select d-block w-100">
-														<option value="">Choose...</option>
-														<option selected="">United States</option>
-													</select>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label for="ceCity">City</label> <select id="ceCity"
-														class="custom-select d-block w-100">
-														<option value="">Choose...</option>
-														<option selected="">San Francisco</option>
-													</select>
-												</div>
-											</div>
-										</div>
-										<!-- /.form-row -->
-									</div>
-									<!-- /.modal-body -->
-									<!-- .modal-footer -->
-									<div class="modal-footer">
-										<button type="submit" class="btn btn-primary">Save</button>
-										<button type="button" class="btn btn-light"
-											data-dismiss="modal">Close</button>
-									</div>
-									<!-- /.modal-footer -->
-								</div>
-								<!-- /.modal-content -->
-							</div>
-							<!-- /.modal-dialog -->
-						</div>
-					</form>
 
 				</div>
 			</div>
@@ -244,8 +89,8 @@
     			var td, i, txtValue;
     			var search = $("#searchClients").val();	
     			var filter = search.toUpperCase();
-    			var table = $("#tableOrganization");
-    			var tr = $("#tableOrganization tr");
+    			var table = $("#tableBranch");
+    			var tr = $("#tableBranch tr");
     			for (i = 0; i < tr.length; i++) {
     			    td = tr[i].getElementsByTagName("td")[0];
     			    if (td) {
@@ -259,93 +104,20 @@
     		  	}
     		});
     		
-    		var table = $('#tableOrganization');
-    		$('#tableOrganization tr').click(function(){
+    		$('#tableBranch tr').click(function(){
     			$(".element_overlap").LoadingOverlay("show");
    				$(this).children('td').children('input').prop('checked', true);
-   				$('#tableOrganization tr').removeClass('selected');
+   				$('#tableBranch tr').removeClass('selected');
    			  	$(this).toggleClass('selected');
    			 	var href = $(this).find("a").attr("href");
-				var url = "/clients/page-sidebar";
+				var url = "/apps/branch/page-sidebar";
 				$('#page-sidebar').load(url, {
-					organizationId: href
+					branchId: href
 				},
 				function(data, status, jqXGR) {
 					$(".element_overlap").LoadingOverlay("hide", true);
 				});
     		});
-    		
-    		$('#addClientButton').bind("click", function() {
-    			$(".element_overlap").LoadingOverlay("show");
-    			var url = "/clients/add-client-page";
-    			$('#page-sidebar').load(url,
-				function(data, status, jqXGR) {
-    				$(".element_overlap").LoadingOverlay("hide", true);	
-				});
-    			
-    		});
-    		
-    		$("#add-new-branch-form").on("submit", function(e) {
-	 			e.preventDefault();
-	 			$(".modal-footer").LoadingOverlay("show");
-	 			$.ajax({
-	 				url: "/clients/submit-branch-form",
-	 				type: "POST",
-	 				data: new FormData(this),
-	 				enctype: 'multipart/form-data',
-	 				processData: false,
-	 				contentType: false,
-	 				cache: false,
-	 				success: function(res) {
-	 					$(".modal-footer").LoadingOverlay("hide", true);
-	 					var data = JSON.parse(res);
-	 					
-						if(data.status == '0') {
-							$('.response').html('<div class="branch-modal-alert alert-warning">'+data.message+'</div>');
-						}
-						
-						if(data.status == '1') {
-							
-							$("#branchTable tbody").prepend('<tr><td class="align-middle text-truncate">'+
-									'<a href="#"><span class="user-avatar"><img src="'+data.logoUrl+'" alt=""></span></a>'+
-									'<a href="#">'+data.branchName+'</a></td>'+
-									'<td class="align-middle"><span>'+data.address+'</span></td>'+ 
-									'<td class="align-middle text-right"><div class="dropdown">'+
-									'<button type="button" class="btn btn-sm btn-icon btn-secondary"'+
-									'data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">'+
-									'<i class="fa fa-ellipsis-h"></i> <span class="sr-only">Actions</span></button>'+
-									'<div class="dropdown-menu dropdown-menu-right"> <div class="dropdown-arrow mr-n1"></div>'+
-									'<button class="dropdown-item" type="button">Edit</button> <button class="dropdown-item" type="button">Delete</button>'+ 
-									'</div></div></td></tr>');
-							
-							$('.response').html('<div class="branch-modal-alert alert-success">'+data.message+'</div>');
-							$("#logo").attr('src','/media/download/default-no-image.png');
-							$("#branchName").val("");
-							$("#address").val("");
-						} 
-						
-	 					//$("#add-new-branch-form").trigger("reset");
-						///$("#add-new-branch-form").modal('toggle');
-	 				},
-	 				error: function(err) {
-	 					$(".modal-footer").LoadingOverlay("hide", true);
-	 					alert("Error status: "+ err.status + " Please try again...");
-	 				}
-	 			});
-	 		});
-    		
-    		function readerBranchLogoUrl(input) {
-				if (input.files && input.files[0]) {
-					var reader = new FileReader();
-					reader.onload = function(e) {
-						$('#logo').attr('src', e.target.result);
-					}
-					reader.readAsDataURL(input.files[0]);
-				}
-			}
-			$("#branchLogo").change(function() {
-				readerBranchLogoUrl(this);
-			});
     		
 			
     	});

@@ -31,8 +31,6 @@
 					data-toggle="tab" href="#client-information">Information</a></li>
 				<li class="nav-item"><a class="nav-link" data-toggle="tab"
 					href="#branch">Branch</a></li>
-				<li class="nav-item"><a class="nav-link" data-toggle="tab"
-					href="#applicationTab">Application</a></li>
 			</ul>
 			<!-- /.nav-tabs -->
 		</div>
@@ -123,69 +121,6 @@
 									</a> 
 									<a href="#" th:text="${branch.branchName}"></a></td>
 									<td class="align-middle"><span th:text="${branch.address}"></span></td>
-									<td class="align-middle text-right">
-										<div class="dropdown">
-											<button type="button"
-												class="btn btn-sm btn-icon btn-secondary"
-												data-toggle="dropdown" aria-expanded="false"
-												aria-haspopup="true">
-												<i class="fa fa-ellipsis-h"></i> <span class="sr-only">Actions</span>
-											</button>
-											<div class="dropdown-menu dropdown-menu-right">
-												<div class="dropdown-arrow mr-n1"></div>
-												<button class="dropdown-item" type="button">Edit</button>
-												<button class="dropdown-item" type="button">Delete</button>
-											</div>
-										</div>
-									</td>
-								</tr>
-								<!-- /tr -->
-							</tbody>
-							<!-- /tbody -->
-						</table>
-						<!-- /.table -->
-					</div>
-					<!-- /.table-responsive -->
-				</div>
-				<!-- /.card -->
-			</div>
-			<!-- /.tab-pane -->
-			<!-- .tab-pane -->
-			<div class="tab-pane fade" id="applicationTab" role="tabpanel"
-				aria-labelledby="client-projects-tab">
-				<!-- .card -->
-				<div class="card">
-					<!-- .card-header -->
-					<div class="card-header d-flex">
-						<!-- /.dropdown -->
-						<button type="button" class="btn btn-primary ml-auto">Add
-							application</button>
-					</div>
-					<!-- /.card-header -->
-					<!-- .table-responsive -->
-					<div class="table-responsive">
-						<!-- .table -->
-						<table class="table">
-							<!-- thead -->
-							<thead>
-								<tr>
-									<th style="min-width: 260px">Application</th>
-									<th>Start(Date)</th>
-									<th>End(Date)</th>
-									<th>Status</th>
-									<th></th>
-								</tr>
-							</thead>
-							<!-- /thead -->
-							<!-- tbody -->
-							<tbody>
-								<!-- tr -->
-								<tr>
-									<td class="align-middle text-truncate"><a href="#"
-										class="tile bg-pink text-white mr-2">SP</a> <a href="#">Human Resources</a></td>
-									<td class="align-middle">04/10/2018</td>
-									<td class="align-middle">08/18/2018</td>
-									<td class="align-middle"><span class="badge badge-success">Active</span></td>
 									<td class="align-middle text-right">
 										<div class="dropdown">
 											<button type="button"
