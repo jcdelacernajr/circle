@@ -42,7 +42,9 @@ public class CircleConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 	       .csrf().disable()
-	       .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+	       .sessionManagement()
+	       .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+	       .enableSessionUrlRewriting(false) // otherwise set to false to disallows HTTP sessions to be included in the URL. This prevents leaking information to external domains.
 	       .and()
 		       .addFilter(new CircleJwtAuthenFilter(authenticationManager()))
 		       .addFilter(new CircleJwtAuthorFilter(authenticationManager(),  this.userR))

@@ -305,6 +305,19 @@
 						}
 						
 						if(data.status == '1') {
+							
+							$("#branchTable tbody").prepend('<tr><td class="align-middle text-truncate">'+
+									'<a href="#"><span class="user-avatar"><img src="'+data.logoUrl+'" alt=""></span></a>'+
+									'<a href="#">'+data.branchName+'</a></td>'+
+									'<td class="align-middle"><span>'+data.address+'</span></td>'+ 
+									'<td class="align-middle text-right"><div class="dropdown">'+
+									'<button type="button" class="btn btn-sm btn-icon btn-secondary"'+
+									'data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">'+
+									'<i class="fa fa-ellipsis-h"></i> <span class="sr-only">Actions</span></button>'+
+									'<div class="dropdown-menu dropdown-menu-right"> <div class="dropdown-arrow mr-n1"></div>'+
+									'<button class="dropdown-item" type="button">Edit</button> <button class="dropdown-item" type="button">Delete</button>'+ 
+									'</div></div></td></tr>');
+							
 							$('.response').html('<div class="branch-modal-alert alert-success">'+data.message+'</div>');
 							$("#logo").attr('src','/media/download/default-no-image.png');
 							$("#branchName").val("");

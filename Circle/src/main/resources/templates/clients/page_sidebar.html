@@ -101,7 +101,7 @@
 					<!-- .table-responsive -->
 					<div class="table-responsive">
 						<!-- .table -->
-						<table class="table">
+						<table class="table" id="branchTable">
 							<!-- thead -->
 							<thead>
 								<tr>
@@ -305,7 +305,20 @@
 	<script>
 		$('#addNewBranchModal').on('show.bs.modal', function(event) {
 			var modal = $(this)
+			modal.find('.modal-body #logo').attr('src','/media/download/default-no-image.png');
 			modal.find('.modal-body #organizationId').val($("#organizationId").val());
+			modal.find('.modal-body #branchName').val("");
+			modal.find('.modal-body #address').val("");
+			modal.find('.modal-footer .response').replaceWith('<div class="response"></div>');
+		})
+		
+		$('#addNewBranchModal').on('hidden.bs.modal', function(event) {
+			var modal = $(this)
+			modal.find('.modal-body #logo').attr('src','/media/download/default-no-image.png');
+			modal.find('.modal-body #organizationId').val($("#organizationId").val());
+			modal.find('.modal-body #branchName').val("");
+			modal.find('.modal-body #address').val("");
+			//modal.find('.modal-footer .response').remove();
 		})
 	
 		/**

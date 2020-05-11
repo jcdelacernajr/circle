@@ -198,10 +198,10 @@ public class ClientsController extends BaseController {
 	@ResponseBody
 	public ResponseEntity<String> branchSetupForm(@ModelAttribute BranchSetupForm form) {
 		Users user = getCurrentLoggedUser("organizationSetupForm(");
+		Long fileId = null;
+		FileMetaDataModel data = null;
 		try {
 			// Store the file data.
-			Long fileId = null;
-			FileMetaDataModel data = null;
 			if(!form.getFile().isEmpty()) {
 				data = fileStorageService.store(form.getFile(), user);
 				fileId = data.getFileId();
@@ -221,6 +221,9 @@ public class ClientsController extends BaseController {
 		JSONObject obj = new JSONObject();
 		obj.put("status", 1);
 		obj.put("message", "Success! One branch record added.");
+		obj.put("logoUrl", fileDownloadUrl(data.getFileName(),  "/media/download/"));
+		obj.put("branchName", form.getBranchName());
+		obj.put("address", form.getAddress());
 		return new ResponseEntity<>(obj.toString(), HttpStatus.OK);
 	}
 }
