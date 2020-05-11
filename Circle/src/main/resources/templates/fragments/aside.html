@@ -152,18 +152,21 @@
              <!-- /.menu-item -->
             
              <!-- .menu-header -->
-             <li sec:authorize="hasRole('ROLE_CREATOR')" class="menu-header">Pages </li>
+             <li sec:authorize="hasRole('ROLE_CREATOR')" class="menu-header">Pages</li>
              <!-- /.menu-header -->
              <!-- .menu-item -->
-             <li sec:authorize="hasRole('ROLE_CREATOR')" class="menu-item has-child" th:class="${#httpServletRequest.requestURI} == '/clients/index' ? 'menu-item has-child has-open': 'menu-item has-child'">
+             <li sec:authorize="hasRole('ROLE_CREATOR')" class="menu-item has-child" th:class="${#httpServletRequest.requestURI} == '/apps/clients/index' ? 'menu-item has-child has-open': 'menu-item has-child'">
                <a href="#" class="menu-link">
                  <span class="menu-icon oi oi-infinity"></span>
                  <span class="menu-text">Apps</span>
                </a>
                <!-- child menu -->
                <ul class="menu">
-                 <li class="#" th:class="${#httpServletRequest.requestURI} == '/clients/index' ? 'menu-item has-active': 'menu-item'">
-                   <a th:href="@{~/clients/index}" class="menu-link">Clients</a>
+                 <li class="#" th:class="${#httpServletRequest.requestURI} == '/apps/clients/index' ? 'menu-item has-active': 'menu-item'">
+                   <a th:href="@{~/apps/clients/index}" class="menu-link">Clients</a>
+                 </li>
+                  <li class="#" th:class="${#httpServletRequest.requestURI} == '/apps/branch/index' ? 'menu-item has-active': 'menu-item'">
+                   <a th:href="@{~/apps/branch/index}" class="menu-link">Branch</a>
                  </li>
                </ul>
                <!-- /child menu -->

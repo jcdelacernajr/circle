@@ -50,7 +50,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Controller
-@RequestMapping("clients")
+@RequestMapping("apps/clients")
 public class ClientsController extends BaseController {
 	
 	public ClientsController(UserRepository userRepository, PersonRepository personRepository,
@@ -88,7 +88,7 @@ public class ClientsController extends BaseController {
 		}
     	model.addAttribute("organizations", organizationsList);
 		
-        return "clients/index";
+        return "apps/clients/index";
     }
 	
 	/**
@@ -138,7 +138,7 @@ public class ClientsController extends BaseController {
 		// For debugging
 		// log.info("hex to string: "+ Utils.hexadecimalToString(or.getLicense().getCircleKey()));
 		
-		return "clients/page_sidebar :: page-sidebar";
+		return "apps/clients/page_sidebar :: page-sidebar";
 	}
 	
 	/**
@@ -147,7 +147,7 @@ public class ClientsController extends BaseController {
 	 * */
 	@RequestMapping("add-client-page")
 	public String addClientForm(Model model) {
-		return "clients/add_client_page :: add-client-page";
+		return "apps/clients/add_client_page :: add-client-page";
 	}
 	
 	/**
