@@ -69,6 +69,97 @@
 					</div>
 
 					<div id="page-sidebar" class="element_overlap"></div>
+					
+	<form id="add-new-application-form" name="add-new-application-form">
+		<div class="modal fade has-shown" id="addNewApplicationModal" tabindex="-1"
+			role="dialog" aria-labelledby="addNewApplicationModalLabel"
+			aria-hidden="true" style="display: none;">
+			<!-- .modal-dialog -->
+			<div class="modal-dialog" role="document">
+				<!-- .modal-content -->
+				<div class="modal-content">
+					<!-- .modal-header -->
+					<div class="modal-header">
+						<h6 id="addNewApplicationModalLabel"
+							class="modal-title inline-editable">
+							<span>Add application</span>
+							<span> </span>
+						</h6>
+					</div>
+					<!-- /.modal-header -->
+					<!-- .modal-body -->
+					<div class="modal-body">
+						<!-- .form-row -->
+						<div class="form-row">
+							<div class="col-md-12">
+							  <div class="todo-list">
+								<div class="custom-control custom-checkbox">
+		                            <input type="checkbox" class="custom-control-input" id="active"> <label class="custom-control-label" 
+		                            for="active">Active</label>
+		                          </div>
+	                          </div>
+                          </div>
+                        </div>
+						<!-- .form-row -->
+						<div class="form-row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<label hidden for="branchId">Branch</label>
+									<input hidden type="branchId" id="branchId" name="branchId" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									 <label for="system">Application</label>
+									<div class="circle-select">
+											<select type="system" class="form-control selectpicker"
+												data-live-search="true" name="system"
+												id="system" required="">
+												<option>HR</option>
+												<option>HR1</option>
+												<option>HR2</option>
+												<option>HR3</option>
+											</select>
+										</div>
+									
+								</div>
+							</div>
+						</div>
+						<!-- .form-row -->
+						<div class="form-row">
+							<!-- grid column -->
+							<div class="col-md-6 mb-1">
+								<label for="">Start(Date)</label> <input
+									class="form-control" 
+									id="startDate" name="startDate" placeholder="YYY/MM/DD"
+									type="startDate" required="" />
+							</div>
+							<!-- /grid column -->
+							<!-- grid column -->
+							<div class="col-md-6 mb-1">
+								<label for="endDate">End(Date)</label> <input
+									class="form-control" 
+									id="endDate" name="endDate" placeholder="YYY/MM/DD"
+									type="endDate" required="" />
+							</div>
+							<!-- /grid column -->
+						</div>
+						<!-- /.form-row -->
+					</div>
+					<!-- /.modal-body -->
+					<!-- .modal-footer -->
+					<div class="modal-footer">
+						<div class="response"></div>
+						<button type="submit" class="btn btn-primary">Save</button>
+						<button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+					</div>
+					<!-- /.modal-footer -->
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+	</form>
 
 				</div>
 			</div>
@@ -119,6 +210,25 @@
 				});
     		});
     		
+    		$('.selectpicker').selectpicker();
+    		
+    		var date_input=$('input[name="startDate"]'); //our date input has the name "date"
+			var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+			date_input.datepicker({
+				format: 'yyyy-mm-dd',
+				container: container,
+				todayHighlight: true,
+				autoclose: true,
+			})
+			
+			var date_input=$('input[name="endDate"]'); //our date input has the name "date"
+			var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+			date_input.datepicker({
+				format: 'yyyy-mm-dd',
+				container: container,
+				todayHighlight: true,
+				autoclose: true,
+			})
 			
     	});
     </script>

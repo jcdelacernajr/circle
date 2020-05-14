@@ -83,8 +83,10 @@
 				<div class="card">
 					<!-- .card-header -->
 					<div class="card-header d-flex">
+					<input hidden id="branchId" th:value="${branchId}">
 						<!-- /.dropdown -->
-						<button type="button" class="btn btn-primary ml-auto">Add
+						<button type="button" class="btn btn-primary ml-auto" data-toggle="modal"
+								data-target="#addNewApplicationModal">Add
 							application</button>
 					</div>
 					<!-- /.card-header -->
@@ -145,7 +147,20 @@
 	<!-- /.sidebar-section -->
 	
 	<script>
+	$('#addNewApplicationModal').on('show.bs.modal', function(event) {
+		var modal = $(this);
+		modal.find('.modal-body #branchId').val($("#branchId").val());
 		
+        //event.preventDefault(); // TODO..
+        /* $.ajax({
+            type : 'POST',
+            url : "/#",
+            success : function(data) {
+                 var d = data;
+                 $("#").html(d);
+            }
+        }); */
+    });
 	</script>
 	
 </div>
