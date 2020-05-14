@@ -15,11 +15,15 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.web.circle.controller.DTO.form.OrganizationSetupForm;
 import com.web.circle.model.ClientTableDataModel;
+import com.web.circle.model.entity.Application;
+import com.web.circle.model.entity.System;
 import com.web.circle.model.entity.License;
 import com.web.circle.model.entity.Organizations;
 import com.web.circle.model.entity.UploadFile;
 import com.web.circle.model.entity.Users;
+import com.web.circle.repository.ApplicationRepository;
 import com.web.circle.repository.OrganizationRepository;
+import com.web.circle.repository.SystemRepository;
 import com.web.circle.utils.Utils;
 
 @Service
@@ -28,6 +32,12 @@ public class OrganizationsServiceImp implements OrganizationsService {
 	
 	@Autowired
 	private OrganizationRepository organizationRepository;
+	
+	//@Autowired
+	//private SystemRepository systemRepository;
+	
+	//@Autowired
+	//private ApplicationRepository applicationRepository;
 
 	@Override
 	public List<ClientTableDataModel> organization(long organizationId) {
@@ -93,6 +103,21 @@ public class OrganizationsServiceImp implements OrganizationsService {
 			uploadFile.setUploadFileId(1); // The default-no-image id 
 			organization.setUploadFile(uploadFile);
 		}
+		
+		// TODO. Not recommended.
+		// Set default organization system
+//		List<System> system = systemRepository.findAll();
+//		for(System sys: system) {
+//			Application app = new Application();
+//			System _system = new System();
+//			_system.setLabel(sys.getLabel());
+//			app.setOrganizations(organization);
+//			app.setSystem(_system);
+//			app.setStartDate(null);
+//			app.setEndDate(null);
+//			app.setActive(null);
+//			applicationRepository.save(app);
+//		}
 		
 		return organizationRepository.save(organization);
 	}
